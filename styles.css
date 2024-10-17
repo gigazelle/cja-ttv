@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right-column {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+}
+
+.accordion {
+    margin-bottom: 20px;
+}
+
+.accordion-content {
+    margin-top: 10px;
+}
+
+.popover-icon {
+    cursor: pointer;
+    color: blue;
+    margin-left: 5px;
+}
+
+.popover {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
+}
+
+#checklist {
+    list-style-type: none;
+    padding: 0;
+}
+
+#checklist li {
+    background-color: #e0e0e0;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
