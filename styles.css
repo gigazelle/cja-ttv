@@ -43,14 +43,24 @@ body {
     z-index: 10;
 }
 
-#checklist {
-    list-style-type: none;
-    padding: 0;
+#checklist-container {
+    list-style-type: none; /* No default list style */
+    padding: 0; /* No padding */
+    margin-top: 20px; /* Space above the checklist */
 }
 
-#checklist li {
-    background-color: #e0e0e0;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 5px;
+/* Each checklist item container */
+#checklist-container div {
+    background-color: #e0e0e0; /* Same background color as before */
+    margin-bottom: 5px; /* Space between items */
+    padding: 10px; /* Padding for each item */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Align checkbox and label horizontally */
+    align-items: center; /* Center vertically */
 }
+
+/* Checkbox styling */
+#checklist-container input[type="checkbox"] {
+    margin-right: 10px; /* Space between checkbox and label */
+}
+

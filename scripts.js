@@ -3,27 +3,42 @@ $(document).ready(function () {
 
     // Fetch the YAML data from the external file
     $.ajax({
-        url: 'checklist.yml', // Path to your YAML file
-        dataType: 'text',
+        url: "checklist.yml", // URL to your YAML file
+        dataType: "text",
         success: function (data) {
             const parsedYaml = jsyaml.load(data); // Parse the YAML file
-            checklistItems = parsedYaml.checklistItems; // Store the checklist items
+            checklistItems = parsedYaml.checklistItems; // Store the checklist items as an object
+            console.log(checklistItems);
+    
+            // Example usage of checklistItems
+            // Adding checklist items or other logic based on the keys
+            for (const key in checklistItems) {
+                if (checklistItems.hasOwnProperty(key)) {
+                    const item = checklistItems[key]; // Access each item as an object
+                    console.log(`Item ID: ${key}, Text: ${item.text}, Order: ${item.order}`);
+                    // Here, you can add logic to populate the checklist UI
+                }
+            }
         },
-        error: function () {
-            console.error('Error loading YAML file.');
+        error: function (error) {
+            console.error("Error loading the YAML file:", error);
         }
     });
+    
+
 
     // Add a checklist item by ID
     function addChecklistItem(id) {
         // Check if the item already exists, if so, don't add it again
         if ($('#checklist-item-' + id).length > 0) {
+            console.log("Item with ID '" + id + "' already exists.");
             return;
         }
 
         // Check if the item exists in checklistItems
         if (!checklistItems[id]) {
             console.error("Checklist item with ID '" + id + "' not found.");
+            console.log("Available IDs:", Object.keys(checklistItems)); // Log available IDs for debugging
             return;
         }
 
@@ -51,6 +66,7 @@ $(document).ready(function () {
         // Append the new checklist item to the checklist container
         $('#checklist-container').append(checklistDiv);
     }
+
 
     // Remove a checklist item by ID
     function removeChecklistItem(id) {

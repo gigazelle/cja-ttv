@@ -1,16 +1,19 @@
 checklistItems:
-  - id: "appm"
-    text: "Set up project structure"
+  appm:
+    text: "AppMeasurement or Tags with the Adobe Analytics extension"
     order: 1
-  - id: "websdk"
-    text: "Initialize version control"
+  websdk:
+    text: "Web SDK or Tags with the Web SDK extension"
     order: 2
-  - id: "none"
-    text: "Identify problematic areas for refactoring"
+  none:
+    text: "No Adobe Analytics implementation"
     order: 3
-  - id: "unit-tests"
-    text: "Write unit tests for refactored code"
+  refactor_code:
+    text: "Refactor Your Code"
     order: 4
-  - id: "scale-up"
-    text: "Upgrade infrastructure for scaling"
+  unit_tests:
+    text: "Implement Unit Tests"
     order: 5
+  scale_up:
+    text: "Scale Up Your Application"
+    order: 6
