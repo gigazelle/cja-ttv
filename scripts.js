@@ -37,7 +37,7 @@ $(document).ready(function () {
         return $(`input[name=${groupName}]:checked`).attr('id');
     }
 
-    // Function to add checklist item by ID
+    // Add a checklist item by ID
     function addChecklistItem(id) {
         if ($('#checklist-item-' + id).length > 0) {
             return;
@@ -57,6 +57,16 @@ $(document).ready(function () {
             for: 'checkbox-' + id,
             text: checklistItems[id].text
         });
+
+        // Add event listener to change background and text style when checked
+        checkbox.on('change', function () {
+            if ($(this).is(':checked')) {
+                checklistDiv.addClass('checklist-item-checked');
+            } else {
+                checklistDiv.removeClass('checklist-item-checked');
+            }
+        });
+
         checklistDiv.append(checkbox);
         checklistDiv.append(label);
         $('#checklist-container').append(checklistDiv);
