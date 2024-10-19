@@ -39,37 +39,51 @@ $(document).ready(function () {
 
     // Add a checklist item by ID
     function addChecklistItem(id) {
-        if ($('#checklist-item-' + id).length > 0) {
+        const checklistContainer = document.getElementById('checklist-container');
+        const itemData = checklistItems[id];  // Fetch the data for this checklist item
+    
+        if (!itemData) {
+            console.error(`Checklist item with ID "${id}" not found.`);
             return;
         }
-        if (!checklistItems[id]) {
-            console.error("YAML item with ID '" + id + "' not found.");
-            return;
-        }
-        const checklistDiv = $('<div>', { id: 'checklist-item-' + id });
-        const checkbox = $('<input>', {
-            type: 'checkbox',
-            id: 'checkbox-' + id,
-            name: 'checklist-checkbox',
-            value: id
-        });
-        const label = $('<label>', {
-            for: 'checkbox-' + id,
-            text: checklistItems[id].text
-        });
-
-        // Add event listener to change background and text style when checked
-        checkbox.on('change', function () {
-            if ($(this).is(':checked')) {
-                checklistDiv.addClass('checklist-item-checked');
+    
+        // Create a new div for the checklist item
+        const checklistItem = document.createElement('div');
+        checklistItem.title = itemData.description || '';  // Add description as a tooltip for the whole box
+    
+        // Create the checkbox input
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = id;
+        checkbox.onchange = () => {
+            if (checkbox.checked) {
+                checklistItem.classList.add('checklist-item-checked');
             } else {
-                checklistDiv.removeClass('checklist-item-checked');
+                checklistItem.classList.remove('checklist-item-checked');
             }
-        });
-
-        checklistDiv.append(checkbox);
-        checklistDiv.append(label);
-        $('#checklist-container').append(checklistDiv);
+        };
+    
+        // Create the label (text as a link if the link property exists)
+        const label = document.createElement('label');
+        label.setAttribute('for', id);
+    
+        // Check if the item has a link
+        if (itemData.link) {
+            const anchor = document.createElement('a');
+            anchor.href = itemData.link;
+            anchor.textContent = itemData.text;
+            anchor.target = '_blank';  // Opens link in a new tab
+            label.appendChild(anchor);
+        } else {
+            label.textContent = itemData.text;  // Just use plain text if no link exists
+        }
+    
+        // Append checkbox and label to the div
+        checklistItem.appendChild(checkbox);
+        checklistItem.appendChild(label);
+    
+        // Add the checklist item to the container
+        checklistContainer.appendChild(checklistItem);
     }
 
     // Function to remove checklist item by ID
