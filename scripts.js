@@ -1,123 +1,125 @@
 $(document).ready(function () {
     let checklistItems = [];
+    let currentDropdownSelection = '';
 
-    // Fetch the YAML data from the external file
+    // Fetch and parse YAML data
     $.ajax({
-        url: "checklist.yml", // URL to your YAML file
+        url: "checklist.yml",
         dataType: "text",
         success: function (data) {
-            const parsedYaml = jsyaml.load(data); // Parse the YAML file
-            checklistItems = parsedYaml.checklistItems; // Store the checklist items as an object
-            console.log(checklistItems);
-    
-            // Example usage of checklistItems
-            // Adding checklist items or other logic based on the keys
-            for (const key in checklistItems) {
-                if (checklistItems.hasOwnProperty(key)) {
-                    const item = checklistItems[key]; // Access each item as an object
-                    console.log(`Item ID: ${key}, Text: ${item.text}, Order: ${item.order}`);
-                    // Here, you can add logic to populate the checklist UI
-                }
-            }
+            const parsedYaml = jsyaml.load(data);
+            checklistItems = parsedYaml.checklistItems;
+            // Add default checklist
+            addChecklistItem("architect_schema");
+            addChecklistItem("create_schema");
+            addChecklistItem("create_dataset");
+            addChecklistItem("create_datastream");
+            addChecklistItem("add_aep_to_datastream");
+            addChecklistItem("waiting_on_imp_select");
+            addChecklistItem("create_connection");
+            addChecklistItem("create_data_view");
+            addChecklistItem("enable_adc");
+            addChecklistItem("validate_cja_data");
+            addChecklistItem("component_migration");
+            addChecklistItem("remove_appm");
+            addChecklistItem("disable_adc");
+
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
         }
     });
-    
 
 
-    // Add a checklist item by ID
+
+    // Function to get the selected radio button value
+    function getSelectedRadioValue(groupName) {
+        return $(`input[name=${groupName}]:checked`).attr('id');
+    }
+
+    // Function to add checklist item by ID
     function addChecklistItem(id) {
-        // Check if the item already exists, if so, don't add it again
         if ($('#checklist-item-' + id).length > 0) {
-            console.log("Item with ID '" + id + "' already exists.");
             return;
         }
-
-        // Check if the item exists in checklistItems
         if (!checklistItems[id]) {
-            console.error("Checklist item with ID '" + id + "' not found.");
-            console.log("Available IDs:", Object.keys(checklistItems)); // Log available IDs for debugging
+            console.error("YAML item with ID '" + id + "' not found.");
             return;
         }
-
-        // Create a div to hold the checkbox and label
         const checklistDiv = $('<div>', { id: 'checklist-item-' + id });
-
-        // Create the checkbox element
         const checkbox = $('<input>', {
             type: 'checkbox',
             id: 'checkbox-' + id,
             name: 'checklist-checkbox',
             value: id
         });
-
-        // Create the label for the checkbox using the parsed checklistItems data
         const label = $('<label>', {
             for: 'checkbox-' + id,
-            text: checklistItems[id].text // Reference the text directly from the checklistItems object
+            text: checklistItems[id].text
         });
-
-        // Append the checkbox and label to the div
         checklistDiv.append(checkbox);
         checklistDiv.append(label);
-
-        // Append the new checklist item to the checklist container
         $('#checklist-container').append(checklistDiv);
     }
 
-
-    // Remove a checklist item by ID
+    // Function to remove checklist item by ID
     function removeChecklistItem(id) {
-        $(`#checklist li#${id}`).remove();
+        $('#checklist-item-' + id).remove();
     }
 
-    // Handle checklist updates for the drop-down (codeState)
+    // Listen for dropdown changes
     $('#implementation-state').change(function () {
-        console.log("Dropdown changed");
-        const selectedOption = $(this).val();
+        currentDropdownSelection = $(this).val();  // Store the dropdown selection
 
-        // Remove all items related to this dropdown
-        removeChecklistItem("appm");
-        removeChecklistItem("websdk");
-        removeChecklistItem("refactor-code");
-        removeChecklistItem("unit-tests");
-        removeChecklistItem("scale-up");
-
-        // Based on the selected option, add checklist items
-        switch (selectedOption) {
-            case 'appm':
-                addChecklistItem("appm");
-                addChecklistItem("websdk");
-                console.log("Adding checklist item");
-                break;
-            case 'websdk':
-                addChecklistItem("refactor-code");
-                addChecklistItem("unit-tests");
-                break;
-            case 'scale':
-                addChecklistItem("scale-up");
-                break;
-            default:
-                break;
+        const checkboxChecked = $('#want-turn-off-aa').is(':checked');
+        if (currentDropdownSelection === 'imp-type-have-manual' && checkboxChecked) {
+            addChecklistItem("some_checklist_item");
+        } else {
+            removeChecklistItem("some_checklist_item");
         }
     });
 
-    // Popover functionality
-    $('.popover-icon').on('click', function () {
-        const popoverText = $(this).data('popover');
-        const $popover = $('<div class="popover"></div>').text(popoverText);
+    // Listen for checkbox changes
+    $('#want-turn-off-aa').change(function () {
+        const isChecked = $(this).is(':checked');
 
-        // Toggle popover visibility
-        $(this).after($popover);
-        $popover.toggle();
+        if (isChecked && currentDropdownSelection === 'imp-type-have-manual') {
+            addChecklistItem("some_checklist_item");
+        } else {
+            removeChecklistItem("some_checklist_item");
+        }
+    });
 
-        // Close the popover when clicking elsewhere
-        $(document).on('click', function (e) {
-            if (!$(e.target).is('.popover-icon, .popover')) {
-                $popover.remove();
-            }
-        });
+    // Listen for changes on any form element in the left column
+    $('.accordion-content input').change(function () {
+        const elementId = $(this).attr('id');
+        const isChecked = $(this).is(':checked');
+
+        switch (elementId) {
+            case 'imp-appmeasurement':
+                addChecklistItem("remove_appm");
+                addChecklistItem("validate_cja_data");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                break;
+            case 'imp-web-sdk':
+                addChecklistItem("remove_tags");
+                addChecklistItem("validate_cja_data");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_api");
+                break;
+            case 'want-turn-off-aa':
+                const currentRadioValue = getSelectedRadioValue('implementation-have');
+                if (isChecked && currentRadioValue === 'imp-type-have-manual') {
+                    addChecklistItem("turn_off_aa_manual");
+                } else {
+                    removeChecklistItem("turn_off_aa_manual");
+                }
+                break;
+            // Other cases...
+            default:
+                console.warn("Form element ID does not have an action:", elementId);
+                break;
+        }
     });
 });
