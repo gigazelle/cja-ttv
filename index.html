@@ -19,7 +19,7 @@
                 <div class="accordion-content">
                     <p>How do you currently have Adobe Analytics implemented for a given property?<span class="popover-icon" data-description="Test!"> ℹ️ </span></p>
                     <select id="implementation-state">
-                        <option id="imp-default" disabled selected>Select your current implementation</option>
+                        <option id="imp-default" disabled selected hidden>Select your current implementation</option>
                         <option id="imp-appmeasurement">AppMeasurement or Analytics tag extension</option>
                         <option id="imp-web-sdk">Web SDK</option>
                         <option id="imp-server-side-api">Server-side API</option>
@@ -34,21 +34,17 @@
                 </div>
             </div>
             <div class="accordion">
-                <h3>What you want</h3>
+                <h3>Existing Adobe Analytics features that you want to bring to CJA</h3>
                 <div class="accordion-content">
                     <p>Select the features you want:</p>
                     <input type="checkbox" id="want-turn-off-aa">Eventually use CJA exclusively to prevent costs using both AA and CJA<br>
-                    <input type="checkbox" id="want-historical data">Historical data from Adobe Analytics into CJA<br>
+                    <input type="checkbox" id="want-historical data">Historical data from Adobe Analytics<br>
                     <input type="checkbox" id="want-component-migration">Components and projects from Adobe Analytics into CJA<br>
-                    <input type="checkbox" id="want-activity-map-overlay">Activity map overlay<br>
+                    <input type="checkbox" id="want-activity-map-overlay">Activity map overlay and link tracking<br>
                     <input type="checkbox" id="want-classifications">Classification data<br>
                     <input type="checkbox" id="want-marketing-channels">Marketing channels<br>
                     <input type="checkbox" id="want-data-feeds">Data feeds<br>
                     <input type="checkbox" id="want-streaming-media">Include streaming media data<br>
-                    <input type="checkbox" id="want-a4t">Integration with Adobe Target (A4T data)<br>
-                    <input type="checkbox" id="want-aam">Integration with Adobe Audience Manager<br>
-                    <input type="checkbox" id="want-rtcdp">Integration with RTCDP<br>
-                    <input type="checkbox" id="want-ajo">Integration with Adobe Journey Optimizer<hr>
                     <input type="radio" id="want-custom-schema">I want to use a schema tailored to my organization<br>
                     <input type="radio" id="want-analytics-schema">I'm good with using an Analytics-based schema<hr>
                     <input type="radio" id="imp-type-want-tags" name="implementation-want">I want to use tags<br>
@@ -56,20 +52,32 @@
                     <input type="radio" id="imp-type-want-api" name="implementation-want">I want to use the API<br>
                 </div>
             </div>
-
+            
+            <div class="accordion">
+                <h3>New CJA features that you want to capitalize on</h3>
+                <p>Select the features that you want:</p>
+                <input type="checkbox" id="want-omnichannel">Tie web data with data from other channels, such as call center<br>
+                <input type="checkbox" id="want-rtcdp">Integrate with RTCDP<br>
+                <input type="checkbox" id="want-ajo">Integrate with Adobe Journey Optimizer<hr>
+                
+            </div>
+            
             <div class="accordion">
                 <h3>How you want to get there</h3>
                 <div class="accordion-content">
                     <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to CJA much easier, but comes at a cost of some technical debt."> ℹ️ </span></p>
                     <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span><br>
                     <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span><br>
+                    <input type="checkbox" id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> ℹ️ </span><br>
+                    <input type="checkbox" id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> ℹ️ </span><br>
                 </div>
             </div>
         </div>
 
         <!-- Right Column: Checklist -->
         <div class="right-column">
-            <h2>Checklist</h2>
+            <h2>Ordered checklist</h2>
+            <p>Complete the following steps in order to start getting value out of CJA.</p>
             <ul id="checklist-container"></ul>
         </div>
     </div>

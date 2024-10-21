@@ -19,10 +19,10 @@ $(document).ready(function () {
             addChecklistItem("create_connection");
             addChecklistItem("create_data_view");
             addChecklistItem("enable_adc");
+            addChecklistItem("disable_adc");
             addChecklistItem("validate_cja_data");
             addChecklistItem("component_migration");
             addChecklistItem("remove_appm");
-            addChecklistItem("disable_adc");
 
         },
         error: function (error) {
@@ -84,12 +84,40 @@ $(document).ready(function () {
 
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
+
+        sortChecklist();
     }
 
     // Function to remove checklist item by ID
     function removeChecklistItem(id) {
         $('#checklist-item-' + id).remove();
+        sortChecklist();
     }
+
+    // Sort the checklist by the order listed in the YAML file
+    // Function to sort the checklist based on the order in checklistItems variable
+    function sortChecklist() {
+        const checklistContainer = document.getElementById('checklist-container');
+
+        // Get all the checklist items (divs) in an array
+        const itemsArray = Array.from(checklistContainer.children);
+
+        // Sort the checklist items based on the order in checklistItems variable
+        itemsArray.sort((a, b) => {
+            const idA = a.getAttribute('data-id');
+            const idB = b.getAttribute('data-id');
+
+            const orderA = Object.keys(checklistItems).indexOf(idA);
+            const orderB = Object.keys(checklistItems).indexOf(idB);
+
+            return orderA - orderB;
+        });
+
+        // Clear the container and append the sorted items
+        checklistContainer.innerHTML = '';
+        itemsArray.forEach(item => checklistContainer.appendChild(item));
+    }
+
 
     // Listen for dropdown changes
     $('#implementation-state').change(function () {
@@ -134,8 +162,9 @@ $(document).ready(function () {
                 break;
             case 'want-turn-off-aa':
                 const currentRadioValue = getSelectedRadioValue('implementation-have');
-                if (isChecked && currentRadioValue === 'imp-type-have-manual') {
+                if (isChecked && currentRadioValue === 'imp-appmeasurement') {
                     addChecklistItem("turn_off_aa_manual");
+                    console.log("Manual triggered");
                 } else {
                     removeChecklistItem("turn_off_aa_manual");
                 }
@@ -185,3 +214,8 @@ $(document).ready(function () {
     });
 
 });
+
+/*
+Add 'complete the following steps' on the right
+Add numbered steps
+*/
