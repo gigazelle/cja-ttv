@@ -253,12 +253,111 @@ $(document).ready(function () {
         });
     });
 
+    const questionnaire = {
+        implementationState: {
+            id: 'implementation-state',
+            options: [
+                'AppMeasurement or Analytics tag extension',
+                'Web SDK',
+                'Server-side API',
+                'Legacy mobile implementation',
+                'Mobile SDK',
+                'No Adobe Analytics implementation'
+            ],
+            selected: null // to store the selected value
+        },
+        implementationType: {
+            manual: {
+                id: 'imp-type-have-manual',
+                selected: false // to track if selected
+            },
+            tags: {
+                id: 'imp-type-have-tags',
+                selected: false
+            },
+            api: {
+                id: 'imp-type-have-api',
+                selected: false
+            }
+        },
+        existingFeatures: {
+            features: {
+                turnOffAA: { id: 'want-turn-off-aa', selected: false },
+                historicalData: { id: 'want-historical data', selected: false },
+                componentMigration: { id: 'want-component-migration', selected: false },
+                activityMapOverlay: { id: 'want-activity-map-overlay', selected: false },
+                classifications: { id: 'want-classifications', selected: false },
+                marketingChannels: { id: 'want-marketing-channels', selected: false },
+                dataFeeds: { id: 'want-data-feeds', selected: false },
+                streamingMedia: { id: 'want-streaming-media', selected: false }
+            },
+            customSchema: {
+                id: 'want-custom-schema',
+                selected: false
+            },
+            analyticsSchema: {
+                id: 'want-analytics-schema',
+                selected: false
+            },
+            implementationWant: {
+                tags: { id: 'imp-type-want-tags', selected: false },
+                manual: { id: 'imp-type-want-manual', selected: false },
+                api: { id: 'imp-type-want-api', selected: false }
+            }
+        },
+        newCJAfeatures: {
+            omnichannel: { id: 'want-omnichannel', selected: false },
+            rtcdp: { id: 'want-rtcdp', selected: false },
+            ajo: { id: 'want-ajo', selected: false }
+        },
+        shortcuts: {
+            keepAppMeasurement: { id: 'shortcut-keep-appmeasurement', selected: false },
+            useDataLayer: { id: 'shortcut-use-data-layer', selected: false },
+            a4t: { id: 'want-a4t', selected: false },
+            aam: { id: 'want-aam', selected: false }
+        },
+        // Method to update selected values based on form inputs
+        updateSelection: function (inputId, isSelected) {
+            for (const section in this) {
+                if (this[section].hasOwnProperty('features')) {
+                    for (const feature in this[section].features) {
+                        if (this[section].features[feature].id === inputId) {
+                            this[section].features[feature].selected = isSelected;
+                            return;
+                        }
+                    }
+                } else if (this[section].hasOwnProperty('id') && this[section].id === inputId) {
+                    this[section].selected = isSelected;
+                }
+            }
+        },
+        // Method to get selected values
+        getSelectedValues: function () {
+            const selectedValues = {};
+            for (const section in this) {
+                if (this[section].hasOwnProperty('features')) {
+                    selectedValues[section] = Object.keys(this[section].features).filter(
+                        feature => this[section].features[feature].selected
+                    );
+                } else if (this[section].hasOwnProperty('id')) {
+                    selectedValues[section] = this[section].selected;
+                }
+            }
+            return selectedValues;
+        }
+    };
 
+    // Example of how to use the updateSelection method
+    // You can call this method based on form input changes
+    // For example, when an implementation type radio button is selected
+    $('input[type="radio"]').change(function () {
+        const inputId = $(this).attr('id');
+        const isSelected = $(this).is(':checked');
+        questionnaire.updateSelection(inputId, isSelected);
+    });
 
+    // Example to get selected values when needed
+    const selectedValues = questionnaire.getSelectedValues();
+    console.log(selectedValues);
 
 });
-
-/*
-Add 'complete the following steps' on the right
-Add numbered steps
-*/
