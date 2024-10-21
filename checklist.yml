@@ -10,29 +10,41 @@ checklistItems:
   create_dataset:
     text: "Create a dataset in Adobe Experience Platform"
     description: "A dataset is a location where collected data resides. Create this location in Adobe Experience Platform."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/catalog/datasets/user-guide#create"
   create_datastream:
     text: "Create a datastream in Adobe Experience Platform"
     description: "A datastream is an intermediary location that passes your data along to all configured services. Create this location in Adobe Experience Platform."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure"
   add_aep_to_datastream:
     text: "Add Adobe Experience Platform as a service to the datastream"
     description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure#add-services"
   waiting_on_imp_select:
     text: "Select an implementation type for this checklist item"
   create_tag:
-    text: "Create a tag in Adobe Experience Platform Data Collection"
+    text: "Create a tag property in Adobe Experience Platform Data Collection"
     description: "Using tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/get-started/quick-start#create-a-property"
+  add_extension:
+    text: "Add the Adobe Experience Platform Web SDK extension"
+    description: "Add the Adobe Experience Platform Web SDK extension to your tag property"
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/extensions/client/web-sdk/web-sdk-extension-configuration"
   implement_tag:
     text: "Implement the loader tag on your site"
     description: "Work with your website development team to install the loader tag on every page of your site."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/get-started/implementation-guides"
   add_tag_xdm_logic:
     text: "Add XDM data collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate an XDM object to send to Adobe."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/sendevent/xdm"
   add_tag_data_logic:
     text: "Add data object collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate a data object to send to Adobe."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/sendevent/data"
   implement_web_sdk:
     text: "Add alloy.js to your site"
     description: "Work with your website development team to install the alloy.js file on every page of your site."
+    link: https://experienceleague.adobe.com/en/docs/experience-platform/edge/fundamentals/installing-the-sdk#option-2-installing-the-prebuilt-standalone-version"
   populate_xdm:
     text: "Populate an XDM object and send it to the datastream"
   populate_data_object:
@@ -42,15 +54,23 @@ checklistItems:
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
     description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/create-connection"
   create_data_view:
     text: "Create a data view in Customer Journey Analytics"
+    description: "A data view is a container specific to Customer Journey Analytics that lets you determine how to interpret data from a connection."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-dataviews/data-views"
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
+    description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/manage-connections#connection-detail"
   enable_adc:
     text: "Enable the Analytics Source Connector for historical data"
+    description: "Use the Analytics source connector to ingest historical data in Experience Plaform for use in Customer Journey Analytics"
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
   component_migration:
     text: "Follow the component migration workflow"
     description: "Bring components like dimensions, metrics, segments, calculated metrics, and Workspace projects over from Adobe Analytics to Customer Journey Analytics."
+    link: "https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration"
   remove_appm:
     text: "Disable AppMeasurement data collection"
   remove_tags:
