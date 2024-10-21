@@ -41,16 +41,16 @@ $(document).ready(function () {
     function addChecklistItem(id) {
         const checklistContainer = document.getElementById('checklist-container');
         const itemData = checklistItems[id];  // Fetch the data for this checklist item
-    
+
         if (!itemData) {
             console.error(`Checklist item with ID "${id}" not found.`);
             return;
         }
-    
+
         // Create a new div for the checklist item
         const checklistItem = document.createElement('div');
         checklistItem.title = itemData.description || '';  // Add description as a tooltip for the whole box
-    
+
         // Create the checkbox input
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -62,11 +62,11 @@ $(document).ready(function () {
                 checklistItem.classList.remove('checklist-item-checked');
             }
         };
-    
+
         // Create the label (text as a link if the link property exists)
         const label = document.createElement('label');
         label.setAttribute('for', id);
-    
+
         // Check if the item has a link
         if (itemData.link) {
             const anchor = document.createElement('a');
@@ -77,11 +77,11 @@ $(document).ready(function () {
         } else {
             label.textContent = itemData.text;  // Just use plain text if no link exists
         }
-    
+
         // Append checkbox and label to the div
         checklistItem.appendChild(checkbox);
         checklistItem.appendChild(label);
-    
+
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
     }
@@ -146,4 +146,42 @@ $(document).ready(function () {
                 break;
         }
     });
+
+    // Function to show the popover on hover
+    function showPopover(event, description) {
+        // Remove any existing popover to avoid duplication
+        let existingPopover = document.querySelector('.popover');
+        if (existingPopover) {
+            existingPopover.remove();
+        }
+
+        // Create a new popover element
+        const popover = document.createElement('div');
+        popover.classList.add('popover');
+        popover.textContent = description;
+
+        // Position the popover relative to the hovered element
+        const rect = event.target.getBoundingClientRect();
+        popover.style.left = `${rect.right + 10}px`;  // Offset 10px to the right
+        popover.style.top = `${rect.top}px`;
+
+        // Append the popover to the body
+        document.body.appendChild(popover);
+    }
+
+    // Function to hide the popover on mouseout or click away
+    function hidePopover() {
+        let existingPopover = document.querySelector('.popover');
+        if (existingPopover) {
+            existingPopover.remove();
+        }
+    }
+
+    // Add hover event listeners to elements that should trigger popovers
+    document.querySelectorAll('.popover-icon').forEach(icon => {
+        const description = icon.dataset.description; // Get the description from the data attribute
+        icon.addEventListener('mouseover', (event) => showPopover(event, description));
+        icon.addEventListener('mouseout', hidePopover);
+    });
+
 });

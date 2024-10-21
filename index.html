@@ -17,7 +17,7 @@
             <div class="accordion">
                 <h3>What you have</h3>
                 <div class="accordion-content">
-                    <p>How do you currently have Adobe Analytics implemented for a given property?</p>
+                    <p>How do you currently have Adobe Analytics implemented for a given property?<span class="popover-icon" data-description="Test!"> ℹ️ </span></p>
                     <select id="implementation-state">
                         <option id="imp-default" disabled selected>Select your current implementation</option>
                         <option id="imp-appmeasurement">AppMeasurement or Analytics tag extension</option>
@@ -60,9 +60,9 @@
             <div class="accordion">
                 <h3>How you want to get there</h3>
                 <div class="accordion-content">
-                    <p>Select the shortcuts that you want to take:</p>
-                    <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK<br>
-                    <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<br>
+                    <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to CJA much easier, but comes at a cost of some technical debt."> ℹ️ </span></p>
+                    <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span><br>
+                    <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span><br>
                 </div>
             </div>
         </div>
