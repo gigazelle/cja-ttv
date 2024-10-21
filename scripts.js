@@ -50,6 +50,13 @@ $(document).ready(function () {
         // Create a new div for the checklist item
         const checklistItem = document.createElement('div');
         checklistItem.title = itemData.description || '';  // Add description as a tooltip for the whole box
+        checklistItem.setAttribute('data-id', id);  // Set the ID for sorting purposes
+
+        // Create a numeric identifier span (we'll update this in the sort function)
+        const numberSpan = document.createElement('span');
+        numberSpan.classList.add('checklist-number');
+        numberSpan.textContent = '1. ';  // Placeholder; will be updated in sortChecklist
+        numberSpan.style.marginRight = '10px';  // Adds space between the number and the label text
 
         // Create the checkbox input
         const checkbox = document.createElement('input');
@@ -78,15 +85,19 @@ $(document).ready(function () {
             label.textContent = itemData.text;  // Just use plain text if no link exists
         }
 
-        // Append checkbox and label to the div
+        // Append checkbox, number, and label to the div
         checklistItem.appendChild(checkbox);
+        checklistItem.appendChild(numberSpan);
         checklistItem.appendChild(label);
 
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
 
+        // Sort the checklist after adding the new item
         sortChecklist();
     }
+
+
 
     // Function to remove checklist item by ID
     function removeChecklistItem(id) {
@@ -115,8 +126,15 @@ $(document).ready(function () {
 
         // Clear the container and append the sorted items
         checklistContainer.innerHTML = '';
-        itemsArray.forEach(item => checklistContainer.appendChild(item));
+        itemsArray.forEach((item, index) => {
+            // Update the numeric identifier (index starts from 0, so add 1)
+            const numberSpan = item.querySelector('.checklist-number');
+            numberSpan.textContent = (index + 1) + '. ';
+
+            checklistContainer.appendChild(item);
+        });
     }
+
 
 
     // Listen for dropdown changes
@@ -212,6 +230,31 @@ $(document).ready(function () {
         icon.addEventListener('mouseover', (event) => showPopover(event, description));
         icon.addEventListener('mouseout', hidePopover);
     });
+
+    // Toggle the display of the accordion content
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        const content = header.nextElementSibling;
+
+        // Open by default
+        content.style.maxHeight = content.scrollHeight + "px";
+        header.classList.add('active');
+
+        header.addEventListener('click', function () {
+            // If already open, collapse it
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                header.classList.remove('active');
+            }
+            // If closed, expand it
+            else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                header.classList.add('active');
+            }
+        });
+    });
+
+
+
 
 });
 

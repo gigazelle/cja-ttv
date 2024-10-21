@@ -21,13 +21,41 @@ body {
     border-left: 2px solid #ccc;
 }
 
-.accordion {
-    margin-bottom: 20px;
+/* Accordion header styling */
+.accordion-header {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-.accordion-content {
-    margin-top: 10px;
+/* When the accordion is open */
+.accordion-header.active {
+    background-color: #0056b3;
 }
+
+/* Accordion content */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 0 15px;
+    border-left: 3px solid #007bff;
+    margin-bottom: 10px;
+    border-radius: 0 0 5px 5px;
+    transition: max-height 0.3s ease;
+}
+
+/* Content when it's expanded */
+.accordion-header.active+.accordion-content {
+    padding: 15px;
+}
+
+
 
 .popover {
     position: absolute;
