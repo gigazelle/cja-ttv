@@ -1,6 +1,8 @@
 $(document).ready(function () {
     let checklistItems = [];
     let currentDropdownSelection = '';
+    const checklistContainer = document.getElementById('checklist-container');
+
 
     // Fetch and parse YAML data
     $.ajax({
@@ -39,11 +41,16 @@ $(document).ready(function () {
 
     // Add a checklist item by ID
     function addChecklistItem(id) {
-        const checklistContainer = document.getElementById('checklist-container');
         const itemData = checklistItems[id];  // Fetch the data for this checklist item
 
         if (!itemData) {
             console.error(`Checklist item with ID "${id}" not found.`);
+            return;
+        }
+
+        // Check if the checklist item already exists
+        const existingItem = checklistContainer.querySelector(`[data-id="${id}"]`);
+        if (existingItem) {
             return;
         }
 
@@ -101,14 +108,13 @@ $(document).ready(function () {
 
     // Function to remove checklist item by ID
     function removeChecklistItem(id) {
-        $('#checklist-item-' + id).remove();
+        checklistContainer.querySelector(`[data-id="${id}"]`)?.remove();
         sortChecklist();
     }
 
     // Sort the checklist by the order listed in the YAML file
     // Function to sort the checklist based on the order in checklistItems variable
     function sortChecklist() {
-        const checklistContainer = document.getElementById('checklist-container');
 
         // Get all the checklist items (divs) in an array
         const itemsArray = Array.from(checklistContainer.children);
@@ -135,59 +141,22 @@ $(document).ready(function () {
         });
     }
 
-
-
-    // Listen for dropdown changes
-    $('#implementation-state').change(function () {
-        currentDropdownSelection = $(this).val();  // Store the dropdown selection
-
-        const checkboxChecked = $('#want-turn-off-aa').is(':checked');
-        if (currentDropdownSelection === 'imp-type-have-manual' && checkboxChecked) {
-            addChecklistItem("some_checklist_item");
-        } else {
-            removeChecklistItem("some_checklist_item");
-        }
-    });
-
-    // Listen for checkbox changes
-    $('#want-turn-off-aa').change(function () {
-        const isChecked = $(this).is(':checked');
-
-        if (isChecked && currentDropdownSelection === 'imp-type-have-manual') {
-            addChecklistItem("some_checklist_item");
-        } else {
-            removeChecklistItem("some_checklist_item");
-        }
-    });
-
     // Listen for changes on any form element in the left column
-    $('.accordion-content input').change(function () {
+    $('.accordion-content input, .accordion-content select').change(function () {
         const elementId = $(this).attr('id');
         const isChecked = $(this).is(':checked');
 
         switch (elementId) {
-            case 'imp-appmeasurement':
+            case 'implementation-state':
+                // Drop-down items: imp-default, imp-appmeasurement, imp-web-sdk, imp-server-side-api, imp-legacy-mobile, imp-mobile-sdk, imp-none
+                console.log("imp-appmeasurement selected");
                 addChecklistItem("remove_appm");
                 addChecklistItem("validate_cja_data");
                 removeChecklistItem("remove_tags");
                 removeChecklistItem("remove_api");
+                removeChecklistItem("enable_adc");
                 break;
-            case 'imp-web-sdk':
-                addChecklistItem("remove_tags");
-                addChecklistItem("validate_cja_data");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_api");
-                break;
-            case 'want-turn-off-aa':
-                const currentRadioValue = getSelectedRadioValue('implementation-have');
-                if (isChecked && currentRadioValue === 'imp-appmeasurement') {
-                    addChecklistItem("turn_off_aa_manual");
-                    console.log("Manual triggered");
-                } else {
-                    removeChecklistItem("turn_off_aa_manual");
-                }
-                break;
-            // Other cases...
+
             default:
                 console.warn("Form element ID does not have an action:", elementId);
                 break;
@@ -209,10 +178,26 @@ $(document).ready(function () {
 
         // Position the popover relative to the hovered element
         const rect = event.target.getBoundingClientRect();
-        popover.style.left = `${rect.right + 10}px`;  // Offset 10px to the right
-        popover.style.top = `${rect.top}px`;
+        const popoverPadding = 10;
 
-        // Append the popover to the body
+        // Calculate popover position
+        let popoverLeft = rect.left + window.scrollX + rect.width + popoverPadding;
+        let popoverTop = rect.top + window.scrollY;
+
+        // Get the popover dimensions after adding it (so it's accurate)
+        document.body.appendChild(popover);
+        const popoverRect = popover.getBoundingClientRect();
+
+        // Check if the popover would overflow the window and adjust position
+        if (popoverLeft + popoverRect.width > window.innerWidth) {
+            popoverLeft = rect.left + window.scrollX - popoverRect.width - popoverPadding;
+        }
+
+        // Set the final popover position
+        popover.style.left = `${popoverLeft}px`;
+        popover.style.top = `${popoverTop}px`;
+
+        // Add the popover to the body (after adjustments)
         document.body.appendChild(popover);
     }
 
@@ -252,112 +237,4 @@ $(document).ready(function () {
             }
         });
     });
-
-    const questionnaire = {
-        implementationState: {
-            id: 'implementation-state',
-            options: [
-                'AppMeasurement or Analytics tag extension',
-                'Web SDK',
-                'Server-side API',
-                'Legacy mobile implementation',
-                'Mobile SDK',
-                'No Adobe Analytics implementation'
-            ],
-            selected: null // to store the selected value
-        },
-        implementationType: {
-            manual: {
-                id: 'imp-type-have-manual',
-                selected: false // to track if selected
-            },
-            tags: {
-                id: 'imp-type-have-tags',
-                selected: false
-            },
-            api: {
-                id: 'imp-type-have-api',
-                selected: false
-            }
-        },
-        existingFeatures: {
-            features: {
-                turnOffAA: { id: 'want-turn-off-aa', selected: false },
-                historicalData: { id: 'want-historical data', selected: false },
-                componentMigration: { id: 'want-component-migration', selected: false },
-                activityMapOverlay: { id: 'want-activity-map-overlay', selected: false },
-                classifications: { id: 'want-classifications', selected: false },
-                marketingChannels: { id: 'want-marketing-channels', selected: false },
-                dataFeeds: { id: 'want-data-feeds', selected: false },
-                streamingMedia: { id: 'want-streaming-media', selected: false }
-            },
-            customSchema: {
-                id: 'want-custom-schema',
-                selected: false
-            },
-            analyticsSchema: {
-                id: 'want-analytics-schema',
-                selected: false
-            },
-            implementationWant: {
-                tags: { id: 'imp-type-want-tags', selected: false },
-                manual: { id: 'imp-type-want-manual', selected: false },
-                api: { id: 'imp-type-want-api', selected: false }
-            }
-        },
-        newCJAfeatures: {
-            omnichannel: { id: 'want-omnichannel', selected: false },
-            rtcdp: { id: 'want-rtcdp', selected: false },
-            ajo: { id: 'want-ajo', selected: false }
-        },
-        shortcuts: {
-            keepAppMeasurement: { id: 'shortcut-keep-appmeasurement', selected: false },
-            useDataLayer: { id: 'shortcut-use-data-layer', selected: false },
-            a4t: { id: 'want-a4t', selected: false },
-            aam: { id: 'want-aam', selected: false }
-        },
-        // Method to update selected values based on form inputs
-        updateSelection: function (inputId, isSelected) {
-            for (const section in this) {
-                if (this[section].hasOwnProperty('features')) {
-                    for (const feature in this[section].features) {
-                        if (this[section].features[feature].id === inputId) {
-                            this[section].features[feature].selected = isSelected;
-                            return;
-                        }
-                    }
-                } else if (this[section].hasOwnProperty('id') && this[section].id === inputId) {
-                    this[section].selected = isSelected;
-                }
-            }
-        },
-        // Method to get selected values
-        getSelectedValues: function () {
-            const selectedValues = {};
-            for (const section in this) {
-                if (this[section].hasOwnProperty('features')) {
-                    selectedValues[section] = Object.keys(this[section].features).filter(
-                        feature => this[section].features[feature].selected
-                    );
-                } else if (this[section].hasOwnProperty('id')) {
-                    selectedValues[section] = this[section].selected;
-                }
-            }
-            return selectedValues;
-        }
-    };
-
-    // Example of how to use the updateSelection method
-    // You can call this method based on form input changes
-    // For example, when an implementation type radio button is selected
-    $('input[type="radio"]').change(function () {
-        const inputId = $(this).attr('id');
-        const isSelected = $(this).is(':checked');
-        questionnaire.updateSelection(inputId, isSelected);
-    });
-
-    // Example to get selected values when needed
-    const selectedValues = questionnaire.getSelectedValues();
-    console.log(selectedValues);
-
 });
