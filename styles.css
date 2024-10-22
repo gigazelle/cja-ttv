@@ -55,7 +55,10 @@ body {
     padding: 15px;
 }
 
-
+.accordion-content p, .accordion-content h1, .accordion-content h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
 
 .popover {
     position: absolute;
@@ -95,4 +98,8 @@ body {
     background-color: palegreen !important;
     color: darkgreen;
     text-decoration: line-through;
+}
+
+.hidden {
+    visibility: hidden;
 }

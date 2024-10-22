@@ -156,6 +156,17 @@ $(document).ready(function () {
                 removeChecklistItem("remove_api");
                 removeChecklistItem("enable_adc");
                 break;
+            case 'pressed-on-time':
+                const shortcutAccordionElement = document.getElementById('shortcut-accordion');
+
+                if (isChecked) {
+                    shortcutAccordionElement.style.visibility = 'visible';
+                    console.log("Unhide!");
+                } else {
+                    shortcutAccordionElement.style.visibility = 'hidden';
+                }
+                break;
+
 
             default:
                 console.warn("Form element ID does not have an action:", elementId);

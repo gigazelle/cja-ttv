@@ -19,20 +19,16 @@
                 <div class="accordion-content">
                     <p>How do you currently have Adobe Analytics implemented for a given property?<span
                             class="popover-icon" data-description="Test!"> ℹ️ </span></p>
-                    <select id="implementation-state">
-                        <option id="imp-default" disabled selected hidden>Select your current implementation</option>
-                        <option id="imp-appmeasurement">AppMeasurement or Analytics tag extension</option>
-                        <option id="imp-web-sdk">Web SDK</option>
-                        <option id="imp-server-side-api">Server-side API</option>
-                        <option id="imp-legacy-mobile">Legacy mobile implementation</option>
-                        <option id="imp-mobile-sdk">Mobile SDK</option>
-                        <option id="imp-none">No Adobe Analytics implementation</option>
-                    </select>
-                    <hr>
-                    <input type="radio" id="imp-type-have-manual" name="implementation-have">I'm using a manual
-                    implementation<br>
-                    <input type="radio" id="imp-type-have-tags" name="implementation-have">I'm using tags<br>
-                    <input type="radio" id="imp-type-have-api" name="implementation-have">I'm using the API<br>
+                    <input type="radio" id="imp-appmeasurement" name="implementation-type">AppMeasurement<br>
+                    <input type="radio" id="imp-web-sdk" name="implementation-type">Web SDK<br>
+                    <input type="radio" id="imp-api" name="implementation-type">API<br>
+                    <input type="radio" id="imp-legacy-mobile" name="implementation-type">Legacy mobile<br>
+                    <input type="radio" id="imp-mobile-sdk" name="implementation-type">Mobile SDK<br>
+                    <input type="radio" id="imp-none" name="implementation-type">No Adobe Analytics implementation<hr>
+                    <p>How do you deploy your implementation on this property?</p>
+                    <input type="radio" id="imp-type-have-manual" name="implementation-have">Manual implementation (JS file)<br>
+                    <input type="radio" id="imp-type-have-tags" name="implementation-have">Tags<br>
+                    <input type="radio" id="imp-type-have-api" name="implementation-have">API<br>
 
                 </div>
             </div>
@@ -77,14 +73,14 @@
                         ℹ️ </span><br>
                     <hr>
                     <p>Select your preferred way of implementing Customer Journey Analytics:</p>
-                    <input type="checkbox" id="want-tags">I want to use tags<br>
-                    <input type="checkbox" id="want-manual-implementation">I want to use a manual implementation<br>
-                    <input type="checkbox" id="want-api-implementation">I want to use an API-based implementation<br>
-                    <hr>
+                    <input type="radio" id="imp-type-want-manual" name="implementation-want">Manual implementation (JS file)<br>
+                    <input type="radio" id="imp-type-want-tags" name="implementation-want">Tags<br>
+                    <input type="radio" id="imp-type-want-api" name="implementation-want">API<hr>
+                    <input type="checkbox" id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process
                 </div>
             </div>
 
-            <div class="accordion">
+            <div class="accordion hidden" id="shortcut-accordion">
                 <h3 class="accordion-header">Shortcuts you are willing to take</h3>
                 <div class="accordion-content">
                     <p>Select the shortcuts that you want to take<span class="popover-icon"
