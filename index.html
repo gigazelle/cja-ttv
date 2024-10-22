@@ -40,8 +40,6 @@
                 <h3 class="accordion-header">Adobe Analytics features you want in Customer Journey Analytics</h3>
                 <div class="accordion-content">
                     <p>Select the features you want:</p>
-                    <input type="checkbox" id="want-turn-off-aa">Eventually use CJA exclusively to prevent costs using
-                    both AA and CJA<br>
                     <input type="checkbox" id="want-historical data">Historical data from Adobe Analytics<br>
                     <input type="checkbox" id="want-component-migration">Components and projects from Adobe Analytics<br>
                     <input type="checkbox" id="want-activity-map-overlay">Activity map overlay and link tracking<br>
@@ -49,15 +47,7 @@
                     <input type="checkbox" id="want-marketing-channels">Marketing channels<br>
                     <input type="checkbox" id="want-data-feeds">Data Feeds<br>
                     <input type="checkbox" id="want-data-feeds">Data Warehouse<br>
-                    <input type="checkbox" id="want-streaming-media">Streaming Media data
-                    <hr>
-                    <input type="radio" id="want-custom-schema">I want to use a schema tailored to my organization<br>
-                    <input type="radio" id="want-analytics-schema">I'm good with using an Analytics-based schema
-                    <hr>
-                    <input type="radio" id="imp-type-want-tags" name="implementation-want">I want to use tags<br>
-                    <input type="radio" id="imp-type-want-manual" name="implementation-want">I want a manual
-                    implementation<br>
-                    <input type="radio" id="imp-type-want-api" name="implementation-want">I want to use the API<br>
+                    <input type="checkbox" id="want-streaming-media">Streaming Media data<br>
                 </div>
             </div>
 
@@ -69,6 +59,27 @@
                     call center data<br>
                     <input type="checkbox" id="want-rtcdp">Integrate with RTCDP<br>
                     <input type="checkbox" id="want-ajo">Integrate with Adobe Journey Optimizer
+                    <hr>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <h3 class="accordion-header">Your Customer Journey Analytics implementation</h3>
+                <div class="accordion-content">
+                    <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
+                    <input type="checkbox" id="want-turn-off-aa">Eventually use only Customer Journey Analytics to minimize cost and complexity<br>
+                    <input type="checkbox" id="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future<br>
+                    <hr>
+                    <p>Select how you want to configure your Customer Journey Analytics schema:</p>
+                    <input type="checkbox" id="want-cja-schema">I want to use a schema tailored to my organization<br>
+                    <input type="checkbox" id="want-aa-schema">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon"
+                        data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics.">
+                        ℹ️ </span><br>
+                    <hr>
+                    <p>Select your preferred way of implementing Customer Journey Analytics:</p>
+                    <input type="checkbox" id="want-tags">I want to use tags<br>
+                    <input type="checkbox" id="want-manual-implementation">I want to use a manual implementation<br>
+                    <input type="checkbox" id="want-api-implementation">I want to use an API-based implementation<br>
                     <hr>
                 </div>
             </div>
