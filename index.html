@@ -17,14 +17,14 @@
             <div class="accordion">
                 <h3 class="accordion-header">Your Analytics implementation</h3>
                 <div class="accordion-content">
-                    <p>How do you currently have Adobe Analytics implemented for a given property?<span
-                            class="popover-icon" data-description="Test!"> ℹ️ </span></p>
+                    <p>How do you currently have Adobe Analytics implemented for a given property?</p>
                     <input type="radio" id="imp-appmeasurement" name="implementation-type">AppMeasurement<br>
                     <input type="radio" id="imp-web-sdk" name="implementation-type">Web SDK<br>
                     <input type="radio" id="imp-api" name="implementation-type">API<br>
                     <input type="radio" id="imp-legacy-mobile" name="implementation-type">Legacy mobile<br>
                     <input type="radio" id="imp-mobile-sdk" name="implementation-type">Mobile SDK<br>
-                    <input type="radio" id="imp-none" name="implementation-type">No Adobe Analytics implementation<hr>
+                    <input type="radio" id="imp-none" name="implementation-type">No Adobe Analytics implementation
+                    <hr>
                     <p>How do you deploy your implementation on this property?</p>
                     <input type="radio" id="imp-type-have-manual" name="implementation-have">Manual implementation (JS file)<br>
                     <input type="radio" id="imp-type-have-tags" name="implementation-have">Tags<br>
@@ -42,7 +42,7 @@
                     <input type="checkbox" id="want-classifications">Classification data<br>
                     <input type="checkbox" id="want-marketing-channels">Marketing channels<br>
                     <input type="checkbox" id="want-data-feeds">Data Feeds<br>
-                    <input type="checkbox" id="want-data-feeds">Data Warehouse<br>
+                    <input type="checkbox" id="want-data-warehouse">Data Warehouse<br>
                     <input type="checkbox" id="want-streaming-media">Streaming Media data<br>
                 </div>
             </div>
@@ -51,8 +51,7 @@
                 <h3 class="accordion-header">Customer Journey Analytics features you want</h3>
                 <div class="accordion-content">
                     <p>Select the features you want:</p>
-                    <input type="checkbox" id="want-omnichannel">Tie web data with data from other channels, such as
-                    call center data<br>
+                    <input type="checkbox" id="want-omnichannel">Tie web data with data from other channels, such as call center data<br>
                     <input type="checkbox" id="want-rtcdp">Integrate with RTCDP<br>
                     <input type="checkbox" id="want-ajo">Integrate with Adobe Journey Optimizer
                     <hr>
@@ -63,19 +62,18 @@
                 <h3 class="accordion-header">Your Customer Journey Analytics implementation</h3>
                 <div class="accordion-content">
                     <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
-                    <input type="checkbox" id="want-turn-off-aa">Eventually use only Customer Journey Analytics to minimize cost and complexity<br>
-                    <input type="checkbox" id="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future<br>
+                    <input type="radio" id="want-turn-off-aa" name="keep-aa-or-not">Eventually use only Customer Journey Analytics to minimize cost and complexity<br>
+                    <input type="radio" id="want-keep-aa" name="keep-aa-or-not">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future<br>
                     <hr>
                     <p>Select how you want to configure your Customer Journey Analytics schema:</p>
                     <input type="radio" id="want-cja-schema" name="schema-want">I want to use a schema tailored to my organization<br>
-                    <input type="radio" id="want-aa-schema" name="schema-want">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon"
-                        data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics.">
-                        ℹ️ </span><br>
+                    <input type="radio" id="want-aa-schema" name="schema-want">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon" data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics."> ℹ️ </span><br>
                     <hr>
                     <p>Select your preferred way of implementing Customer Journey Analytics:</p>
                     <input type="radio" id="imp-type-want-manual" name="implementation-want">Manual implementation (JS file)<br>
                     <input type="radio" id="imp-type-want-tags" name="implementation-want">Tags<br>
-                    <input type="radio" id="imp-type-want-api" name="implementation-want">API<hr>
+                    <input type="radio" id="imp-type-want-api" name="implementation-want">API
+                    <hr>
                     <input type="checkbox" id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process
                 </div>
             </div>
@@ -83,25 +81,11 @@
             <div class="accordion hidden" id="shortcut-accordion">
                 <h3 class="accordion-header">Shortcuts you are willing to take</h3>
                 <div class="accordion-content">
-                    <p>Select the shortcuts that you want to take<span class="popover-icon"
-                            data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt.">
-                            ℹ️ </span></p>
-                    <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the
-                    Web SDK <span class="popover-icon"
-                        data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform.">
-                        ℹ️ </span><br>
-                    <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without
-                    configuring tag rules<span class="popover-icon"
-                        data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping.">
-                        ℹ️ </span><br>
-                    <input type="checkbox" id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span
-                        class="popover-icon"
-                        data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution.">
-                        ℹ️ </span><br>
-                    <input type="checkbox" id="want-aam">Temporarily integrate with Adobe Audience Manager<span
-                        class="popover-icon"
-                        data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution.">
-                        ℹ️ </span><br>
+                    <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt."> ℹ️ </span></p>
+                    <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span><br>
+                    <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span><br>
+                    <input type="checkbox" id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> ℹ️ </span><br>
+                    <input type="checkbox" id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> ℹ️ </span><br>
                 </div>
             </div>
         </div>
@@ -114,11 +98,9 @@
         </div>
     </div>
 
-    <!-- jQuery and js-yaml libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
-    <!-- Custom JavaScript -->
     <script src="scripts.js"></script>
 </body>
 

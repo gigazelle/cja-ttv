@@ -147,27 +147,79 @@ $(document).ready(function () {
         const isChecked = $(this).is(':checked');
 
         switch (elementId) {
-            case 'implementation-state':
-                // Drop-down items: imp-default, imp-appmeasurement, imp-web-sdk, imp-server-side-api, imp-legacy-mobile, imp-mobile-sdk, imp-none
-                console.log("imp-appmeasurement selected");
-                addChecklistItem("remove_appm");
-                addChecklistItem("validate_cja_data");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("enable_adc");
+            case 'imp-appmeasurement':
+                break;
+            case 'imp-web-sdk':
+                break;
+            case 'imp-api':
+                break;
+            case 'imp-legacy-mobile':
+                break;
+            case 'imp-mobile-sdk':
+                break;
+            case 'imp-mobile-sdk':
+                break;
+            case 'imp-none':
+                break;
+            case 'imp-type-have-manual':
+                break;
+            case 'imp-type-have-tags':
+                break;
+            case 'imp-type-have-api':
+                break;
+            case 'want-historical-data':
+                break;
+            case 'want-component-migration':
+                break;
+            case 'want-activity-map-overlay':
+                break;
+            case 'want-classifications':
+                break;
+            case 'want-marketing-channels':
+                break;
+            case 'want-data-feeds':
+                break;
+            case 'want-data-warehouse':
+                break;
+            case 'want-streaming-media':
+                break;
+            case 'want-omnichannel':
+                break;
+            case 'want-rtcdp':
+                break;
+            case 'want-ajo':
+                break;
+            case 'want-turn-off-aa':
+                break;
+            case 'want-keep-aa':
+                break;
+            case 'want-cja-schema':
+                break;
+            case 'want-aa-schema':
+                break;
+            case 'imp-type-want-manual':
+                break;
+            case 'imp-type-want-tags':
+                break;
+            case 'imp-type-want-api':
                 break;
             case 'pressed-on-time':
                 const shortcutAccordionElement = document.getElementById('shortcut-accordion');
 
                 if (isChecked) {
                     shortcutAccordionElement.style.visibility = 'visible';
-                    console.log("Unhide!");
                 } else {
                     shortcutAccordionElement.style.visibility = 'hidden';
                 }
                 break;
-
-
+            case 'shortcut-keep-appmeasurement':
+                break;
+            case 'shortcut-use-data-layer':
+                break;
+            case 'want-a4t':
+                break;
+            case 'want-aam':
+                break;
             default:
                 console.warn("Form element ID does not have an action:", elementId);
                 break;
