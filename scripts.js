@@ -13,19 +13,14 @@ $(document).ready(function () {
             checklistItems = parsedYaml.checklistItems;
             // Add default checklist
             addChecklistItem("architect_schema");
-            addChecklistItem("create_schema");
+            addChecklistItem("create_custom_schema");
             addChecklistItem("create_dataset");
             addChecklistItem("create_datastream");
             addChecklistItem("add_aep_to_datastream");
             addChecklistItem("waiting_on_imp_select");
             addChecklistItem("create_connection");
             addChecklistItem("create_data_view");
-            addChecklistItem("enable_adc");
-            addChecklistItem("disable_adc");
             addChecklistItem("validate_cja_data");
-            addChecklistItem("component_migration");
-            addChecklistItem("remove_appm");
-
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
@@ -148,46 +143,80 @@ $(document).ready(function () {
 
         switch (elementId) {
             case 'imp-appmeasurement':
+                addChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_mobile");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
                 break;
-            case 'imp-web-sdk':
+            case 'imp-analytics-extension':
+                addChecklistItem("remove_tags");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
+                removeChecklistItem("remove_mobile");
+            case 'imp-web-sdk-alloy':
+            case 'imp-web-sdk-extension':
+            case 'imp-mobile-sdk':
+                addChecklistItem("remove_aa_datastream");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_mobile");
                 break;
             case 'imp-api':
+                addChecklistItem("remove_api");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_mobile");
+                removeChecklistItem("remove_aa_datastream");
                 break;
             case 'imp-legacy-mobile':
-                break;
-            case 'imp-mobile-sdk':
-                break;
-            case 'imp-mobile-sdk':
+                addChecklistItem("remove_mobile");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
                 break;
             case 'imp-none':
-                break;
-            case 'imp-type-have-manual':
-                break;
-            case 'imp-type-have-tags':
-                break;
-            case 'imp-type-have-api':
+                removeChecklistItem("remove_mobile");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
                 break;
             case 'want-historical-data':
+                (isChecked ? addChecklistItem : removeChecklistItem)("enable_adc");
+                (isChecked ? addChecklistItem : removeChecklistItem)("disable_adc");
                 break;
             case 'want-component-migration':
+                (isChecked ? addChecklistItem : removeChecklistItem)("component_migration");
                 break;
             case 'want-activity-map-overlay':
+                (isChecked ? addChecklistItem : removeChecklistItem)("link_tracking");
                 break;
             case 'want-classifications':
+                (isChecked ? addChecklistItem : removeChecklistItem)("create_lookup_dataset");
                 break;
             case 'want-marketing-channels':
+                (isChecked ? addChecklistItem : removeChecklistItem)("create_mc_derived_fields");
                 break;
             case 'want-data-feeds':
+                (isChecked ? addChecklistItem : removeChecklistItem)("data_feeds");
                 break;
             case 'want-data-warehouse':
+                (isChecked ? addChecklistItem : removeChecklistItem)("create_full_table_export");
                 break;
             case 'want-streaming-media':
                 break;
             case 'want-omnichannel':
+                (isChecked ? addChecklistItem : removeChecklistItem)("add_datasets_to_connection");
                 break;
             case 'want-rtcdp':
+                (isChecked ? addChecklistItem : removeChecklistItem)("enable_profile");
                 break;
             case 'want-ajo':
+                (isChecked ? addChecklistItem : removeChecklistItem)("implement_personalization");
                 break;
             case 'want-turn-off-aa':
                 break;
@@ -198,14 +227,37 @@ $(document).ready(function () {
             case 'want-aa-schema':
                 break;
             case 'imp-type-want-manual':
+                addChecklistItem("implement_alloy");
+                addChecklistItem("populate_xdm");
+                removeChecklistItem("create_tag");
+                removeChecklistItem("add_extension");
+                removeChecklistItem("implement_tag");
+                removeChecklistItem("add_tag_xdm_logic");
+                removeChecklistItem("implement_api");
+                removeChecklistItem("waiting_on_imp_select");
                 break;
             case 'imp-type-want-tags':
+                addChecklistItem("create_tag");
+                addChecklistItem("add_extension");
+                addChecklistItem("implement_tag");
+                addChecklistItem("add_tag_xdm_logic");
+                removeChecklistItem("implement_alloy");
+                removeChecklistItem("populate_xdm");
+                removeChecklistItem("implement_api");
+                removeChecklistItem("waiting_on_imp_select");
                 break;
             case 'imp-type-want-api':
+                addChecklistItem("implement_api");
+                removeChecklistItem("implement_alloy");
+                removeChecklistItem("populate_xdm");
+                removeChecklistItem("create_tag");
+                removeChecklistItem("add_extension");
+                removeChecklistItem("implement_tag");
+                removeChecklistItem("add_tag_xdm_logic");
+                removeChecklistItem("waiting_on_imp_select");
                 break;
             case 'pressed-on-time':
                 const shortcutAccordionElement = document.getElementById('shortcut-accordion');
-
                 if (isChecked) {
                     shortcutAccordionElement.style.visibility = 'visible';
                 } else {

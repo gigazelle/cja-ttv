@@ -3,9 +3,15 @@ checklistItems:
     text: "Architect a schema"
     description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
-  create_schema:
-    text: "Create the desired schema in Adobe Experience Platform"
+  create_custom_schema:
+    text: "Create the desired custom schema in Adobe Experience Platform"
     description: "Use the Adobe Experience Platform UI to create a schema so that Adobe knows the correct format to store your data."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
+  enable_profile:
+    text: "Enable profile in your schema and create a profile dataset for use in RTCDP"
+  create_aa_schema:
+    text: "Create a schema using the Adobe Analytics field group"
+    description: "Use the 'Adobe Analytics ExperienceEvent' field group to create a schema in Adobe Experience Platform containing all fields used by Adobe Analytics."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
   create_dataset:
     text: "Create a dataset in Adobe Experience Platform"
@@ -15,12 +21,14 @@ checklistItems:
     text: "Create a datastream in Adobe Experience Platform"
     description: "A datastream is an intermediary location that passes your data along to all configured services. Create this location in Adobe Experience Platform."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure"
+  create_lookup_dataset:
+    text: "Create a lookup dataset for each dimension containing classification data"
   add_aep_to_datastream:
     text: "Add Adobe Experience Platform as a service to the datastream"
     description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure#add-services"
   waiting_on_imp_select:
-    text: "Select an implementation type for this checklist item"
+    text: "Select a desired implementation type for this checklist item"
   create_tag:
     text: "Create a tag property in Adobe Experience Platform Data Collection"
     description: "Using tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
@@ -41,10 +49,12 @@ checklistItems:
     text: "Add data object collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate a data object to send to Adobe."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/sendevent/data"
-  implement_web_sdk:
+  implement_alloy:
     text: "Add alloy.js to your site"
     description: "Work with your website development team to install the alloy.js file on every page of your site."
     link: https://experienceleague.adobe.com/en/docs/experience-platform/edge/fundamentals/installing-the-sdk#option-2-installing-the-prebuilt-standalone-version"
+  implement_api:
+    text: "Use the Edge Network API to send data to the desired datastream"
   populate_xdm:
     text: "Populate an XDM object and send it to the datastream"
   populate_data_object:
@@ -55,6 +65,12 @@ checklistItems:
     text: "Setup and implement Media Edge SDKs or APIs"
     description: "Setup and implement the streaming media data collection using the  Media Edge SDKs or the Media Edge APIs."
     link: "https://experienceleague.adobe.com/en/docs/media-analytics/using/implementation/edge-recommended/media-edge-sdk/implementation-edge"
+  implement_personalization:
+    text: "Use the personalization object in your implementation for use in Adobe Journey Optimizer"
+  link_tracking:
+    text: "Adobe is currently working on Activity Map overlay support for CJA."
+  data_feeds:
+    text: "Adobe is currently working on a viable replacement to data feeds."
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
     description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting."
@@ -63,6 +79,8 @@ checklistItems:
     text: "Create a data view in Customer Journey Analytics"
     description: "A data view is a container specific to Customer Journey Analytics that lets you determine how to interpret data from a connection."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-dataviews/data-views"
+  create_mc_derived_fields:
+    text: "Create a marketing channel derived field"
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
     description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics"
@@ -75,8 +93,16 @@ checklistItems:
     text: "Follow the component migration workflow"
     description: "Bring components like dimensions, metrics, segments, calculated metrics, and Workspace projects over from Adobe Analytics to Customer Journey Analytics."
     link: "https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration"
+  create_full_table_export:
+    text: "Create full table exports to achieve Data Warehouse equivalent functionality"
+  add_datasets_to_connection:
+    text: "Add additional datasets to your connection in Customer Journey Analytics"
   remove_appm:
     text: "Disable AppMeasurement data collection"
+  remove_aa_datastream:
+    text: "Remove Adobe Analytics as a service from the datastream"
+  remove_mobile:
+    text: "Remove legacy mobile implementation"
   remove_tags:
     text: "Disable the Analytics extension in tags"
   remove_api:
