@@ -109,6 +109,7 @@ checklistItems:
     text: "Disable API data collection for Adobe Analytics"
   disable_adc:
     text: "Disable the Analytics Source Connector, using exclusively data from the Web SDK"
+    description: "Once the Web SDK has collected enough data over time, you can disable the Analytics Source connector and rely on your current implementation moving forward."
   create_mobile_tag:
     text: "Create a mobile tag property in Adobe Experience Platform Data Collection"
     description: "Using tags is the typical standard for data collection. Create a mobile tag property in the Adobe Experience Platform interface so that you can update data collection variables at any time."
