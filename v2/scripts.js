@@ -353,3 +353,11 @@ $(document).ready(function () {
         });
     });
 });
+
+/*
+Add accordion to checklist, with description + link to UI + link to docs
+Add spectrum to page
+coe questions like establishing a schema
+implemenation standardization
+who all needs to fill out one of these questionnaires
+*/

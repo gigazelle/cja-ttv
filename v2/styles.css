@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #222;
 }
 
 .container {
@@ -16,7 +17,7 @@ body {
 
 .right-column {
     flex: 1;
-    background-color: #f9f9f9;
+    background-color: #333;
     padding: 20px;
     border-left: 2px solid #ccc;
 }
@@ -55,7 +56,9 @@ body {
     padding: 15px;
 }
 
-.accordion-content p, .accordion-content h1, .accordion-content h2 {
+.accordion-content p,
+.accordion-content h1,
+.accordion-content h2 {
     margin-top: 0;
     padding-top: 0;
 }
@@ -81,7 +84,7 @@ body {
 
 /* Each checklist item container */
 #checklist-container div {
-    background-color: #e0e0e0;
+    background-color: #444;
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
