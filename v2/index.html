@@ -32,53 +32,60 @@
                         </div>
                     </sp-accordion-item>
                     <sp-accordion-item label="2. Adobe Analytics feature parity">
+                        <p>Select the Adobe Analytics features that you want to continue using in Customer Journey Analytics:</p>
                         <div>
-                            <p>Select the Adobe Analytics features that you want to continue using in Customer Journey Analytics:</p>
-                            <input type="checkbox" id="want-historical-data">Historical data from Adobe Analytics<br>
-                            <input type="checkbox" id="want-component-migration">Components and projects from Adobe Analytics<br>
-                            <input type="checkbox" id="want-activity-map-overlay">Activity map overlay and link tracking<br>
-                            <input type="checkbox" id="want-classifications">Classification data<br>
-                            <input type="checkbox" id="want-marketing-channels">Marketing channels<br>
-                            <input type="checkbox" id="want-data-feeds">Data Feeds<br>
-                            <input type="checkbox" id="want-data-warehouse">Data Warehouse<br>
-                            <input type="checkbox" id="want-streaming-media">Streaming Media data<br>
+                            <sp-checkbox id="want-historical-data">Historical data from Adobe Analytics</sp-checkbox><br>
+                            <sp-checkbox id="want-component-migration">Components and projects from Adobe Analytics</sp-checkbox><br>
+                            <sp-checkbox id="want-activity-map-overlay">Activity map overlay and link tracking</sp-checkbox><br>
+                            <sp-checkbox id="want-classifications">Classification data</sp-checkbox><br>
+                            <sp-checkbox id="want-marketing-channels">Marketing channels</sp-checkbox><br>
+                            <sp-checkbox id="want-data-feeds">Data Feeds</sp-checkbox><br>
+                            <sp-checkbox id="want-data-warehouse">Data Warehouse</sp-checkbox><br>
+                            <sp-checkbox id="want-streaming-media">Streaming Media data</sp-checkbox><br>
+                            <sp-button>Next</sp-button>
                         </div>
                     </sp-accordion-item>
                     <sp-accordion-item label="3. Customer Journey Analytics features that you want">
+                        <p>Select the features you want:</p>
                         <div>
-                            <p>Select the features you want:</p>
-                            <input type="checkbox" id="want-omnichannel">Tie web data with data from other channels, such as call center data<br>
-                            <input type="checkbox" id="want-rtcdp">Integrate with RTCDP<br>
-                            <input type="checkbox" id="want-ajo">Integrate with Adobe Journey Optimizer
-                            <hr>
+                            <sp-checkbox id="want-omnichannel">Tie web data with data from other channels, such as call center data</sp-checkbox><br>
+                            <sp-checkbox id="want-rtcdp">Integrate with RTCDP</sp-checkbox><br>
+                            <sp-checkbox id="want-ajo">Integrate with Adobe Journey Optimizer</sp-checkbox><br>
+                            <sp-button>Next</sp-button>
                         </div>
                     </sp-accordion-item>
                     <sp-accordion-item label="4. Your Customer Journey Analytics implementation">
-                        <div>
-                            <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
-                            <input type="radio" id="want-turn-off-aa" name="keep-aa-or-not">Eventually use only Customer Journey Analytics to minimize cost and complexity<br>
-                            <input type="radio" id="want-keep-aa" name="keep-aa-or-not">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future<br>
-                            <hr>
-                            <p>Select how you want to configure your Customer Journey Analytics schema:</p>
-                            <input type="radio" id="want-cja-schema" name="schema-want">I want to use a schema tailored to my organization<br>
-                            <input type="radio" id="want-aa-schema" name="schema-want">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon" data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics."> ℹ️ </span><br>
-                            <hr>
-                            <p>Select your preferred way of implementing Customer Journey Analytics:</p>
-                            <input type="radio" id="imp-type-want-manual" name="implementation-want">Manual implementation (JS file)<br>
-                            <input type="radio" id="imp-type-want-tags" name="implementation-want">Tags<br>
-                            <input type="radio" id="imp-type-want-api" name="implementation-want">API
-                            <hr>
-                            <input type="checkbox" id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process
-                        </div>
+                        <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
+                        <sp-radio-group name="use-aa-forever">
+                            <sp-radio value="want-turn-off-aa">Eventually use only Customer Journey Analytics to minimize cost and complexity</sp-radio>
+                            <sp-radio value="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future <ContextualHelp entryId="cja_workspace_attribution_panel" variant="help"/> </sp-radio>
+                        </sp-radio-group>
+                        <hr>
+                        <p>Select how you want to configure your Customer Journey Analytics schema:</p>
+                        <sp-radio-group name="schema-want">
+                            <sp-radio value="want-cja-schema">I want to use a schema tailored to my organization</sp-radio>
+                            <sp-radio value="want-aa-schema">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon" data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics."> ℹ️ </span></sp-radio>
+                        </sp-radio-group>
+                        <hr>
+                        <p>Select your preferred way of implementing Customer Journey Analytics:</p>
+                        <sp-radio-group name="implementation-want">
+                            <sp-radio value="imp-type-want-manual">Manual implementation (JS file)</sp-radio>
+                            <sp-radio value="imp-type-want-tags">Tags</sp-radio>
+                            <sp-radio value="imp-type-want-api">API</sp-radio>
+                        </sp-radio-group>
+                        <hr>
+                        <sp-checkbox id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process</sp-checkbox><br>
+                        <sp-button>Next</sp-button>
                     </sp-accordion-item>
                     <sp-accordion-item label="5. Shortcuts you are willing to take">
+                        <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt."> ℹ️ </span></p>
                         <div>
-                            <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt."> ℹ️ </span></p>
-                            <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span><br>
-                            <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span><br>
-                            <input type="checkbox" id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> ℹ️ </span><br>
-                            <input type="checkbox" id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> ℹ️ </span><br>
+                            <sp-checkbox id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span></sp-checkbox>
+                            <sp-checkbox id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span></sp-checkbox>
+                            <sp-checkbox id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> ℹ️ </span></sp-checkbox>
+                            <sp-checkbox id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> ℹ️ </span></sp-checkbox>
                         </div>
+                        <sp-button>Next</sp-button>
                     </sp-accordion-item>
                 </sp-accordion>
 
@@ -111,6 +118,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
         <script src="https://jspm.dev/@spectrum-web-components/bundle/elements.js" type="module" async></script>
+        <script src="modules.js" type="module" async></script>
         <script src="scripts.js"></script>
     </sp-theme>
 </body>

@@ -4,6 +4,7 @@ $(document).ready(function () {
     const checklistContainer = document.getElementById('checklist-container');
 
 
+
     // Fetch and parse YAML data
     $.ajax({
         url: "checklist.yml",
