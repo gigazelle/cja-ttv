@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 
 .container {
@@ -23,8 +24,8 @@ body {
 
 /* Accordion header styling */
 .accordion-header {
-    background-color: #007bff;
-    color: white;
+    background-color: #f5f5f5;
+    color: black;
     cursor: pointer;
     padding: 10px;
     font-weight: bold;
@@ -35,7 +36,7 @@ body {
 
 /* When the accordion is open */
 .accordion-header.active {
-    background-color: #0056b3;
+    background-color: #eaeaea;
 }
 
 /* Accordion content */
@@ -44,7 +45,6 @@ body {
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 0 15px;
-    border-left: 3px solid #007bff;
     margin-bottom: 10px;
     border-radius: 0 0 5px 5px;
     transition: max-height 0.3s ease;
@@ -81,7 +81,7 @@ body {
 
 /* Each checklist item container */
 #checklist-container div {
-    background-color: #e0e0e0;
+    background-color: #f5f5f5;
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;

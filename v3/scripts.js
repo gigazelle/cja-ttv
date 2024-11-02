@@ -336,9 +336,10 @@ $(document).ready(function () {
     document.querySelectorAll('.accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
-        // Open by default
-        content.style.maxHeight = content.scrollHeight + "px";
-        header.classList.add('active');
+        if(content.classList.contains('active')){
+            content.style.maxHeight = content.scrollHeight + "px";
+            header.classList.add('active');
+        }
 
         header.addEventListener('click', function () {
             // If already open, collapse it
@@ -353,4 +354,5 @@ $(document).ready(function () {
             }
         });
     });
+
 });
