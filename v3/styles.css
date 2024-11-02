@@ -17,7 +17,6 @@ body {
 
 .right-column {
     flex: 1;
-    background-color: #f9f9f9;
     padding: 20px;
     border-left: 2px solid #ccc;
 }
@@ -36,14 +35,14 @@ body {
 
 /* When the accordion is open */
 .accordion-header.active {
-    background-color: #eaeaea;
+    background-color: #dcdcdc;
 }
 
 /* Accordion content */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: white;
     padding: 0 15px;
     margin-bottom: 10px;
     border-radius: 0 0 5px 5px;
@@ -81,7 +80,7 @@ body {
 
 /* Each checklist item container */
 #checklist-container div {
-    background-color: #f5f5f5;
+    background-color: #eaeaea;
     margin-bottom: 5px;
     padding: 10px;
     border-radius: 5px;
