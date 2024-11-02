@@ -4,7 +4,6 @@ $(document).ready(function () {
     const checklistContainer = document.getElementById('checklist-container');
 
 
-
     // Fetch and parse YAML data
     $.ajax({
         url: "checklist.yml",
@@ -22,6 +21,7 @@ $(document).ready(function () {
             addChecklistItem("create_connection");
             addChecklistItem("create_data_view");
             addChecklistItem("validate_cja_data");
+            addChecklistItem("validate_dataset_ingestion");
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
@@ -336,9 +336,10 @@ $(document).ready(function () {
     document.querySelectorAll('.accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
-        // Open by default
-        content.style.maxHeight = content.scrollHeight + "px";
-        header.classList.add('active');
+        if(content.classList.contains('active')){
+            content.style.maxHeight = content.scrollHeight + "px";
+            header.classList.add('active');
+        }
 
         header.addEventListener('click', function () {
             // If already open, collapse it
@@ -353,12 +354,5 @@ $(document).ready(function () {
             }
         });
     });
-});
 
-/*
-Add accordion to checklist, with description + link to UI + link to docs
-Add spectrum to page
-coe questions like establishing a schema
-implemenation standardization
-who all needs to fill out one of these questionnaires
-*/
+});

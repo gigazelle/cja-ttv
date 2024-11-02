@@ -1,124 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="spectrum spectrum--light spectrum--medium">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision Tree Checklist</title>
-    <!--<link rel="stylesheet" href="styles.css">-->
+    <title>Customer Journey Analytics upgrade checklist</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/tokens/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/page/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/button/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/treeview/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/typography/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/radio/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/contextualhelp/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/icon/dist/index.css" />
 </head>
 
-<body>
-    <sp-theme scale="large" color="light">
-        
-        <sp-split-view>
-            <div>
-                <!-- Left column-->
-                <sp-accordion>
-                    <sp-accordion-item label="1. Your Adobe Analytics implementation" open="true">
-                        <div>
-                            <p>How do you currently have Adobe Analytics implemented for a given property?</p>
-                            <sp-radio-group name="implementation-type">
-                                <sp-radio value="imp-appmeasurement">AppMeasurement</sp-radio>
-                                <sp-radio value="imp-analytics-extension">Adobe Analytics extension (tags)</sp-radio>
-                                <sp-radio value="imp-web-sdk-alloy">Web SDK (alloy.js)</sp-radio>
-                                <sp-radio value="imp-web-sdk-extension">Web SDK extension (tags)</sp-radio>
-                                <sp-radio value="imp-api">API</sp-radio>
-                                <sp-radio value="imp-legacy-mobile">Legacy mobile</sp-radio>
-                                <sp-radio value="imp-mobile-sdk">Mobile SDK</sp-radio>
-                                <sp-radio value="imp-none">No Adobe Analytics implementation</sp-radio>
-                            </sp-radio-group>
-                            <sp-button>Next</sp-button>
-                        </div>
-                    </sp-accordion-item>
-                    <sp-accordion-item label="2. Adobe Analytics feature parity">
-                        <p>Select the Adobe Analytics features that you want to continue using in Customer Journey Analytics:</p>
-                        <div>
-                            <sp-checkbox id="want-historical-data">Historical data from Adobe Analytics</sp-checkbox><br>
-                            <sp-checkbox id="want-component-migration">Components and projects from Adobe Analytics</sp-checkbox><br>
-                            <sp-checkbox id="want-activity-map-overlay">Activity map overlay and link tracking</sp-checkbox><br>
-                            <sp-checkbox id="want-classifications">Classification data</sp-checkbox><br>
-                            <sp-checkbox id="want-marketing-channels">Marketing channels</sp-checkbox><br>
-                            <sp-checkbox id="want-data-feeds">Data Feeds</sp-checkbox><br>
-                            <sp-checkbox id="want-data-warehouse">Data Warehouse</sp-checkbox><br>
-                            <sp-checkbox id="want-streaming-media">Streaming Media data</sp-checkbox><br>
-                            <sp-button>Next</sp-button>
-                        </div>
-                    </sp-accordion-item>
-                    <sp-accordion-item label="3. Customer Journey Analytics features that you want">
-                        <p>Select the features you want:</p>
-                        <div>
-                            <sp-checkbox id="want-omnichannel">Tie web data with data from other channels, such as call center data</sp-checkbox><br>
-                            <sp-checkbox id="want-rtcdp">Integrate with RTCDP</sp-checkbox><br>
-                            <sp-checkbox id="want-ajo">Integrate with Adobe Journey Optimizer</sp-checkbox><br>
-                            <sp-button>Next</sp-button>
-                        </div>
-                    </sp-accordion-item>
-                    <sp-accordion-item label="4. Your Customer Journey Analytics implementation">
-                        <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
-                        <sp-radio-group name="use-aa-forever">
-                            <sp-radio value="want-turn-off-aa">Eventually use only Customer Journey Analytics to minimize cost and complexity</sp-radio>
-                            <sp-radio value="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future
-                                <ContextualHelp entryId="cja_workspace_attribution_panel" variant="help" />
-                            </sp-radio>
-                        </sp-radio-group>
-                        <hr>
-                        <p>Select how you want to configure your Customer Journey Analytics schema:</p>
-                        <sp-radio-group name="schema-want">
-                            <sp-radio value="want-cja-schema">I want to use a schema tailored to my organization</sp-radio>
-                            <sp-radio value="want-aa-schema">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon" data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics."> ℹ️ </span></sp-radio>
-                        </sp-radio-group>
-                        <hr>
-                        <p>Select your preferred way of implementing Customer Journey Analytics:</p>
-                        <sp-radio-group name="implementation-want">
-                            <sp-radio value="imp-type-want-manual">Manual implementation (JS file)</sp-radio>
-                            <sp-radio value="imp-type-want-tags">Tags</sp-radio>
-                            <sp-radio value="imp-type-want-api">API</sp-radio>
-                        </sp-radio-group>
-                        <hr>
-                        <sp-checkbox id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process</sp-checkbox><br>
-                        <sp-button>Next</sp-button>
-                    </sp-accordion-item>
-                    <sp-accordion-item label="5. Shortcuts you are willing to take">
-                        <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt."> ℹ️ </span></p>
-                        <div>
-                            <sp-checkbox id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> ℹ️ </span></sp-checkbox>
-                            <sp-checkbox id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> ℹ️ </span></sp-checkbox>
-                            <sp-checkbox id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> ℹ️ </span></sp-checkbox>
-                            <sp-checkbox id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> ℹ️ </span></sp-checkbox>
-                        </div>
-                        <sp-button>Next</sp-button>
-                    </sp-accordion-item>
-                </sp-accordion>
-
+<body class="spectrum-Body">
+    <div class="container">
+        <!-- Left Column: Questionnaire -->
+        <div class="left-column">
+            <div class="accordion">
+                <h2 class="accordion-header">Customer Journey Analytics upgrade checklist</h3>
+                <div class="accordion-content active">
+                    <p>This questionnaire is designed to help your organization upgrade from an implementation centered around Adobe Analytics to an implementation focused on Customer Journey Analytics.</p>
+                    <p>The checklist in its default state provides a standard upgrade method recommended by Adobe. It lets you follow a limited number of steps to immediately start getting value out of Customer Journey Analytics. Use the questionnaire below to tailor these upgrade steps to your implementation for a given property.</p>
+                    <button class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM" id="begin-button">
+                        <span class="spectrum-Button-label">Begin questionnaire</span>
+                    </button>
+                </div>
             </div>
-            <div>
-                <!--Right column-->
-
-                <h2>Dynamically generated upgrade steps</h2>
-                <p>Complete the following steps to start using Customer Journey Analytics:</p>
-                <ul class="spectrum-TreeView spectrum-TreeView--quiet" style="width: 250px">
-                    <li class="spectrum-TreeView-item">
-                        <a class="spectrum-TreeView-itemLink" href="#"><span class="spectrum-TreeView-itemLabel">Layer 1</span></a>
-                    </li>
-
-                    <li class="spectrum-TreeView-item is-selected">
-                        <a class="spectrum-TreeView-itemLink" href="#"><span class="spectrum-TreeView-itemLabel">Layer 2</span></a>
-                    </li>
-                </ul>
-                <ul id="checklist-container"></ul>
-
+            <div class="accordion">
+                <h3 class="accordion-header">Your Adobe Analytics implementation</h3>
+                <div class="accordion-content">
+                    <p>How do you currently have Adobe Analytics implemented for a given property?</p>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-appmeasurement">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-appmeasurement">AppMeasurement
+                        </label>
+                    </div>
+                    <span class="popover-icon" data-description="A JavaScript implementation that loads AppMeasurement.js on a page, and sends data to Adobe using the s object (for example, s.eVar1).">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-analytics-extension">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-analytics-extension">Adobe Analytics extension (tags)</label>
+                    </div>
+                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Adobe Analytics extension installed.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-web-sdk-alloy">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-web-sdk-alloy">Web SDK (alloy.js)</label>
+                    </div>
+                    <span class="popover-icon" data-description="A JavaScript implementation that loads alloy.js on a page, and sends data to Adobe using SendEvent containing a JSON payload.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-web-sdk-extension">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-web-sdk-extension">Web SDK extension (tags)</label>
+                    </div>
+                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Web SDK extension installed.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-api">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-api">API</label>
+                    </div>
+                    <span class="popover-icon" data-description="An implementation that uses the data insertion API or bulk data insertion API.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-legacy-mobile">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-legacy-mobile">Legacy mobile</label>
+                    </div>
+                    <span class="popover-icon" data-description="An implementation that uses the Adobe Analytics 4.x mobile SDKs. These SDKs are retired.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-mobile-sdk">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-mobile-sdk">Mobile SDK</label>
+                    </div>
+                    <span class="popover-icon" data-description="An implementation that uses the Adobe Experience Platform Mobile SDK.">
+                        <img src="Help.svg"></img>
+                    </span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" class="spectrum-Radio-input" id="imp-none">
+                        <span class="spectrum-Radio-button"></span>
+                        <label class="spectrum-Radio-label" for="imp-none">No Adobe Analytics implementation</label>
+                    </div>
+                    <span class="popover-icon" data-description="The property in question does not have any Adobe Analytics implementation.">
+                        <img src="Help.svg"></img>
+                    </span><br><br>
+                    <button class="spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM">
+                        <span class="spectrum-Button-label">Next</span>
+                    </button>
+                </div>
             </div>
-        </sp-split-view>
+            <div class="accordion">
+                <h3 class="accordion-header">Adobe Analytics feature parity</h3>
+                <div class="accordion-content">
+                    <p>Select the Adobe Analytics features that you want to continue using in Customer Journey Analytics:</p>
+                    <input type="checkbox" id="want-historical-data">Historical data from Adobe Analytics<br>
+                    <input type="checkbox" id="want-component-migration">Components and projects from Adobe Analytics<br>
+                    <input type="checkbox" id="want-activity-map-overlay">Activity map overlay and link tracking<br>
+                    <input type="checkbox" id="want-classifications">Classification data<br>
+                    <input type="checkbox" id="want-marketing-channels">Marketing channels<br>
+                    <input type="checkbox" id="want-data-feeds">Data Feeds<br>
+                    <input type="checkbox" id="want-data-warehouse">Data Warehouse<br>
+                    <input type="checkbox" id="want-streaming-media">Streaming Media data<br>
+                </div>
+            </div>
 
+            <div class="accordion">
+                <h3 class="accordion-header">Customer Journey Analytics features you want</h3>
+                <div class="accordion-content">
+                    <p>Select the features you want:</p>
+                    <input type="checkbox" id="want-omnichannel">Tie web data with data from other channels, such as call center data<br>
+                    <input type="checkbox" id="want-rtcdp">Integrate with RTCDP<br>
+                    <input type="checkbox" id="want-ajo">Integrate with Adobe Journey Optimizer
+                    <hr>
+                </div>
+            </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-        <script src="https://jspm.dev/@spectrum-web-components/bundle/elements.js" type="module" async></script>
-        <script src="modules.js" type="module" async></script>
-        <script src="scripts.js"></script>
-    </sp-theme>
+            <div class="accordion">
+                <h3 class="accordion-header">Your Customer Journey Analytics implementation</h3>
+                <div class="accordion-content">
+                    <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
+                    <input type="radio" id="want-turn-off-aa" name="keep-aa-or-not">Eventually use only Customer Journey Analytics to minimize cost and complexity<br>
+                    <input type="radio" id="want-keep-aa" name="keep-aa-or-not">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future<br>
+                    <hr>
+                    <p>Select how you want to configure your Customer Journey Analytics schema:</p>
+                    <input type="radio" id="want-cja-schema" name="schema-want">I want to use a schema tailored to my organization<br>
+                    <input type="radio" id="want-aa-schema" name="schema-want">I am comfortable using my Adobe Analytics schema as a basis<span class="popover-icon" data-description="This can lead to a more cluttered, complex schema than what is otherwise needed for Customer Journey Analytics because it adds many Adobe Analytics events that are not needed in Customer Journey Analytics."> <img src="Help.svg"></img> </span><br>
+                    <hr>
+                    <p>Select your preferred way of implementing Customer Journey Analytics:</p>
+                    <input type="radio" id="imp-type-want-manual" name="implementation-want">Manual implementation (JS file)<br>
+                    <input type="radio" id="imp-type-want-tags" name="implementation-want">Tags<br>
+                    <input type="radio" id="imp-type-want-api" name="implementation-want">API
+                    <hr>
+                    <input type="checkbox" id="pressed-on-time">Migration timing is important, and I am willing to incur tech debt to hasten the process
+                </div>
+            </div>
+
+            <div class="accordion hidden" id="shortcut-accordion">
+                <h3 class="accordion-header">Shortcuts you are willing to take</h3>
+                <div class="accordion-content">
+                    <p>Select the shortcuts that you want to take<span class="popover-icon" data-description="These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt."> <img src="Help.svg"></img> </span></p>
+                    <input type="checkbox" id="shortcut-keep-appmeasurement">I want use my AppMeasurement logic with the Web SDK <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform."> <img src="Help.svg"></img> </span><br>
+                    <input type="checkbox" id="shortcut-use-data-layer">I want to send my data layer to Adobe without configuring tag rules<span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."> <img src="Help.svg"></img> </span><br>
+                    <input type="checkbox" id="want-a4t">Temporarily integrate with Adobe Target (A4T)<span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."> <img src="Help.svg"></img> </span><br>
+                    <input type="checkbox" id="want-aam">Temporarily integrate with Adobe Audience Manager<span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."> <img src="Help.svg"></img> </span><br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Checklist -->
+        <div class="right-column">
+            <h2>Dynamically generated upgrade steps</h2>
+            <p>Complete the following steps to start using Customer Journey Analytics:</p>
+            <ul id="checklist-container"></ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+
+    <script src="scripts.js"></script>
 </body>
 
 </html>
