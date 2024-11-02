@@ -28,7 +28,8 @@ checklistItems:
     description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure#add-services"
   waiting_on_imp_select:
-    text: "Select a desired implementation type for this checklist item"
+    text: "Implement the Web SDK for your given property"
+    description: "Select the desired implementation type in the questionnaire for more detailed instructions."
   create_tag:
     text: "Create a tag property in Adobe Experience Platform Data Collection"
     description: "Using tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
@@ -71,6 +72,8 @@ checklistItems:
     text: "Adobe is currently working on Activity Map overlay support for CJA."
   data_feeds:
     text: "Adobe is currently working on a viable replacement to data feeds."
+  validate_dataset_ingestion:
+    text: "Validate that your Web SDK implementation is sending data to a dataset"
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
     description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting."

@@ -21,6 +21,7 @@ $(document).ready(function () {
             addChecklistItem("create_connection");
             addChecklistItem("create_data_view");
             addChecklistItem("validate_cja_data");
+            addChecklistItem("validate_dataset_ingestion");
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
