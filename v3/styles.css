@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right-column {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+}
+
+/* Accordion header styling */
+.accordion-header {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* When the accordion is open */
+.accordion-header.active {
+    background-color: #0056b3;
+}
+
+/* Accordion content */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 0 15px;
+    border-left: 3px solid #007bff;
+    margin-bottom: 10px;
+    border-radius: 0 0 5px 5px;
+    transition: max-height 0.3s ease;
+}
+
+/* Content when it's expanded */
+.accordion-header.active+.accordion-content {
+    padding: 15px;
+}
+
+.accordion-content p, .accordion-content h1, .accordion-content h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.popover {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-width: 250px;
+    word-wrap: break-word;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#checklist-container {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Each checklist item container */
+#checklist-container div {
+    background-color: #e0e0e0;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Checkbox styling */
+#checklist-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checklist-item-checked {
+    background-color: palegreen !important;
+    color: darkgreen;
+    text-decoration: line-through;
+}
+
+.hidden {
+    visibility: hidden;
+}

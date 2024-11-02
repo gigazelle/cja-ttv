@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decision Tree Checklist</title>
-    <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="styles.css">-->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <sp-theme scale="large" color="dark">
+    <sp-theme scale="large" color="light">
+        
         <sp-split-view>
             <div>
                 <!-- Left column-->
@@ -58,7 +59,9 @@
                         <p>Select how you plan to ultimately use Adobe Analytics and Customer Journey Analytics:</p>
                         <sp-radio-group name="use-aa-forever">
                             <sp-radio value="want-turn-off-aa">Eventually use only Customer Journey Analytics to minimize cost and complexity</sp-radio>
-                            <sp-radio value="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future <ContextualHelp entryId="cja_workspace_attribution_panel" variant="help"/> </sp-radio>
+                            <sp-radio value="want-keep-aa">Use both Adobe Analytics and Customer Journey Analytics for the foreseeable future
+                                <ContextualHelp entryId="cja_workspace_attribution_panel" variant="help" />
+                            </sp-radio>
                         </sp-radio-group>
                         <hr>
                         <p>Select how you want to configure your Customer Journey Analytics schema:</p>
@@ -92,28 +95,23 @@
             </div>
             <div>
                 <!--Right column-->
-                <div class="right-column">
-                    <h2>Dynamically generated upgrade steps</h2>
-                    <p>Complete the following steps to start using Customer Journey Analytics:</p>
-                    <ul id="checklist-container"></ul>
-                </div>
+
+                <h2>Dynamically generated upgrade steps</h2>
+                <p>Complete the following steps to start using Customer Journey Analytics:</p>
+                <ul class="spectrum-TreeView spectrum-TreeView--quiet" style="width: 250px">
+                    <li class="spectrum-TreeView-item">
+                        <a class="spectrum-TreeView-itemLink" href="#"><span class="spectrum-TreeView-itemLabel">Layer 1</span></a>
+                    </li>
+
+                    <li class="spectrum-TreeView-item is-selected">
+                        <a class="spectrum-TreeView-itemLink" href="#"><span class="spectrum-TreeView-itemLabel">Layer 2</span></a>
+                    </li>
+                </ul>
+                <ul id="checklist-container"></ul>
+
             </div>
         </sp-split-view>
-        <div class="container">
-            <!-- Left Column: Questionnaire -->
-            <div class="left-column">
 
-
-
-                <div class="accordion hidden" id="shortcut-accordion">
-                    <h3 class="accordion-header">Shortcuts you are willing to take</h3>
-
-                </div>
-            </div>
-
-            <!-- Right Column: Checklist -->
-
-        </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
