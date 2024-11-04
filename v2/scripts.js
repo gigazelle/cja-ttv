@@ -3,6 +3,29 @@ $(document).ready(function () {
     let currentDropdownSelection = '';
     const checklistContainer = document.getElementById('checklist-container');
 
+    // Auto-add CSS classes to elements
+    $("button").addClass("spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM");
+    $("button span").addClass("spectrum-Button-label");
+    $(".spectrum-Radio input").addClass("spectrum-Radio-input");
+    $(".spectrum-Radio span").addClass("spectrum-Radio-button");
+    $(".spectrum-Radio label").addClass("spectrum-Radio-label");
+    $(".spectrum-Checkbox").addClass("spectrum-Checkbox--sizeM spectrum-Checkbox--emphasized");
+    $(".spectrum-Checkbox input").addClass("spectrum-Checkbox-input");
+    $(".spectrum-Checkbox span:first-of-type").addClass("spectrum-Checkbox-box");
+    $(".spectrum-Checkbox span:nth-of-type(2)").addClass("spectrum-Checkbox-label");
+
+    $(".spectrum-Radio").each(function () {
+        const input = $(this).find("input");
+        const label = $(this).find("label");
+
+        if (input.length && label.length) {
+            const inputId = input.attr("id");
+            label.attr("for", inputId);
+        }
+    });
+
+
+
 
     // Fetch and parse YAML data
     $.ajax({
@@ -336,7 +359,7 @@ $(document).ready(function () {
     document.querySelectorAll('.accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
-        if(content.classList.contains('active')){
+        if (content.classList.contains('active')) {
             content.style.maxHeight = content.scrollHeight + "px";
             header.classList.add('active');
         }
