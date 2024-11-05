@@ -2,31 +2,31 @@ checklistItems:
   architect_schema:
     text: "Architect a schema"
     description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-architect"
   create_custom_schema:
     text: "Create the desired custom schema in Adobe Experience Platform"
     description: "Use the Adobe Experience Platform UI to create a schema so that Adobe knows the correct format to store your data."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-create"
   enable_profile:
     text: "Enable profile in your schema and create a profile dataset for use in RTCDP"
   create_aa_schema:
     text: "Create a schema using the Adobe Analytics field group"
     description: "Use the 'Adobe Analytics ExperienceEvent' field group to create a schema in Adobe Experience Platform containing all fields used by Adobe Analytics."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"
   create_dataset:
     text: "Create a dataset in Adobe Experience Platform"
     description: "A dataset is a location where collected data resides. Create this location in Adobe Experience Platform."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/catalog/datasets/user-guide#create"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataset"
   create_datastream:
     text: "Create a datastream in Adobe Experience Platform"
     description: "A datastream is an intermediary location that passes your data along to all configured services. Create this location in Adobe Experience Platform."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-datastream"
   create_lookup_dataset:
     text: "Create a lookup dataset for each dimension containing classification data"
   add_aep_to_datastream:
     text: "Add Adobe Experience Platform as a service to the datastream"
     description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/datastreams/configure#add-services"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-datastream-addplatform"
   waiting_on_imp_select:
     text: "Implement the Web SDK for your given property"
     description: "Select the desired implementation type in the questionnaire for more detailed instructions."
@@ -64,7 +64,7 @@ checklistItems:
     text: "Use datastream mapping to assign each data layer element to an XDM field"
   implement_edge_streamingmedia:
     text: "Setup and implement Media Edge SDKs or APIs"
-    description: "Setup and implement the streaming media data collection using the  Media Edge SDKs or the Media Edge APIs."
+    description: "Set up and implement the streaming media data collection using the  Media Edge SDKs or the Media Edge APIs."
     link: "https://experienceleague.adobe.com/en/docs/media-analytics/using/implementation/edge-recommended/media-edge-sdk/implementation-edge"
   implement_personalization:
     text: "Use the personalization object in your implementation for use in Adobe Journey Optimizer"
@@ -77,11 +77,11 @@ checklistItems:
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
     description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/create-connection"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-connection"
   create_data_view:
     text: "Create a data view in Customer Journey Analytics"
     description: "A data view is a container specific to Customer Journey Analytics that lets you determine how to interpret data from a connection."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-dataviews/data-views"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataview"
   create_mc_derived_fields:
     text: "Create a marketing channel derived field"
   validate_cja_data:
