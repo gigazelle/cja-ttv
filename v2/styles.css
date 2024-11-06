@@ -80,7 +80,6 @@ body {
     margin-top: 20px;
 }
 
-/* Each checklist item container */
 #checklist-container div {
     background-color: #eaeaea;
     margin-bottom: 5px;
@@ -90,7 +89,6 @@ body {
     align-items: center;
 }
 
-/* Checkbox styling */
 #checklist-container input[type="checkbox"] {
     margin-right: 10px;
 }
@@ -128,5 +126,5 @@ body {
     gap: 5px;
     margin-left: auto;
     margin-right: 0;
-    background-color: inherit;
+    background-color: transparent !important;
 }
