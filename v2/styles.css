@@ -71,7 +71,7 @@ body {
     max-width: 250px;
     word-wrap: break-word;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #checklist-container {
@@ -105,6 +105,12 @@ body {
     visibility: hidden;
 }
 
+.icon-container img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
 .link-item img {
     width: 20px;
     height: 20px;
@@ -117,44 +123,10 @@ body {
     gap: 5px;
 }
 
-.c-accordion-header .link-item {
-    margin-right: 10px;
+.icon-container {
+    display: inline-flex;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: inherit;
 }
-
-.c-accordion-header .link-item img {
-    transition: transform 0.3s ease;
-}
-
-.c-accordion-header {
-    background-color: #dcdcdc;
-    color: black;
-    cursor: pointer;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 5px 5px 0 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.c-accordion-content {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 0 0 5px 5px;
-    overflow: hidden;
-}
-
-.checklist-item.active .c-accordion-content {
-    display: block;
-    max-height: 500px;
-    padding: 10px;
-}
-
-.c-accordion-header img {
-    transition: transform 0.3s ease;
-}
-
-.checklist-item.active .c-accordion-header .link-item img {
-    transform: rotate(90deg);
-}
-

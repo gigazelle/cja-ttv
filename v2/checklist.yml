@@ -3,6 +3,7 @@ checklistItems:
     text: "Architect a schema"
     description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-getstarted"
+    ui_link: "https://experience.adobe.com"
   create_custom_schema:
     text: "Create the desired custom schema in Adobe Experience Platform"
     description: "Use the Adobe Experience Platform UI to create a schema so that Adobe knows the correct format to store your data."
