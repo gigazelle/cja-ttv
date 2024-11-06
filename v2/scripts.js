@@ -161,7 +161,7 @@ $(document).ready(function () {
     }
 
     // Listen for changes on any form element in the left column
-    $('.accordion-content input, .accordion-content select').change(function () {
+    $('.q-accordion-content input, .q-accordion-content select').change(function () {
         const elementId = $(this).attr('id');
         const isChecked = $(this).is(':checked');
 
@@ -356,7 +356,7 @@ $(document).ready(function () {
     });
 
     // Toggle the display of the accordion content
-    document.querySelectorAll('.accordion-header').forEach(header => {
+    document.querySelectorAll('.q-accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
         if (content.classList.contains('active')) {
@@ -377,5 +377,40 @@ $(document).ready(function () {
             }
         });
     });
+    
+    $(".checklist-item .c-accordion-header").on("click", function (event) {
+        // Check if the target is the checkbox or label text
+        if ($(event.target).closest(".spectrum-Checkbox input, .spectrum-Checkbox span:last-child").length) {
+            return; // Skip accordion toggle
+        }
+
+        // Toggle the accordion content with slideToggle
+        const $accordionItem = $(this).closest(".checklist-item");
+        $accordionItem.find(".c-accordion-content").stop(true, true).slideToggle(300);
+
+        // Toggle rotation of icon
+        $accordionItem.toggleClass("active");
+    });
+
 
 });
+
+function goToNextAccordion(currentButton) {
+    // Find the current accordion content and header
+    const currentAccordion = currentButton.closest('.q-accordion-content');
+    const currentHeader = currentAccordion.previousElementSibling;
+
+    // Collapse the current accordion
+    currentAccordion.style.maxHeight = null;
+    currentHeader.classList.remove('active');
+
+    // Find the next accordion content and header
+    const nextHeader = currentAccordion.parentElement.nextElementSibling?.querySelector('.q-accordion-header');
+    const nextAccordion = nextHeader?.nextElementSibling;
+
+    // If there’s a next accordion, expand it
+    if (nextAccordion && nextHeader) {
+        nextAccordion.style.maxHeight = nextAccordion.scrollHeight + "px";
+        nextHeader.classList.add('active');
+    }
+}

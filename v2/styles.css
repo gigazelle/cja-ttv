@@ -22,8 +22,8 @@ body {
 }
 
 /* Accordion header styling */
-.accordion-header {
-    background-color: #f5f5f5;
+.q-accordion-header {
+    background-color: #dcdcdc;
     color: black;
     cursor: pointer;
     padding: 10px;
@@ -34,12 +34,12 @@ body {
 }
 
 /* When the accordion is open */
-.accordion-header.active {
+.q-accordion-header.active {
     background-color: #dcdcdc;
 }
 
 /* Accordion content */
-.accordion-content {
+.q-accordion-content {
     max-height: 0;
     overflow: hidden;
     background-color: white;
@@ -50,11 +50,13 @@ body {
 }
 
 /* Content when it's expanded */
-.accordion-header.active+.accordion-content {
+.q-accordion-header.active+.q-accordion-content {
     padding: 15px;
 }
 
-.accordion-content p, .accordion-content h1, .accordion-content h2 {
+.q-accordion-content p,
+.q-accordion-content h1,
+.q-accordion-content h2 {
     margin-top: 0;
     padding-top: 0;
 }
@@ -102,3 +104,57 @@ body {
 .hidden {
     visibility: hidden;
 }
+
+.link-item img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.links .link-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.c-accordion-header .link-item {
+    margin-right: 10px;
+}
+
+.c-accordion-header .link-item img {
+    transition: transform 0.3s ease;
+}
+
+.c-accordion-header {
+    background-color: #dcdcdc;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.c-accordion-content {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+.checklist-item.active .c-accordion-content {
+    display: block;
+    max-height: 500px;
+    padding: 10px;
+}
+
+.c-accordion-header img {
+    transition: transform 0.3s ease;
+}
+
+.checklist-item.active .c-accordion-header .link-item img {
+    transform: rotate(90deg);
+}
+
