@@ -75,7 +75,6 @@ $(document).ready(function () {
 
         // Create a new div for the checklist item
         const checklistItem = document.createElement('div');
-        checklistItem.title = itemData.description || '';  // Add description as a tooltip for the whole box
         checklistItem.setAttribute('data-id', id);  // Set the ID for sorting purposes
 
         // Create a numeric identifier span (we'll update this in the sort function)
@@ -96,25 +95,61 @@ $(document).ready(function () {
             }
         };
 
-        // Create the label (text as a link if the link property exists)
+        // Checklist label
         const label = document.createElement('label');
         label.setAttribute('for', id);
+        label.textContent = itemData.text;
 
-        // Check if the item has a link
-        if (itemData.link) {
-            const anchor = document.createElement('a');
-            anchor.href = itemData.link;
-            anchor.textContent = itemData.text;
-            anchor.target = '_blank';  // Opens link in a new tab
-            label.appendChild(anchor);
-        } else {
-            label.textContent = itemData.text;  // Just use plain text if no link exists
+        // Create the icon container div for right alignment
+        const iconContainer = document.createElement('div');
+        iconContainer.classList.add('icon-container');
+
+        // Help icon with popover
+        if (itemData.description) {
+            const helpIconSpan = document.createElement('span');
+            helpIconSpan.classList.add('popover-icon');
+            helpIconSpan.setAttribute('data-description',itemData.description);
+            const helpImg = document.createElement('img');
+            helpImg.src = 'Help.svg';
+            helpImg.alt = 'Help Icon';
+            helpIconSpan.addEventListener('mouseover', (event) => showPopover(event, itemData.description));
+            helpIconSpan.addEventListener('mouseout', hidePopover);
+            helpIconSpan.appendChild(helpImg);
+            iconContainer.appendChild(helpIconSpan);
         }
 
-        // Append checkbox, number, and label to the div
+        // Documentation icon
+        if (itemData.link) {
+            const exlIcon = document.createElement('a');
+            exlIcon.href = itemData.link;
+            exlIcon.target = '_blank';
+            exlIcon.title = "View Experience League documentation for this step"
+            const exlImg = document.createElement('img');
+            exlImg.src = 'exl-icon.png';
+            exlImg.alt = 'EXL Icon';
+            exlIcon.appendChild(exlImg);
+            iconContainer.appendChild(exlIcon);
+        }
+
+        // UI icon
+        if (itemData.ui_link) {
+            const platformIcon = document.createElement('a');
+            platformIcon.href = itemData.ui_link;
+            platformIcon.target = '_blank';
+            platformIcon.title = "Open the Adobe Experience Cloud interface to perform this step"
+            const platformImg = document.createElement('img');
+            platformImg.src = 'platform-icon.png';
+            platformImg.alt = 'Platform Icon';
+            platformIcon.appendChild(platformImg);
+            iconContainer.appendChild(platformIcon);
+        }
+
+
+        // Append checkbox, number, label, and icon container to the checklist item
         checklistItem.appendChild(checkbox);
         checklistItem.appendChild(numberSpan);
         checklistItem.appendChild(label);
+        checklistItem.appendChild(iconContainer);
 
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
@@ -122,6 +157,7 @@ $(document).ready(function () {
         // Sort the checklist after adding the new item
         sortChecklist();
     }
+
 
 
 
@@ -161,7 +197,7 @@ $(document).ready(function () {
     }
 
     // Listen for changes on any form element in the left column
-    $('.accordion-content input, .accordion-content select').change(function () {
+    $('.q-accordion-content input, .q-accordion-content select').change(function () {
         const elementId = $(this).attr('id');
         const isChecked = $(this).is(':checked');
 
@@ -356,7 +392,7 @@ $(document).ready(function () {
     });
 
     // Toggle the display of the accordion content
-    document.querySelectorAll('.accordion-header').forEach(header => {
+    document.querySelectorAll('.q-accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
         if (content.classList.contains('active')) {
@@ -378,4 +414,39 @@ $(document).ready(function () {
         });
     });
 
+    $(".checklist-item .c-accordion-header").on("click", function (event) {
+        // Check if the target is the checkbox or label text
+        if ($(event.target).closest(".spectrum-Checkbox input, .spectrum-Checkbox span:last-child").length) {
+            return; // Skip accordion toggle
+        }
+
+        // Toggle the accordion content with slideToggle
+        const $accordionItem = $(this).closest(".checklist-item");
+        $accordionItem.find(".c-accordion-content").stop(true, true).slideToggle(300);
+
+        // Toggle rotation of icon
+        $accordionItem.toggleClass("active");
+    });
+
+
 });
+
+function goToNextAccordion(currentButton) {
+    // Find the current accordion content and header
+    const currentAccordion = currentButton.closest('.q-accordion-content');
+    const currentHeader = currentAccordion.previousElementSibling;
+
+    // Collapse the current accordion
+    currentAccordion.style.maxHeight = null;
+    currentHeader.classList.remove('active');
+
+    // Find the next accordion content and header
+    const nextHeader = currentAccordion.parentElement.nextElementSibling?.querySelector('.q-accordion-header');
+    const nextAccordion = nextHeader?.nextElementSibling;
+
+    // If there’s a next accordion, expand it
+    if (nextAccordion && nextHeader) {
+        nextAccordion.style.maxHeight = nextAccordion.scrollHeight + "px";
+        nextHeader.classList.add('active');
+    }
+}

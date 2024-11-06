@@ -22,8 +22,8 @@ body {
 }
 
 /* Accordion header styling */
-.accordion-header {
-    background-color: #f5f5f5;
+.q-accordion-header {
+    background-color: #dcdcdc;
     color: black;
     cursor: pointer;
     padding: 10px;
@@ -34,12 +34,12 @@ body {
 }
 
 /* When the accordion is open */
-.accordion-header.active {
+.q-accordion-header.active {
     background-color: #dcdcdc;
 }
 
 /* Accordion content */
-.accordion-content {
+.q-accordion-content {
     max-height: 0;
     overflow: hidden;
     background-color: white;
@@ -50,11 +50,13 @@ body {
 }
 
 /* Content when it's expanded */
-.accordion-header.active+.accordion-content {
+.q-accordion-header.active+.q-accordion-content {
     padding: 15px;
 }
 
-.accordion-content p, .accordion-content h1, .accordion-content h2 {
+.q-accordion-content p,
+.q-accordion-content h1,
+.q-accordion-content h2 {
     margin-top: 0;
     padding-top: 0;
 }
@@ -69,7 +71,7 @@ body {
     max-width: 250px;
     word-wrap: break-word;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #checklist-container {
@@ -101,4 +103,30 @@ body {
 
 .hidden {
     visibility: hidden;
+}
+
+.icon-container img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.link-item img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.links .link-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-container {
+    display: inline-flex;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: inherit;
 }
