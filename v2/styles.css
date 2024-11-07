@@ -133,3 +133,9 @@ body {
     margin-right: 0;
     background-color: transparent !important;
 }
+
+.spectrum-Checkbox .spectrum-Checkbox-checkmark {
+            
+    transform: scale(0.75) !important;
+    transform-origin: center !important;
+}

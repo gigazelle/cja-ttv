@@ -9,10 +9,15 @@ $(document).ready(function () {
     $(".spectrum-Radio input").addClass("spectrum-Radio-input");
     $(".spectrum-Radio span").addClass("spectrum-Radio-button");
     $(".spectrum-Radio label").addClass("spectrum-Radio-label");
-    $(".spectrum-Checkbox").addClass("spectrum-Checkbox--sizeM spectrum-Checkbox--emphasized");
-    $(".spectrum-Checkbox input").addClass("spectrum-Checkbox-input");
-    $(".spectrum-Checkbox span:first-of-type").addClass("spectrum-Checkbox-box");
-    $(".spectrum-Checkbox span:nth-of-type(2)").addClass("spectrum-Checkbox-label");
+    $(".spectrum-Checkbox").each(function (index) {
+        $(this).addClass("spectrum-Checkbox--sizeM");
+        $(this).find("input").addClass("spectrum-Checkbox-input");
+        $(this).find("span:first-of-type").addClass("spectrum-Checkbox-box");
+        $(this).find("span:nth-of-type(2)").addClass("spectrum-Checkbox-label");
+        $(this).find("span:first-of-type").append(`<svg class="spectrum-Icon spectrum-UIIcon-Checkmark200 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+            <use xlink:href="spectrum-css-icons.svg#spectrum-css-icon-Checkmark200" />
+        </svg>`);
+    });
 
     $(".spectrum-Radio").each(function () {
         const input = $(this).find("input");
@@ -108,12 +113,12 @@ $(document).ready(function () {
         if (itemData.description) {
             const helpIconSpan = document.createElement('span');
             helpIconSpan.classList.add('popover-icon');
-            helpIconSpan.setAttribute('data-description',itemData.description);
+            //helpIconSpan.setAttribute('data-description',itemData.description);
             const helpImg = document.createElement('img');
             helpImg.src = 'Help.svg';
-            helpImg.alt = 'Help Icon';
-            helpIconSpan.addEventListener('mouseover', (event) => showPopover(event, itemData.description));
-            helpIconSpan.addEventListener('mouseout', hidePopover);
+            helpImg.alt = 'Help icon';
+            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description));
+            //helpIconSpan.addEventListener('mouseout', hidePopover);
             helpIconSpan.appendChild(helpImg);
             iconContainer.appendChild(helpIconSpan);
         }
@@ -126,7 +131,7 @@ $(document).ready(function () {
             exlIcon.title = "View Experience League documentation for this step"
             const exlImg = document.createElement('img');
             exlImg.src = 'exl-icon.png';
-            exlImg.alt = 'EXL Icon';
+            exlImg.alt = 'Documentation icon';
             exlIcon.appendChild(exlImg);
             iconContainer.appendChild(exlIcon);
         }
@@ -139,7 +144,7 @@ $(document).ready(function () {
             platformIcon.title = "Open the Adobe Experience Cloud interface to perform this step"
             const platformImg = document.createElement('img');
             platformImg.src = 'platform-icon.png';
-            platformImg.alt = 'Platform Icon';
+            platformImg.alt = 'UI icon';
             platformIcon.appendChild(platformImg);
             iconContainer.appendChild(platformIcon);
         }
@@ -387,7 +392,7 @@ $(document).ready(function () {
     // Add hover event listeners to elements that should trigger popovers
     document.querySelectorAll('.popover-icon').forEach(icon => {
         const description = icon.dataset.description; // Get the description from the data attribute
-        icon.addEventListener('mouseover', (event) => showPopover(event, description));
+        icon.addEventListener('click', (event) => showPopover(event, description));
         icon.addEventListener('mouseout', hidePopover);
     });
 
