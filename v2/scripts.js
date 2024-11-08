@@ -458,14 +458,15 @@ $(document).ready(function () {
 });
 
 function goToNextAccordion(currentButton) {
+    // Collapse all accordions
+    document.querySelectorAll('.q-accordion-content').forEach((accordion) => {
+        accordion.style.maxHeight = null;
+        accordion.previousElementSibling.classList.remove('active');
+    });
+
     // Find the current accordion content and header
     const currentAccordion = currentButton.closest('.q-accordion-content');
-    const currentHeader = currentAccordion.previousElementSibling;
-
-    // Collapse the current accordion
-    currentAccordion.style.maxHeight = null;
-    currentHeader.classList.remove('active');
-
+    
     // Find the next accordion content and header
     const nextHeader = currentAccordion.parentElement.nextElementSibling?.querySelector('.q-accordion-header');
     const nextAccordion = nextHeader?.nextElementSibling;
