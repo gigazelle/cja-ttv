@@ -160,7 +160,7 @@ $(document).ready(function () {
         if (itemData.description) {
             const helpIconSpan = iconContainer.querySelector('.popover-icon');
             helpIconSpan.id = checklistItem.getAttribute("data-id") + "-popover";
-            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description, helpIconSpan.id, itemData.link));
+            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description, itemData.link));
         }
 
         // Sort the checklist after adding the new item
@@ -348,7 +348,7 @@ $(document).ready(function () {
     });
 
     // Function to show the popover on hover
-    function showPopover(event, description, id, link) {
+    function showPopover(event, description, link) {
 
         hideAllPopovers();
 
@@ -412,11 +412,9 @@ $(document).ready(function () {
         });
     }
 
-    // Add hover event listeners to elements that should trigger popovers
+    // Popover functionality for non-checklist icons
     document.querySelectorAll('.popover-icon').forEach(icon => {
-        const description = icon.dataset.description; // Get the description from the data attribute
-        icon.addEventListener('click', (event) => showPopover(event, description));
-        //icon.addEventListener('mouseout', hidePopover);
+        icon.addEventListener('click', (event) => showPopover(event, icon.dataset.description, icon.dataset.link));
     });
 
     // Toggle the display of the accordion content
