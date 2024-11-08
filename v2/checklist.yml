@@ -24,6 +24,8 @@ checklistItems:
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-datastream"
   create_lookup_dataset:
     text: "Create a lookup dataset for each dimension containing classification data"
+    description: "Similar to classifications data in Adobe Analytics, lookup datasets are the method for classifying data in Customer Journey Analytics."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataset-lookup"
   add_aep_to_datastream:
     text: "Add Adobe Experience Platform as a service to the datastream"
     description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
