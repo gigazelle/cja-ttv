@@ -1,6 +1,6 @@
 $(document).ready(function () {
     let checklistItems = [];
-    let currentDropdownSelection = '';
+    let currentPopover = '';
     const checklistContainer = document.getElementById('checklist-container');
 
     // Auto-add CSS classes to elements
@@ -18,7 +18,6 @@ $(document).ready(function () {
             <use xlink:href="spectrum-css-icons.svg#spectrum-css-icon-Checkmark200" />
         </svg>`);
     });
-
     $(".spectrum-Radio").each(function () {
         const input = $(this).find("input");
         const label = $(this).find("label");
@@ -29,8 +28,26 @@ $(document).ready(function () {
         }
     });
 
+    // Assign an ID to all predefined popovers (just an int to make it unique)
+    const allExistingPopovers = document.querySelectorAll(".popover-icon")
+    for(let i = 0; i < allExistingPopovers.length; i++) {
+        allExistingPopovers[i].id = i;
+    }
 
-
+    // Any click that's not in a popover, hide all popovers
+    document.body.addEventListener('click', (event) => {
+        if (event.target.closest('.popover-icon') && event.target.closest('[id]').id == currentPopover) {
+            hideAllPopovers();
+            currentPopover = null;
+            return;
+        }
+        if(event.target.closest('.popover-icon')) {
+            currentPopover = event.target.closest('[id]').id;
+        } else if (!event.target.closest('.popover') && !event.target.closest('.popover-icon')) {
+            hideAllPopovers();
+            currentPopover = null;
+        }
+    });
 
     // Fetch and parse YAML data
     $.ajax({
@@ -56,16 +73,9 @@ $(document).ready(function () {
         }
     });
 
-
-
-    // Function to get the selected radio button value
-    function getSelectedRadioValue(groupName) {
-        return $(`input[name=${groupName}]:checked`).attr('id');
-    }
-
     // Add a checklist item by ID
     function addChecklistItem(id) {
-        const itemData = checklistItems[id];  // Fetch the data for this checklist item
+        const itemData = checklistItems[id];
 
         if (!itemData) {
             console.error(`Checklist item with ID "${id}" not found.`);
@@ -113,28 +123,16 @@ $(document).ready(function () {
         if (itemData.description) {
             const helpIconSpan = document.createElement('span');
             helpIconSpan.classList.add('popover-icon');
-            //helpIconSpan.setAttribute('data-description',itemData.description);
             const helpImg = document.createElement('img');
             helpImg.src = 'Help.svg';
             helpImg.alt = 'Help icon';
-            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description));
-            //helpIconSpan.addEventListener('mouseout', hidePopover);
+
+
             helpIconSpan.appendChild(helpImg);
             iconContainer.appendChild(helpIconSpan);
         }
 
-        // Documentation icon
-        if (itemData.link) {
-            const exlIcon = document.createElement('a');
-            exlIcon.href = itemData.link;
-            exlIcon.target = '_blank';
-            exlIcon.title = "View Experience League documentation for this step"
-            const exlImg = document.createElement('img');
-            exlImg.src = 'exl-icon.png';
-            exlImg.alt = 'Documentation icon';
-            exlIcon.appendChild(exlImg);
-            iconContainer.appendChild(exlIcon);
-        }
+
 
         // UI icon
         if (itemData.ui_link) {
@@ -158,6 +156,12 @@ $(document).ready(function () {
 
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
+
+        if (itemData.description) {
+            const helpIconSpan = iconContainer.querySelector('.popover-icon');
+            helpIconSpan.id = checklistItem.getAttribute("data-id") + "-popover";
+            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description, helpIconSpan.id, itemData.link));
+        }
 
         // Sort the checklist after adding the new item
         sortChecklist();
@@ -344,17 +348,34 @@ $(document).ready(function () {
     });
 
     // Function to show the popover on hover
-    function showPopover(event, description) {
-        // Remove any existing popover to avoid duplication
-        let existingPopover = document.querySelector('.popover');
-        if (existingPopover) {
-            existingPopover.remove();
-        }
+    function showPopover(event, description, id, link) {
+
+        hideAllPopovers();
 
         // Create a new popover element
         const popover = document.createElement('div');
         popover.classList.add('popover');
         popover.textContent = description;
+
+        if (link) {
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            popover.appendChild(br1);
+            popover.appendChild(br2);
+
+            const docIcon = document.createElement('img');
+            docIcon.href = link;
+            docIcon.target = "_blank";
+            docIcon.src = "exl-icon.png";
+            docIcon.alt = "Documentation icon";
+            popover.appendChild(docIcon);
+
+            const linkElement = document.createElement('a');
+            linkElement.href = link;
+            linkElement.target = '_blank';
+            linkElement.textContent = "Learn more on Experience League";
+            popover.appendChild(linkElement);
+        }
 
         // Position the popover relative to the hovered element
         const rect = event.target.getBoundingClientRect();
@@ -379,21 +400,23 @@ $(document).ready(function () {
 
         // Add the popover to the body (after adjustments)
         document.body.appendChild(popover);
+
+
     }
 
     // Function to hide the popover on mouseout or click away
-    function hidePopover() {
-        let existingPopover = document.querySelector('.popover');
-        if (existingPopover) {
-            existingPopover.remove();
-        }
+    function hideAllPopovers() {
+        let existingPopovers = document.querySelectorAll('.popover');
+        existingPopovers.forEach((x) => {
+            x.remove();
+        });
     }
 
     // Add hover event listeners to elements that should trigger popovers
     document.querySelectorAll('.popover-icon').forEach(icon => {
         const description = icon.dataset.description; // Get the description from the data attribute
         icon.addEventListener('click', (event) => showPopover(event, description));
-        icon.addEventListener('mouseout', hidePopover);
+        //icon.addEventListener('mouseout', hidePopover);
     });
 
     // Toggle the display of the accordion content
