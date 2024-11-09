@@ -453,13 +453,16 @@ $(document).ready(function () {
 function goToNextAccordion(currentButton) {
     // Collapse all accordions
     document.querySelectorAll('.q-accordion-content').forEach((accordion) => {
+        if (accordion.id == 'shortcut-accordion-content') {
+            return;
+        }
         accordion.style.maxHeight = null;
         accordion.previousElementSibling.classList.remove('active');
     });
 
     // Find the current accordion content and header
     const currentAccordion = currentButton.closest('.q-accordion-content');
-    
+
     // Find the next accordion content and header
     const nextHeader = currentAccordion.parentElement.nextElementSibling?.querySelector('.q-accordion-header');
     const nextAccordion = nextHeader?.nextElementSibling;
