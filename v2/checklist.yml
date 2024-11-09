@@ -35,7 +35,7 @@ checklistItems:
     description: "Select the desired implementation type in the questionnaire for more detailed instructions."
   create_tag:
     text: "Create a tag property in Adobe Experience Platform Data Collection"
-    description: "Using tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
+    description: "Using Tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/get-started/quick-start#create-a-property"
   add_extension:
     text: "Add the Adobe Experience Platform Web SDK extension"
@@ -110,7 +110,7 @@ checklistItems:
   remove_mobile:
     text: "Remove legacy mobile implementation"
   remove_tags:
-    text: "Disable the Analytics extension in tags"
+    text: "Disable the Analytics extension in Tags"
   remove_api:
     text: "Disable API data collection for Adobe Analytics"
   disable_adc:
@@ -118,7 +118,7 @@ checklistItems:
     description: "Once the Web SDK has collected enough data over time, you can disable the Analytics Source connector and rely on your current implementation moving forward."
   create_mobile_tag:
     text: "Create a mobile tag property in Adobe Experience Platform Data Collection"
-    description: "Using tags is the typical standard for data collection. Create a mobile tag property in the Adobe Experience Platform interface so that you can update data collection variables at any time."
+    description: "Using Tags is the typical standard for data collection. Create a mobile tag property in the Adobe Experience Platform interface so that you can update data collection variables at any time."
     link: "https://developer.adobe.com/client-sdks/home/getting-started/create-a-mobile-property/#create-a-mobile-property"
   add_mobile_edge_extension:
     text: "Add the Adobe Experience Platform Edge Network extension"

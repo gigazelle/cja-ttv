@@ -22,6 +22,9 @@
     <script src="scripts.js"></script>
 </head>
 
+<!-- Popover example format -->
+<!--<span class="popover-icon" data-description="Example" data-link="https://experienceleague.adobe.com"></span><br>-->
+
 <body class="spectrum-Body">
     <div class="container">
         <!-- Left Column: Questionnaire -->
@@ -46,67 +49,37 @@
                         <label>AppMeasurement
                         </label>
                     </div>
-                    <span class="popover-icon" data-description="A JavaScript implementation that loads AppMeasurement.js on a page, and sends data to Adobe using the s object (for example, s.eVar1).">
-                        <img src="Help.svg"></img>
-                    </span><br>
+                    <span class="popover-icon" data-description="A JavaScript implementation that loads AppMeasurement.js on a page, and sends data to Adobe using the s object (for example, s.eVar1)." data-link="https://experienceleague.adobe.com/en/docs/analytics/implementation/js/overview"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-analytics-extension">
                         <span></span>
-                        <label>Adobe Analytics extension (tags)</label>
+                        <label>Adobe Analytics extension (Tags)</label>
                     </div>
-                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Adobe Analytics extension installed.">
-                        <img src="Help.svg"></img>
-                    </span><br>
+                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Adobe Analytics extension installed." data-link="https://experienceleague.adobe.com/en/docs/analytics/implementation/launch/overview"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-web-sdk-alloy">
                         <span></span>
                         <label>Web SDK (alloy.js)</label>
                     </div>
-                    <span class="popover-icon" data-description="A JavaScript implementation that loads alloy.js on a page, and sends data to Adobe using SendEvent containing a JSON payload.">
-                        <img src="Help.svg"></img>
-                    </span><br>
+                    <span class="popover-icon" data-description="A JavaScript implementation that loads the Web SDK library (alloy.js) on a page, and sends data to Adobe using a JSON payload." data-link="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/web-sdk/overview"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-web-sdk-extension">
                         <span></span>
-                        <label>Web SDK extension (tags)</label>
+                        <label>Web SDK extension (Tags)</label>
                     </div>
-                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Web SDK extension installed.">
-                        <img src="Help.svg"></img>
-                    </span><br>
+                    <span class="popover-icon" data-description="A tag implementation that loads Adobe Experience Platform Data Collection (formerly known as Launch). The tag has the Web SDK extension installed." data-link="https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/web-sdk/overview"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-api">
                         <span></span>
                         <label>API</label>
                     </div>
-                    <span class="popover-icon" data-description="An implementation that uses the data insertion API or bulk data insertion API.">
-                        <img src="Help.svg"></img>
-                    </span><br>
-                    <div class="spectrum-Radio">
-                        <input type="radio" name="implementation-type" id="imp-legacy-mobile">
-                        <span></span>
-                        <label>Legacy mobile</label>
-                    </div>
-                    <span class="popover-icon"
-                    data-description="An implementation that uses the Adobe Analytics 4.x mobile SDKs. These SDKs are retired."
-                    data-link="https://experienceleague.adobe.com/en/docs/discontinued/using/mobile-services">
-                        <img src="Help.svg"></img>
-                    </span><br>
+                    <span class="popover-icon" data-description="An implementation that uses the data insertion API or bulk data insertion API." data-link="https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion/"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-mobile-sdk">
                         <span></span>
                         <label>Mobile SDK</label>
                     </div>
-                    <span class="popover-icon" data-description="An implementation that uses the Adobe Experience Platform Mobile SDK.">
-                        <img src="Help.svg"></img>
-                    </span><br>
-                    <div class="spectrum-Radio">
-                        <input type="radio" name="implementation-type" id="imp-none">
-                        <span></span>
-                        <label>No Adobe Analytics implementation</label>
-                    </div>
-                    <span class="popover-icon" data-description="The property in question does not have any Adobe Analytics implementation.">
-                        <img src="Help.svg"></img>
-                    </span><br><br>
+                    <span class="popover-icon" data-description="An implementation that uses the Adobe Experience Platform Mobile SDK." data-link="https://developer.adobe.com/client-sdks/home/"></span><br><br>
                     <button onclick="goToNextAccordion(this)">
                         <span>Next</span>
                     </button>
@@ -125,37 +98,44 @@
                         <input type="checkbox" id="want-component-migration">
                         <span></span>
                         <span>Components and projects from Adobe Analytics</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Components from Adobe Analytics include: Projects (with their associated freeform tables and visualizations), segments, and calculated metrics."></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-activity-map-overlay">
                         <span></span>
                         <span>Activity map overlay and link tracking</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="A browser extension that allows you to see link tracking data as an overlay on your site." data-link="https://experienceleague.adobe.com/en/docs/analytics/analyze/activity-map/overview"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-classifications">
                         <span></span>
                         <span>Classification data</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Group or categorize data as separate dimensions." data-link="https://experienceleague.adobe.com/en/docs/analytics/components/classifications/c-classifications"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-marketing-channels">
                         <span></span>
                         <span>Marketing channels</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Create rules that categorize how customers arrive on your site." data-link="https://experienceleague.adobe.com/en/docs/analytics/components/marketing-channels/c-getting-started-mchannel"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-data-feeds">
                         <span></span>
                         <span>Data Feeds</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Export raw data from Adobe Analytics for use in external tools and processes." data-link="https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-data-warehouse">
                         <span></span>
                         <span>Data Warehouse</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Export processed data from Adobe Analytics in spreadsheet format." data-link="https://experienceleague.adobe.com/en/docs/analytics/export/data-warehouse/data-warehouse"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-streaming-media">
                         <span></span>
                         <span>Streaming Media data</span>
-                    </label><br><br>
+                    </label>
+                    <span class="popover-icon" data-description="An add-on to Adobe Analytics that specializes in data collection of media, such as audio, video, or streamed content." data-link="https://experienceleague.adobe.com/en/docs/media-analytics/using/media-overview"></span><br><br>
                     <button onclick="goToNextAccordion(this)">
                         <span>Next</span>
                     </button>
@@ -170,23 +150,26 @@
                         <input type="checkbox" id="want-omnichannel">
                         <span></span>
                         <span>Tie web data with data from other channels, such as call center data</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="(Recommended) The ability to combine analytics data from other channels is the primary use case for Customer Journey Analytics." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-overview/cja-overview"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-rtcdp">
                         <span></span>
                         <span>Integrate with RTCDP</span>
-                    </label><br>
+                    </label>
+                    <span class="popover-icon" data-description="Combine profile data from multiple sources to generate audiences and segments based on user traits." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/rtcdp/home"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-ajo">
                         <span></span>
                         <span>Integrate with Adobe Journey Optimizer</span>
-                    </label><br><br>
+                    </label>
+                    <span class="popover-icon" data-description="Deliver connected, contextual, and personalized experiences to customers." data-link="https://experienceleague.adobe.com/en/docs/journey-optimizer/using/get-started/get-started"></span><br><br>
                     <button onclick="goToNextAccordion(this)">
                         <span>Next</span>
                     </button>
                 </div>
             </div>
-
+            
             <div class="q-accordion">
                 <h3 class=" q-accordion-header">Your Customer Journey Analytics implementation</h3>
                 <div class=" q-accordion-content">
@@ -194,45 +177,49 @@
                     <div class="spectrum-Radio">
                         <input type="radio" name="keep-aa-or-not" id="want-turn-off-aa">
                         <span></span>
-                        <label>I intend to fully move to Customer Journey Analytics and eventually turn off Adobe Analytics</label>
-                    </div><br>
+                        <label>I intend to fully move to Customer Journey Analytics</label>
+                    </div>
+                    <span class="popover-icon" data-description="(Recommended) Customer Journey Analytics aims to be the primary Analytics tool for your organization. However, your organization might still require Adobe Analytics if it heavily relies on features exclusive to the tool and those workflows cannot be altered."></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="keep-aa-or-not" id="want-keep-aa">
                         <span></span>
-                        <label>I intend to use both Customer Journey Analytics and Adobe Analytics side-by-side for the foreseeable future</label>
-                    </div><br>
+                        <label>I intend to keep both Analytics products</label>
+                    </div>
+                    <span class="popover-icon" data-description="(Not recommended) If you select this option, your contract with Adobe includes both Adobe Analytics and Customer Journey Analytics, which can be more expensive for your organization over time."></span><br>
                     <hr>
                     <p>Select how you want to configure your Customer Journey Analytics schema:</p>
                     <div class="spectrum-Radio">
                         <input type="radio" name="schema-want" id="want-cja-schema">
                         <span></span>
                         <label>I want to use a schema tailored to my organization</label>
-                    </div><br>
+                    </div>
+                    <span class="popover-icon" data-description="(Recommended) Customizing your schema allows your organization to track only what you need and avoid the overhead tied to messy and unneeded fields."></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="schema-want" id="want-aa-schema">
                         <span></span>
                         <label>I want to use the default Adobe Analytics schema</label>
                     </div>
-                    <span class="popover-icon" data-description="The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Having a schema with hundreds of blank fields can be difficult to maintain in the long run.">
-                        <img src="Help.svg"></img>
-                    </span>
+                    <span class="popover-icon" data-description="(Not recommended) The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Integrating with other Adobe Experience Platform services is more difficult."></span>
                     <hr>
                     <p>Select your preferred way of implementing Customer Journey Analytics:</p>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-manual">
                         <span></span>
                         <label>Manual implementation (JS file)</label>
-                    </div><br>
+                    </div>
+                    <span class="popover-icon" data-description="Include the Web SDK library (alloy.js) on each page your site." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/library"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-tags">
                         <span></span>
                         <label>Tags</label>
-                    </div><br>
+                    </div>
+                    <span class="popover-icon" data-description="If you are not yet using Tags, install the tag loader on your site. If you are already using Tags, you can add the Web SDK extension to your tag property." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/extension"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-api">
                         <span></span>
                         <label>API</label>
                     </div>
+                    <span class="popover-icon" data-description="Use the data collection API to send data directly to a datastream. Both non-authenticated (client-to-server) and authenticated (server-to-server) types are supported." data-link="https://developer.adobe.com/data-collection-apis/docs/getting-started/"></span>
                     <hr>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="pressed-on-time">
@@ -252,8 +239,8 @@
                         <span></span>
                         <span>I want use my AppMeasurement logic with the Web SDK</span>
                     </label>
-                    <span class="popover-icon" data-description="Instead of sending data through an XDM object, you can send all your variables in AppMeasurement format through the data object. This shortcut allows you to continue using your AppMeasurement logic to send data to Platform.">
-                        <img src="Help.svg"></img>
+                    <span class="popover-icon" data-description="Instead of sending data through an XDM object, send all your variables in AppMeasurement format through the data object. Saves implementation time by using your AppMeasurement logic, but introduces extra complexity over time by requiring all fields be mapped to XDM in the datastream.">
+
                     </span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="shortcut-use-data-layer">
@@ -261,7 +248,7 @@
                         <span>I want to send my data layer to Adobe without configuring tag rules</span>
                     </label>
                     <span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping.">
-                        <img src="Help.svg"></img>
+
                     </span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-a4t">
@@ -269,7 +256,7 @@
                         <span>Temporarily integrate with Adobe Target (A4T)</span>
                     </label>
                     <span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution.">
-                        <img src="Help.svg"></img>
+
                     </span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-aam">
@@ -277,7 +264,7 @@
                         <span>Temporarily integrate with Adobe Audience Manager</span>
                     </label>
                     <span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution.">
-                        <img src="Help.svg"></img>
+
                     </span><br>
                 </div>
             </div>
@@ -286,7 +273,7 @@
         <!-- Right Column: Checklist -->
         <div class="right-column">
             <h2>Dynamically generated upgrade steps</h2>
-            <p>Complete the following steps to start using Customer Journey Analytics:</p>            
+            <p>Complete the following steps to start using Customer Journey Analytics:</p>
             <div id="checklist-container"></div>
         </div>
     </div>

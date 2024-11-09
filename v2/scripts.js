@@ -7,7 +7,9 @@ $(document).ready(function () {
     $("button").addClass("spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM");
     $("button span").addClass("spectrum-Button-label");
     $(".spectrum-Radio input").addClass("spectrum-Radio-input");
-    $(".spectrum-Radio span").addClass("spectrum-Radio-button");
+    $(".spectrum-Radio").each(function () {
+        $(this).find("span").first().addClass("spectrum-Radio-button");
+    });
     $(".spectrum-Radio label").addClass("spectrum-Radio-label");
     $(".spectrum-Checkbox").each(function (index) {
         $(this).addClass("spectrum-Checkbox--sizeM");
@@ -27,11 +29,14 @@ $(document).ready(function () {
             label.attr("for", inputId);
         }
     });
+    $('.popover-icon').each(function () {
+        $(this).append($('<img>').attr('src', 'Help.svg'));
+    });
 
     // Assign an ID to all predefined popovers (just an int to make it unique)
     const allExistingPopovers = document.querySelectorAll(".popover-icon")
-    for(let i = 0; i < allExistingPopovers.length; i++) {
-        allExistingPopovers[i].id = i;
+    for (let i = 0; i < allExistingPopovers.length; i++) {
+        allExistingPopovers[i].id = "popover-" + i;
     }
 
     // Any click that's not in a popover, hide all popovers
@@ -41,7 +46,7 @@ $(document).ready(function () {
             currentPopover = null;
             return;
         }
-        if(event.target.closest('.popover-icon')) {
+        if (event.target.closest('.popover-icon')) {
             currentPopover = event.target.closest('[id]').id;
         } else if (!event.target.closest('.popover') && !event.target.closest('.popover-icon')) {
             hideAllPopovers();
