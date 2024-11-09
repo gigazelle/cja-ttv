@@ -219,7 +219,6 @@ $(document).ready(function () {
             case 'imp-appmeasurement':
                 addChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_api");
                 removeChecklistItem("remove_aa_datastream");
                 break;
@@ -228,7 +227,6 @@ $(document).ready(function () {
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_api");
                 removeChecklistItem("remove_aa_datastream");
-                removeChecklistItem("remove_mobile");
             case 'imp-web-sdk-alloy':
             case 'imp-web-sdk-extension':
             case 'imp-mobile-sdk':
@@ -236,24 +234,14 @@ $(document).ready(function () {
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
                 removeChecklistItem("remove_api");
-                removeChecklistItem("remove_mobile");
                 break;
             case 'imp-api':
                 addChecklistItem("remove_api");
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_aa_datastream");
                 break;
             case 'imp-legacy-mobile':
-                addChecklistItem("remove_mobile");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("remove_aa_datastream");
-                break;
-            case 'imp-none':
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
                 removeChecklistItem("remove_api");
