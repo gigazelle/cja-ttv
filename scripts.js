@@ -1,8 +1,58 @@
 $(document).ready(function () {
     let checklistItems = [];
-    let currentDropdownSelection = '';
+    let currentPopover = '';
     const checklistContainer = document.getElementById('checklist-container');
 
+    // Auto-add CSS classes to elements
+    $("button").addClass("spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM");
+    $("button span").addClass("spectrum-Button-label");
+    $(".spectrum-Radio input").addClass("spectrum-Radio-input");
+    $(".spectrum-Radio").each(function () {
+        $(this).find("span").first().addClass("spectrum-Radio-button");
+    });
+    $(".spectrum-Radio label").addClass("spectrum-Radio-label");
+    $(".spectrum-Checkbox").each(function (index) {
+        $(this).addClass("spectrum-Checkbox--sizeM");
+        $(this).find("input").addClass("spectrum-Checkbox-input");
+        $(this).find("span:first-of-type").addClass("spectrum-Checkbox-box");
+        $(this).find("span:nth-of-type(2)").addClass("spectrum-Checkbox-label");
+        $(this).find("span:first-of-type").append(`<svg class="spectrum-Icon spectrum-UIIcon-Checkmark200 spectrum-Checkbox-checkmark" focusable="false" aria-hidden="true">
+            <use xlink:href="spectrum-css-icons.svg#spectrum-css-icon-Checkmark200" />
+        </svg>`);
+    });
+    $(".spectrum-Radio").each(function () {
+        const input = $(this).find("input");
+        const label = $(this).find("label");
+
+        if (input.length && label.length) {
+            const inputId = input.attr("id");
+            label.attr("for", inputId);
+        }
+    });
+    $('.popover-icon').each(function () {
+        $(this).append($('<img>').attr('src', 'Help.svg'));
+    });
+
+    // Assign an ID to all predefined popovers (just an int to make it unique)
+    const allExistingPopovers = document.querySelectorAll(".popover-icon")
+    for (let i = 0; i < allExistingPopovers.length; i++) {
+        allExistingPopovers[i].id = "popover-" + i;
+    }
+
+    // Any click that's not in a popover, hide all popovers
+    document.body.addEventListener('click', (event) => {
+        if (event.target.closest('.popover-icon') && event.target.closest('[id]').id == currentPopover) {
+            hideAllPopovers();
+            currentPopover = null;
+            return;
+        }
+        if (event.target.closest('.popover-icon')) {
+            currentPopover = event.target.closest('[id]').id;
+        } else if (!event.target.closest('.popover') && !event.target.closest('.popover-icon')) {
+            hideAllPopovers();
+            currentPopover = null;
+        }
+    });
 
     // Fetch and parse YAML data
     $.ajax({
@@ -21,22 +71,16 @@ $(document).ready(function () {
             addChecklistItem("create_connection");
             addChecklistItem("create_data_view");
             addChecklistItem("validate_cja_data");
+            addChecklistItem("validate_dataset_ingestion");
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
         }
     });
 
-
-
-    // Function to get the selected radio button value
-    function getSelectedRadioValue(groupName) {
-        return $(`input[name=${groupName}]:checked`).attr('id');
-    }
-
     // Add a checklist item by ID
     function addChecklistItem(id) {
-        const itemData = checklistItems[id];  // Fetch the data for this checklist item
+        const itemData = checklistItems[id];
 
         if (!itemData) {
             console.error(`Checklist item with ID "${id}" not found.`);
@@ -51,7 +95,6 @@ $(document).ready(function () {
 
         // Create a new div for the checklist item
         const checklistItem = document.createElement('div');
-        checklistItem.title = itemData.description || '';  // Add description as a tooltip for the whole box
         checklistItem.setAttribute('data-id', id);  // Set the ID for sorting purposes
 
         // Create a numeric identifier span (we'll update this in the sort function)
@@ -72,32 +115,63 @@ $(document).ready(function () {
             }
         };
 
-        // Create the label (text as a link if the link property exists)
+        // Checklist label
         const label = document.createElement('label');
         label.setAttribute('for', id);
+        label.textContent = itemData.text;
 
-        // Check if the item has a link
-        if (itemData.link) {
-            const anchor = document.createElement('a');
-            anchor.href = itemData.link;
-            anchor.textContent = itemData.text;
-            anchor.target = '_blank';  // Opens link in a new tab
-            label.appendChild(anchor);
-        } else {
-            label.textContent = itemData.text;  // Just use plain text if no link exists
+        // Create the icon container div for right alignment
+        const iconContainer = document.createElement('div');
+        iconContainer.classList.add('icon-container');
+
+        // Help icon with popover
+        if (itemData.description) {
+            const helpIconSpan = document.createElement('span');
+            helpIconSpan.classList.add('popover-icon');
+            const helpImg = document.createElement('img');
+            helpImg.src = 'Help.svg';
+            helpImg.alt = 'Help icon';
+
+
+            helpIconSpan.appendChild(helpImg);
+            iconContainer.appendChild(helpIconSpan);
         }
 
-        // Append checkbox, number, and label to the div
+
+
+        // UI icon
+        if (itemData.ui_link) {
+            const platformIcon = document.createElement('a');
+            platformIcon.href = itemData.ui_link;
+            platformIcon.target = '_blank';
+            platformIcon.title = "Open the Adobe Experience Cloud interface to perform this step"
+            const platformImg = document.createElement('img');
+            platformImg.src = 'platform-icon.png';
+            platformImg.alt = 'UI icon';
+            platformIcon.appendChild(platformImg);
+            iconContainer.appendChild(platformIcon);
+        }
+
+
+        // Append checkbox, number, label, and icon container to the checklist item
         checklistItem.appendChild(checkbox);
         checklistItem.appendChild(numberSpan);
         checklistItem.appendChild(label);
+        checklistItem.appendChild(iconContainer);
 
         // Add the checklist item to the container
         checklistContainer.appendChild(checklistItem);
 
+        if (itemData.description) {
+            const helpIconSpan = iconContainer.querySelector('.popover-icon');
+            helpIconSpan.id = checklistItem.getAttribute("data-id") + "-popover";
+            helpIconSpan.addEventListener('click', (event) => showPopover(event, itemData.description, itemData.link));
+        }
+
         // Sort the checklist after adding the new item
         sortChecklist();
     }
+
 
 
 
@@ -137,7 +211,7 @@ $(document).ready(function () {
     }
 
     // Listen for changes on any form element in the left column
-    $('.accordion-content input, .accordion-content select').change(function () {
+    $('.q-accordion-content input, .q-accordion-content select').change(function () {
         const elementId = $(this).attr('id');
         const isChecked = $(this).is(':checked');
 
@@ -145,7 +219,6 @@ $(document).ready(function () {
             case 'imp-appmeasurement':
                 addChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_api");
                 removeChecklistItem("remove_aa_datastream");
                 break;
@@ -154,7 +227,6 @@ $(document).ready(function () {
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_api");
                 removeChecklistItem("remove_aa_datastream");
-                removeChecklistItem("remove_mobile");
             case 'imp-web-sdk-alloy':
             case 'imp-web-sdk-extension':
             case 'imp-mobile-sdk':
@@ -162,24 +234,14 @@ $(document).ready(function () {
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
                 removeChecklistItem("remove_api");
-                removeChecklistItem("remove_mobile");
                 break;
             case 'imp-api':
                 addChecklistItem("remove_api");
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_aa_datastream");
                 break;
             case 'imp-legacy-mobile':
-                addChecklistItem("remove_mobile");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("remove_aa_datastream");
-                break;
-            case 'imp-none':
-                removeChecklistItem("remove_mobile");
                 removeChecklistItem("remove_appm");
                 removeChecklistItem("remove_tags");
                 removeChecklistItem("remove_api");
@@ -279,17 +341,34 @@ $(document).ready(function () {
     });
 
     // Function to show the popover on hover
-    function showPopover(event, description) {
-        // Remove any existing popover to avoid duplication
-        let existingPopover = document.querySelector('.popover');
-        if (existingPopover) {
-            existingPopover.remove();
-        }
+    function showPopover(event, description, link) {
+
+        hideAllPopovers();
 
         // Create a new popover element
         const popover = document.createElement('div');
         popover.classList.add('popover');
         popover.textContent = description;
+
+        if (link) {
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            popover.appendChild(br1);
+            popover.appendChild(br2);
+
+            const docIcon = document.createElement('img');
+            docIcon.href = link;
+            docIcon.target = "_blank";
+            docIcon.src = "exl-icon.png";
+            docIcon.alt = "Documentation icon";
+            popover.appendChild(docIcon);
+
+            const linkElement = document.createElement('a');
+            linkElement.href = link;
+            linkElement.target = '_blank';
+            linkElement.textContent = "Learn more on Experience League";
+            popover.appendChild(linkElement);
+        }
 
         // Position the popover relative to the hovered element
         const rect = event.target.getBoundingClientRect();
@@ -314,30 +393,31 @@ $(document).ready(function () {
 
         // Add the popover to the body (after adjustments)
         document.body.appendChild(popover);
+
+
     }
 
     // Function to hide the popover on mouseout or click away
-    function hidePopover() {
-        let existingPopover = document.querySelector('.popover');
-        if (existingPopover) {
-            existingPopover.remove();
-        }
+    function hideAllPopovers() {
+        let existingPopovers = document.querySelectorAll('.popover');
+        existingPopovers.forEach((x) => {
+            x.remove();
+        });
     }
 
-    // Add hover event listeners to elements that should trigger popovers
+    // Popover functionality for non-checklist icons
     document.querySelectorAll('.popover-icon').forEach(icon => {
-        const description = icon.dataset.description; // Get the description from the data attribute
-        icon.addEventListener('mouseover', (event) => showPopover(event, description));
-        icon.addEventListener('mouseout', hidePopover);
+        icon.addEventListener('click', (event) => showPopover(event, icon.dataset.description, icon.dataset.link));
     });
 
     // Toggle the display of the accordion content
-    document.querySelectorAll('.accordion-header').forEach(header => {
+    document.querySelectorAll('.q-accordion-header').forEach(header => {
         const content = header.nextElementSibling;
 
-        // Open by default
-        content.style.maxHeight = content.scrollHeight + "px";
-        header.classList.add('active');
+        if (content.classList.contains('active')) {
+            content.style.maxHeight = content.scrollHeight + "px";
+            header.classList.add('active');
+        }
 
         header.addEventListener('click', function () {
             // If already open, collapse it
@@ -352,4 +432,41 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(".checklist-item .c-accordion-header").on("click", function (event) {
+        // Check if the target is the checkbox or label text
+        if ($(event.target).closest(".spectrum-Checkbox input, .spectrum-Checkbox span:last-child").length) {
+            return; // Skip accordion toggle
+        }
+
+        // Toggle the accordion content with slideToggle
+        const $accordionItem = $(this).closest(".checklist-item");
+        $accordionItem.find(".c-accordion-content").stop(true, true).slideToggle(300);
+
+        // Toggle rotation of icon
+        $accordionItem.toggleClass("active");
+    });
+
+
 });
+
+function goToNextAccordion(currentButton) {
+    // Collapse all accordions
+    document.querySelectorAll('.q-accordion-content').forEach((accordion) => {
+        accordion.style.maxHeight = null;
+        accordion.previousElementSibling.classList.remove('active');
+    });
+
+    // Find the current accordion content and header
+    const currentAccordion = currentButton.closest('.q-accordion-content');
+    
+    // Find the next accordion content and header
+    const nextHeader = currentAccordion.parentElement.nextElementSibling?.querySelector('.q-accordion-header');
+    const nextAccordion = nextHeader?.nextElementSibling;
+
+    // If there’s a next accordion, expand it
+    if (nextAccordion && nextHeader) {
+        nextAccordion.style.maxHeight = nextAccordion.scrollHeight + "px";
+        nextHeader.classList.add('active');
+    }
+}
