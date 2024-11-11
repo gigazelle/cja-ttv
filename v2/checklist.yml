@@ -101,7 +101,7 @@ checklistItems:
   create_mc_derived_fields:
     text: "Create a marketing channel derived field"
     description: "Derived fields are created within a data view."
-    ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/data-views"
+    ui_link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-marketing-channel"
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
     description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics"
