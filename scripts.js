@@ -107,7 +107,15 @@ $(document).ready(function () {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = id;
+
+        // Check for saved content
+        if(localStorage.getItem(id) === "true") {
+            checklistItem.classList.add('checklist-item-checked');
+            checkbox.checked = true;
+        }
+
         checkbox.onchange = () => {
+            localStorage.setItem(id,checkbox.checked)
             if (checkbox.checked) {
                 checklistItem.classList.add('checklist-item-checked');
             } else {
