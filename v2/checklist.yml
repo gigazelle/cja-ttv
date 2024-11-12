@@ -42,21 +42,21 @@ checklistItems:
   create_tag:
     text: "Create a tag property in Adobe Experience Platform Data Collection"
     description: "Using Tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/get-started/quick-start#create-a-property"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-property"
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
   add_extension:
     text: "Add the Adobe Experience Platform Web SDK extension"
     description: "Add the Adobe Experience Platform Web SDK extension to your tag property"
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/extensions/client/web-sdk/web-sdk-extension-configuration"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-extension"
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
   implement_tag:
     text: "Implement the loader tag on your site"
     description: "Work with your website development team to install the loader tag on every page of your site."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/tags/get-started/implementation-guides"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-loader"
   add_tag_xdm_logic:
     text: "Add XDM data collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate an XDM object to send to Adobe."
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/sendevent/xdm"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-xdm"
   add_tag_data_logic:
     text: "Add data object collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate a data object to send to Adobe."
