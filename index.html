@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/icon/dist/index.css" />
     <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/checkbox/dist/index.css" />
     <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/accordion/dist/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@spectrum-css/textfield/dist/index.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="scripts.js"></script>
@@ -34,14 +35,14 @@
                     <div class=" q-accordion-content active">
                         <p>This questionnaire is designed to help your organization upgrade from an implementation centered around Adobe Analytics to an implementation focused on Customer Journey Analytics.</p>
                         <p>The checklist in its default state provides a standard upgrade method recommended by Adobe. It lets you follow a limited number of steps to immediately start getting value out of Customer Journey Analytics. Use the questionnaire below to tailor these upgrade steps to your implementation for a given property.</p>
-                        <button onclick="goToNextAccordion(this)">
+                        <button id="begin-button" onclick="goToNextAccordion(this)">
                             <span>Begin questionnaire</span>
                         </button>
                     </div>
             </div>
             <div class="q-accordion">
-                <h3 class=" q-accordion-header">Your Adobe Analytics implementation</h3>
-                <div class=" q-accordion-content">
+                <h3 class="q-accordion-header">Your Adobe Analytics implementation</h3>
+                <div class="q-accordion-content">
                     <p>How do you currently have Adobe Analytics implemented for a given property?</p>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-appmeasurement">

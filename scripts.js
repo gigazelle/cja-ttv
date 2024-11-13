@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
     });
     $('.popover-icon').each(function () {
-        $(this).append($('<img>').attr('src', 'Help.svg'));
+        $(this).append($('<img>').attr('src', 'HelpOutline.svg'));
     });
 
     // Assign an ID to all predefined popovers (just an int to make it unique)
@@ -97,29 +97,39 @@ $(document).ready(function () {
         const checklistItem = document.createElement('div');
         checklistItem.setAttribute('data-id', id);  // Set the ID for sorting purposes
 
+        const upperItems = document.createElement('div');
+        upperItems.classList.add('upper-items');
+        upperItems.style.display = 'flex';
+        upperItems.style.alignItems = 'center';
+        upperItems.style.backgroundColor = 'transparent';
+
         // Create a numeric identifier span (we'll update this in the sort function)
         const numberSpan = document.createElement('span');
         numberSpan.classList.add('checklist-number');
-        numberSpan.textContent = '1. ';  // Placeholder; will be updated in sortChecklist
-        numberSpan.style.marginRight = '10px';  // Adds space between the number and the label text
+        numberSpan.textContent = '1. ';
+        numberSpan.style.marginRight = '10px';
 
         // Create the checkbox input
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = id;
+        checkbox.style.transform = 'scale(1.5)';
 
         // Check for saved content
-        if(localStorage.getItem(id) === "true") {
+        if (localStorage.getItem(id) === "true") {
             checklistItem.classList.add('checklist-item-checked');
+            upperItems.classList.add('checklist-item-checked');
             checkbox.checked = true;
         }
 
         checkbox.onchange = () => {
-            localStorage.setItem(id,checkbox.checked)
+            localStorage.setItem(id, checkbox.checked);
             if (checkbox.checked) {
                 checklistItem.classList.add('checklist-item-checked');
+                upperItems.classList.add('checklist-item-checked');
             } else {
                 checklistItem.classList.remove('checklist-item-checked');
+                upperItems.classList.remove('checklist-item-checked');
             }
         };
 
@@ -131,28 +141,26 @@ $(document).ready(function () {
         // Create the icon container div for right alignment
         const iconContainer = document.createElement('div');
         iconContainer.classList.add('icon-container');
+        iconContainer.style.backgroundColor = 'transparent';
 
         // Help icon with popover
         if (itemData.description) {
             const helpIconSpan = document.createElement('span');
             helpIconSpan.classList.add('popover-icon');
+            helpIconSpan.title = "View details and documentation for this step"
             const helpImg = document.createElement('img');
             helpImg.src = 'Help.svg';
             helpImg.alt = 'Help icon';
-
-
             helpIconSpan.appendChild(helpImg);
             iconContainer.appendChild(helpIconSpan);
         }
 
-
-
-        // UI icon
+        // Link to UI icon
         if (itemData.ui_link) {
             const platformIcon = document.createElement('a');
             platformIcon.href = itemData.ui_link;
             platformIcon.target = '_blank';
-            platformIcon.title = "Open the Adobe Experience Cloud interface to perform this step"
+            platformIcon.title = "Open the Adobe Experience Cloud interface to perform this step";
             const platformImg = document.createElement('img');
             platformImg.src = 'platform-icon.png';
             platformImg.alt = 'UI icon';
@@ -160,15 +168,115 @@ $(document).ready(function () {
             iconContainer.appendChild(platformIcon);
         }
 
+        // Note icon
+        const noteIcon = document.createElement('span');
+        noteIcon.classList.add('note-icon');
+        const noteImg = document.createElement('img');
+        noteImg.src = 'NoteAdd.svg';
+        noteImg.alt = 'Note icon';
+        noteImg.title = 'Add a note specific to your organization'
+        noteIcon.appendChild(noteImg);
+        iconContainer.appendChild(noteIcon);
 
-        // Append checkbox, number, label, and icon container to the checklist item
-        checklistItem.appendChild(checkbox);
-        checklistItem.appendChild(numberSpan);
-        checklistItem.appendChild(label);
-        checklistItem.appendChild(iconContainer);
+        upperItems.appendChild(checkbox);
+        upperItems.appendChild(numberSpan);
+        upperItems.appendChild(label);
+        upperItems.appendChild(iconContainer);
 
-        // Add the checklist item to the container
+        checklistItem.appendChild(upperItems);
         checklistContainer.appendChild(checklistItem);
+
+        // Restore saved note if it exists
+        const savedNote = localStorage.getItem(id + "-note");
+        if (savedNote) {
+            const noteText = document.createElement('div');
+            noteText.classList.add('note-text');
+            noteText.innerHTML = savedNote.replace(/\n/g, '<br>');
+            checklistItem.appendChild(noteText);
+        }
+
+        let noteOpen = false;
+
+        // Note icon click event
+        noteIcon.addEventListener('click', () => {
+            if (!noteOpen) {
+                noteOpen = true;
+                // Create the note input container
+                const noteInputContainer = document.createElement('div');
+                noteInputContainer.classList.add('note-input-container');
+                noteInputContainer.style.backgroundColor = 'transparent';
+                noteInputContainer.style.marginRight = '10px';
+                noteInputContainer.style.display = 'flex';
+                noteInputContainer.style.gap = '10px';
+                noteInputContainer.style.alignItems = 'center';
+
+                // Create the note input field and pre-populate it with the existing note text
+                const noteInput = document.createElement('textarea');
+                noteInput.classList.add('spectrum-Textfield-input');
+                noteInput.placeholder = 'Add notes specific to your organization';
+                noteInput.style.backgroundColor = 'white';
+                noteInput.style.width = '100%';
+                noteInput.style.paddingLeft = '8px';
+                noteInput.style.paddingTop = '5px';
+
+                // Create the save button
+                const saveButton = document.createElement('button');
+                const saveButtonLabel = document.createElement('span');
+                saveButton.classList.add("spectrum-Button", "spectrum-Button--fill", "spectrum-Button--accent", "spectrum-Button--sizeM");
+                saveButton.style.alignSelf = 'flex-start';
+                saveButtonLabel.classList.add("spectrum-Button-label");
+                saveButtonLabel.textContent = 'Save';
+
+                saveButton.appendChild(saveButtonLabel);
+
+                noteInputContainer.appendChild(noteInput);
+                noteInputContainer.appendChild(saveButton);
+
+                // Check if there's existing note text
+                const existingNoteText = checklistItem.querySelector('.note-text');
+                if (existingNoteText) {
+                    // Replace the existing note text div with the new input container
+                    checklistItem.replaceChild(noteInputContainer, existingNoteText);
+                    noteInput.value = existingNoteText.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+                } else {
+                    // If no existing note text, just append the input container
+                    checklistItem.appendChild(noteInputContainer);
+                }
+
+                // Save note when pressing Enter or clicking 'Save'
+                function saveNote() {
+                    noteOpen = false;
+                    const noteTextValue = noteInput.value;
+                    localStorage.setItem(id + "-note", noteTextValue);
+
+                    // Remove the input container
+                    checklistItem.removeChild(noteInputContainer);
+
+                    // Create a new note text div to display the saved note with line breaks
+                    const noteText = document.createElement('div');
+                    noteText.classList.add('note-text');
+                    noteText.style.textDecoration = 'none';
+
+                    // Replace newlines with <br> to display line breaks in HTML
+                    noteText.innerHTML = noteTextValue.replace(/\n/g, '<br>');
+                    if(noteTextValue) {
+                        checklistItem.appendChild(noteText);
+                    }
+                }
+
+
+                noteInput.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' && !event.shiftKey) {
+                        event.preventDefault();
+                        saveNote();
+                    }
+                });
+
+                saveButton.addEventListener('click', saveNote);
+            }
+        });
+
+
 
         if (itemData.description) {
             const helpIconSpan = iconContainer.querySelector('.popover-icon');
@@ -179,7 +287,6 @@ $(document).ready(function () {
         // Sort the checklist after adding the new item
         sortChecklist();
     }
-
 
 
 

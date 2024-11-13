@@ -1,8 +1,10 @@
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
 }
 
+/* Container */
 .container {
     display: flex;
     max-width: 1000px;
@@ -10,18 +12,113 @@ body {
     padding: 20px;
 }
 
-.left-column {
+.left-column, .right-column {
     flex: 1;
-    margin-right: 20px;
 }
 
 .right-column {
-    flex: 1;
     padding: 20px;
     border-left: 2px solid #ccc;
 }
 
-/* Accordion header styling */
+/* Checklist Styles */
+#checklist-container {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#checklist-container div {
+    background-color: #eaeaea;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Upper Items Flexbox */
+#upper-items {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.checklist-item-checked {
+    background-color: palegreen !important;
+    color: darkgreen !important;
+}
+
+.upper-items.checklist-item-checked {
+    text-decoration: line-through;
+    
+}
+
+/* Checkbox Styles */
+#checklist-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checklist-number,
+label,
+.icon-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Icons */
+.icon-container {
+    display: inline-flex;
+    gap: 5px;
+    margin-left: auto;
+}
+
+.icon-container img,
+.popover img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.popover-icon img {
+    cursor: pointer;
+}
+
+/* Note Section */
+.note-section {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.note-text {
+    text-decoration: none !important;
+}
+
+.note-input {
+    width: calc(100% - 20px); /* Full width with padding */
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.save-note-button {
+    float: right;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-note-button:hover {
+    background-color: #45a049;
+}
+
+/* Accordion Styles */
 .q-accordion-header {
     background-color: #dcdcdc;
     color: black;
@@ -33,12 +130,10 @@ body {
     text-align: left;
 }
 
-/* When the accordion is open */
 .q-accordion-header.active {
     background-color: #dcdcdc;
 }
 
-/* Accordion content */
 .q-accordion-content {
     max-height: 0;
     overflow: hidden;
@@ -49,8 +144,7 @@ body {
     transition: max-height 0.3s ease;
 }
 
-/* Content when it's expanded */
-.q-accordion-header.active+.q-accordion-content {
+.q-accordion-header.active + .q-accordion-content {
     padding: 15px;
 }
 
@@ -61,6 +155,7 @@ body {
     padding-top: 0;
 }
 
+/* Popover Styles */
 .popover {
     position: absolute;
     background-color: #fff;
@@ -74,49 +169,15 @@ body {
     font-size: 14px;
 }
 
-#checklist-container {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px;
+/* Checkbox Icon Sizes */
+.spectrum-Checkbox .spectrum-Checkbox-checkmark {
+    transform: scale(0.75) !important;
+    transform-origin: center !important;
 }
 
-#checklist-container div {
-    background-color: #eaeaea;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
-
-#checklist-container input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-.checklist-item-checked {
-    background-color: palegreen !important;
-    color: darkgreen;
-    text-decoration: line-through;
-}
-
+/* Miscellaneous Styles */
 .hidden {
     visibility: hidden;
-}
-
-.icon-container img, .popover img {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    vertical-align: middle;
-}
-
-.popover img {
-    padding-right: 8px;
-}
-
-.popover-icon img {
-    vertical-align: middle;
-    cursor: pointer;
 }
 
 .link-item img {
@@ -129,18 +190,4 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-}
-
-.icon-container {
-    display: inline-flex;
-    gap: 5px;
-    margin-left: auto;
-    margin-right: 0;
-    background-color: transparent !important;
-}
-
-.spectrum-Checkbox .spectrum-Checkbox-checkmark {
-            
-    transform: scale(0.75) !important;
-    transform-origin: center !important;
 }
