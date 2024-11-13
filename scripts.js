@@ -72,6 +72,8 @@ $(document).ready(function () {
             addChecklistItem("create_data_view");
             addChecklistItem("validate_cja_data");
             addChecklistItem("validate_dataset_ingestion");
+            // Restore states on page load
+            restoreInputStates();
         },
         error: function (error) {
             console.error("Error loading the YAML file:", error);
@@ -259,11 +261,10 @@ $(document).ready(function () {
 
                     // Replace newlines with <br> to display line breaks in HTML
                     noteText.innerHTML = noteTextValue.replace(/\n/g, '<br>');
-                    if(noteTextValue) {
+                    if (noteTextValue) {
                         checklistItem.appendChild(noteText);
                     }
                 }
-
 
                 noteInput.addEventListener('keydown', (event) => {
                     if (event.key === 'Enter' && !event.shiftKey) {
@@ -297,13 +298,11 @@ $(document).ready(function () {
     }
 
     // Sort the checklist by the order listed in the YAML file
-    // Function to sort the checklist based on the order in checklistItems variable
     function sortChecklist() {
 
         // Get all the checklist items (divs) in an array
         const itemsArray = Array.from(checklistContainer.children);
 
-        // Sort the checklist items based on the order in checklistItems variable
         itemsArray.sort((a, b) => {
             const idA = a.getAttribute('data-id');
             const idB = b.getAttribute('data-id');
@@ -325,11 +324,69 @@ $(document).ready(function () {
         });
     }
 
-    // Listen for changes on any form element in the left column
+    // Attach change event listener to all inputs in the questionnaire
     $('.q-accordion-content input, .q-accordion-content select').change(function () {
         const elementId = $(this).attr('id');
         const isChecked = $(this).is(':checked');
+        const elementType = $(this).attr('type');
 
+        // Update storage
+        updateInputState(elementId, isChecked, elementType);
+
+        // Handle the input change logic
+        handleInputChange(elementId, isChecked);
+    });
+
+
+    // Function to update local storage based on input type and value
+    function updateInputState(elementId, isChecked, elementType) {
+        let inputStates = JSON.parse(localStorage.getItem('inputStates')) || {};
+
+        if (elementType === 'checkbox') {
+            // Store true/false for checkbox
+            inputStates[elementId] = isChecked;
+        } else if (elementType === 'radio') {
+            // Clear previous selections in the group and store only selected radio button ID
+            const radioGroupName = $('[id="' + elementId + '"]').attr('name');
+            $('input[type="radio"][name="' + radioGroupName + '"]').each(function () {
+                delete inputStates[$(this).attr('id')];
+            });
+            if (isChecked) {
+                inputStates[elementId] = true;
+            }
+        }
+
+        // Save back to local storage
+        localStorage.setItem('inputStates', JSON.stringify(inputStates));
+    }
+
+    // Function to restore input states from local storage
+    function restoreInputStates() {
+        const savedStates = JSON.parse(localStorage.getItem('inputStates')) || {};
+
+        Object.keys(savedStates).forEach(id => {
+            const input = document.getElementById(id);
+            const isChecked = savedStates[id];
+
+            if (input) {
+                // Set the saved state for each input
+                input.checked = isChecked;
+                console.log(input.id);
+
+                // Trigger the handleInputChange function to apply any related logic
+                handleInputChange(input.id, isChecked);
+            }
+        });
+
+        // Update begin button if they've filled it out before
+        if (Object.keys(savedStates).length > 0) {
+            document.getElementById("begin-button").querySelector('.spectrum-Button-label').textContent = "Modify questionnaire";
+        }
+    }
+
+
+    // Function containing your switch statement logic
+    function handleInputChange(elementId, isChecked) {
         switch (elementId) {
             case 'imp-appmeasurement':
                 addChecklistItem("remove_appm");
@@ -453,7 +510,7 @@ $(document).ready(function () {
                 console.warn("Form element ID does not have an action:", elementId);
                 break;
         }
-    });
+    }
 
     // Function to show the popover on hover
     function showPopover(event, description, link) {

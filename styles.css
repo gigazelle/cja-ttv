@@ -12,7 +12,8 @@ body {
     padding: 20px;
 }
 
-.left-column, .right-column {
+.left-column,
+.right-column {
     flex: 1;
 }
 
@@ -48,7 +49,6 @@ body {
 
 .upper-items.checklist-item-checked {
     text-decoration: line-through;
-    
 }
 
 /* Checkbox Styles */
@@ -95,7 +95,7 @@ label,
 }
 
 .note-input {
-    width: calc(100% - 20px); /* Full width with padding */
+    width: calc(100% - 20px);
     padding: 5px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -144,7 +144,7 @@ label,
     transition: max-height 0.3s ease;
 }
 
-.q-accordion-header.active + .q-accordion-content {
+.q-accordion-header.active+.q-accordion-content {
     padding: 15px;
 }
 
