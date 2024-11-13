@@ -105,13 +105,29 @@ checklistItems:
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/data-views"
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
-    description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics"
+    description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/manage-connections#connection-detail"
+    ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
+  create_schema_for_adc:
+    text: "Create a schema for the Analytics source connector"
+    description: "This schema is a combination of the Adobe Analytics ExperienceEvent field group with all field groups that make up your organization's custom schema. It allows you to map the fields used by the Analytics source connector to your organization's schema, and is only used for historical data."
+    ui_link: "https://experience.adobe.com/platform/schema/browse"
+  create_adc_using_custom_schema:
+    text: "Create the Analytics source connector and map fields to your organization's schema"
+    description: "The source connector needs to know how to map Adobe Analytics fields to your organization's schema. Use this interface to provide the source connector with that mapping. This step is part of adding historical data to Customer Journey Analytics."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
+    ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
+  create_adc_using_aa_schema:
+    text: "Create the Analytics source connector for historical data"
+    description: "Use the Analytics source connector to ingest historical data in Experience Plaform for use in Customer Journey Analytics. Since your organization intends to use the Adobe Analytics schema, this source connector works without any additional mapping. This step is part of adding historical data to Customer Journey Analytics."
+    link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
+    ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
+  add_adc_midvalues_dataset:
+    text: "Add the Analytics source connector dataset to your connection in Customer Journey Analytics"
+    description: "Now that historical data from your Analytics report suite is in Adobe Experience Platform, add that dataset to your existing connection that you created when initially configuring Customer Journey Analytics. Once this step is complete, historical data in Customer Journey Analytics is available."
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   enable_adc:
     text: "Enable the Analytics Source Connector for historical data"
-    description: "Use the Analytics source connector to ingest historical data in Experience Plaform for use in Customer Journey Analytics"
-    link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
     ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
   component_migration:
     text: "Follow the component migration workflow"
@@ -121,6 +137,7 @@ checklistItems:
     text: "Create full table exports to achieve Data Warehouse equivalent functionality"
   add_datasets_to_connection:
     text: "Add additional datasets to your connection in Customer Journey Analytics"
+    description: "Once you have added data to a dataset in Adobe Experience Platform, you can add that dataset to your connection in Customer Journey Analytics."
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   remove_appm:
     text: "Disable AppMeasurement data collection"

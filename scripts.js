@@ -371,7 +371,6 @@ $(document).ready(function () {
             if (input) {
                 // Set the saved state for each input
                 input.checked = isChecked;
-                console.log(input.id);
 
                 // Trigger the handleInputChange function to apply any related logic
                 handleInputChange(input.id, isChecked);
@@ -420,8 +419,17 @@ $(document).ready(function () {
                 removeChecklistItem("remove_aa_datastream");
                 break;
             case 'want-historical-data':
-                (isChecked ? addChecklistItem : removeChecklistItem)("enable_adc");
-                (isChecked ? addChecklistItem : removeChecklistItem)("disable_adc");
+                if ($("#want-cja-schema").is(":checked")) {
+                    (isChecked ? addChecklistItem : removeChecklistItem)("create_schema_for_adc");
+                    (isChecked ? addChecklistItem : removeChecklistItem)("create_adc_using_custom_schema");
+                    (isChecked ? addChecklistItem : removeChecklistItem)("add_adc_midvalues_dataset");
+                    (isChecked ? addChecklistItem : removeChecklistItem)("disable_adc");
+                }
+                if ($("#want-aa-schema").is(":checked")) {
+                    (isChecked ? addChecklistItem : removeChecklistItem)("create_adc_using_aa_schema");
+                    (isChecked ? addChecklistItem : removeChecklistItem)("add_adc_midvalues_dataset");
+                    (isChecked ? addChecklistItem : removeChecklistItem)("disable_adc");
+                }
                 break;
             case 'want-component-migration':
                 (isChecked ? addChecklistItem : removeChecklistItem)("component_migration");
@@ -457,8 +465,22 @@ $(document).ready(function () {
             case 'want-keep-aa':
                 break;
             case 'want-cja-schema':
+                if ($("#want-historical-data").is(":checked")) {
+                    addChecklistItem("create_schema_for_adc");
+                    addChecklistItem("create_adc_using_custom_schema");
+                    addChecklistItem("add_adc_midvalues_dataset");
+                    addChecklistItem("disable_adc");
+                    removeChecklistItem("create_adc_using_aa_schema");
+                }
                 break;
             case 'want-aa-schema':
+                if ($("#want-historical-data").is(":checked")) {
+                    addChecklistItem("create_adc_using_aa_schema");
+                    addChecklistItem("add_adc_midvalues_dataset");
+                    addChecklistItem("disable_adc");
+                    removeChecklistItem("create_schema_for_adc");
+                    removeChecklistItem("create_adc_using_custom_schema");
+                }
                 break;
             case 'imp-type-want-manual':
                 addChecklistItem("implement_alloy");
