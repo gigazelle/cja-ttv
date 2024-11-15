@@ -80,13 +80,19 @@
                         <label>Mobile SDK</label>
                     </div>
                     <span class="popover-icon" data-description="An implementation that uses the Adobe Experience Platform Mobile SDK." data-link="https://developer.adobe.com/client-sdks/home/"></span><br><br>
+                    <label class="spectrum-Checkbox">
+                        <input type="checkbox" id="already-have-adc">
+                        <span></span>
+                        <span>Our implementation currently uses the Analytics source connector</span>
+                    </label>
+                    <span class="popover-icon" data-description="The Analytics source connector allows you to easily get value from Customer Journey Analytics, but requires that you pay for both Adobe Analytics and Customer Journey Analytics. This guide can help you move towards an independent Web SDK implementation."></span><br>
                     <button onclick="goToNextAccordion(this)">
                         <span>Next</span>
                     </button>
                 </div>
             </div>
             <div class="q-accordion">
-                <h3 class=" q-accordion-header">Adobe Analytics feature parity</h3>
+                <h3 class=" q-accordion-header">Adobe Analytics features important to your organization</h3>
                 <div class=" q-accordion-content">
                     <p>Select the Adobe Analytics features that you want to continue using in Customer Journey Analytics:</p>
                     <label class="spectrum-Checkbox">
@@ -143,15 +149,21 @@
             </div>
 
             <div class="q-accordion">
-                <h3 class=" q-accordion-header">Customer Journey Analytics features you want</h3>
+                <h3 class=" q-accordion-header">Customer Journey Analytics features that you want</h3>
                 <div class=" q-accordion-content">
                     <p>Select the features you want:</p>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-omnichannel">
                         <span></span>
-                        <span>Tie web data with data from other channels, such as call center data</span>
+                        <span>Tie web data with data from other sources, such as contact center data</span>
                     </label>
                     <span class="popover-icon" data-description="(Recommended) The ability to combine analytics data from other channels is the primary use case for Customer Journey Analytics." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-overview/cja-overview"></span><br>
+                    <label class="spectrum-Checkbox">
+                        <input type="checkbox" id="want-stitching">
+                        <span></span>
+                        <span>Stitch hits from other datasets using a custom dimension</span>
+                    </label>
+                    <span class="popover-icon" data-description="If any of your datasets don't share a primary identifier (such as an Experience Cloud ID), you can still stitch that data together using another dimension, such as login username or email address." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/stitching/overview"></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-rtcdp">
                         <span></span>
@@ -199,7 +211,7 @@
                         <span></span>
                         <label>I want to use the default Adobe Analytics schema</label>
                     </div>
-                    <span class="popover-icon" data-description="(Not recommended) The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Integrating with other Adobe Experience Platform services is more difficult."></span>
+                    <span class="popover-icon" data-description="(Not recommended) The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Your organization would be forced to continue adhering to the concept of props and eVars, which is a legacy concept not used in Customer Journey Analytics. Integrating with other Adobe Experience Platform services is more difficult."></span>
                     <hr>
                     <p>Select your preferred way of implementing Customer Journey Analytics:</p>
                     <div class="spectrum-Radio">
@@ -235,37 +247,35 @@
                     <p>These optional steps allow you to make your transition to Customer Journey Analytics much easier, but they come at a cost of some technical debt.</p>
                     <p>Select the shortcuts that you want to take:</p>
                     <label class="spectrum-Checkbox">
+                        <input type="checkbox" id="just-use-adc" disabled>
+                        <span></span>
+                        <span>Solely use the Analytics source connector</span>
+                    </label>
+                    <span class="popover-icon" data-description="(Not recommended) You cannot integrate with other Adobe Experience Platform services or move off of Adobe Analytics with the Analytics source connector. Tying data from other sources likely requires stitching. Meet all of these requirements in the questionnaire to select this option."></span><br>
+                    <label class="spectrum-Checkbox">
                         <input type="checkbox" id="shortcut-keep-appmeasurement">
                         <span></span>
                         <span>I want use my AppMeasurement logic with the Web SDK</span>
                     </label>
-                    <span class="popover-icon" data-description="Instead of sending data through an XDM object, send all your variables in AppMeasurement format through the data object. Saves implementation time by using your AppMeasurement logic, but introduces extra complexity over time by requiring all fields be mapped to XDM in the datastream.">
-
-                    </span><br>
+                    <span class="popover-icon" data-description="Instead of sending data through an XDM object, send all your variables in AppMeasurement format through the data object. Saves implementation time by using your AppMeasurement logic, but introduces extra complexity over time by requiring all fields be mapped to XDM in the datastream."></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="shortcut-use-data-layer">
                         <span></span>
                         <span>I want to send my data layer to Adobe without configuring tag rules</span>
                     </label>
-                    <span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping.">
-
-                    </span><br>
+                    <span class="popover-icon" data-description="Sending your entire data layer to Adobe greatly simplifies the implementation, but requires that you map every data layer element at the datastream level. Any additions to your implementation requires modifications to datastream mapping."></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-a4t">
                         <span></span>
                         <span>Temporarily integrate with Adobe Target (A4T)</span>
                     </label>
-                    <span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution.">
-
-                    </span><br>
+                    <span class="popover-icon" data-description="Adobe recommends integrating with Adobe Journey Optimizer for personalization use cases. Integrating with Adobe Target is possible, but a temporary solution."></span><br>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-aam">
                         <span></span>
                         <span>Temporarily integrate with Adobe Audience Manager</span>
                     </label>
-                    <span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution.">
-
-                    </span><br>
+                    <span class="popover-icon" data-description="Adobe recommends integrating with RTCDP for audience-based use cases. Integrating with Audience Manager is possible, but a temporary solution."></span><br>
                 </div>
             </div>
         </div>

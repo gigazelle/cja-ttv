@@ -383,43 +383,90 @@ $(document).ready(function () {
         }
     }
 
+    // Delete an id from local storage
+    function removeInputStateById(id) {
+        const savedStates = JSON.parse(localStorage.getItem('inputStates')) || {};
+
+        if (savedStates.hasOwnProperty(id)) {
+            delete savedStates[id]; // Remove the key from the savedStates object
+            localStorage.setItem('inputStates', JSON.stringify(savedStates)); // Update localStorage
+        }
+    }
 
     // Function containing your switch statement logic
     function handleInputChange(elementId, isChecked) {
         switch (elementId) {
             case 'imp-appmeasurement':
-                addChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("remove_aa_datastream");
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    addChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                addChecklistItem("create_datastream");
+                if ($("#imp-type-want-tags").is(":checked")) {
+                    addChecklistItem("create_tag")
+                }
                 break;
             case 'imp-analytics-extension':
-                addChecklistItem("remove_tags");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("remove_aa_datastream");
-            case 'imp-web-sdk-alloy':
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    addChecklistItem("remove_tags");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                addChecklistItem("create_datastream");
+                if ($("#imp-type-want-tags").is(":checked")) {
+                    // They are on the Analytics extension so they don't need to recreate the tag
+                    removeChecklistItem("create_tag");
+                }
+                break;
             case 'imp-web-sdk-extension':
+                if ($("#imp-type-want-tags").is(":checked")) {
+                    // They are already on tags so they don't need to recreate the tag
+                    removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
+                    removeChecklistItem("add_extension");
+                }
             case 'imp-mobile-sdk':
-                addChecklistItem("remove_aa_datastream");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
+            case 'imp-web-sdk-alloy':
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    addChecklistItem("remove_aa_datastream");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                }
+                removeChecklistItem("create_datastream");
                 break;
             case 'imp-api':
-                addChecklistItem("remove_api");
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_aa_datastream");
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    addChecklistItem("remove_api");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_aa_datastream");
+                }
                 break;
             case 'imp-legacy-mobile':
-                removeChecklistItem("remove_appm");
-                removeChecklistItem("remove_tags");
-                removeChecklistItem("remove_api");
-                removeChecklistItem("remove_aa_datastream");
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                break;
+            case 'already-have-adc':
+                if ($("#want-cja-schema").is(":checked")) {
+                    (isChecked ? addChecklistItem : removeChecklistItem)("remove_old_adc");
+                }
+                if (isChecked) {
+                    $("#want-historical-data").prop("checked", true);
+                }
                 break;
             case 'want-historical-data':
                 if ($("#want-cja-schema").is(":checked")) {
+                    if ($("#already-have-adc").is(":checked")) {
+                        (isChecked ? addChecklistItem : removeChecklistItem)("remove_old_adc");
+                    }
                     (isChecked ? addChecklistItem : removeChecklistItem)("create_schema_for_adc");
                     (isChecked ? addChecklistItem : removeChecklistItem)("create_adc_using_custom_schema");
                     (isChecked ? addChecklistItem : removeChecklistItem)("add_adc_midvalues_dataset");
@@ -429,6 +476,9 @@ $(document).ready(function () {
                     (isChecked ? addChecklistItem : removeChecklistItem)("create_adc_using_aa_schema");
                     (isChecked ? addChecklistItem : removeChecklistItem)("add_adc_midvalues_dataset");
                     (isChecked ? addChecklistItem : removeChecklistItem)("disable_adc");
+                }
+                if (!isChecked) {
+                    removeChecklistItem("remove_old_adc");
                 }
                 break;
             case 'want-component-migration':
@@ -461,11 +511,39 @@ $(document).ready(function () {
                 (isChecked ? addChecklistItem : removeChecklistItem)("implement_personalization");
                 break;
             case 'want-turn-off-aa':
+                if ($("#imp-appmeasurement").is(":checked")) {
+                    addChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                if ($("#imp-analytics-extension").is(":checked")) {
+                    addChecklistItem("remove_tags");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                if ($("#imp-web-sdk-alloy").is(":checked") || $("#imp-web-sdk-extension").is(":checked") || $("#imp-mobile-sdk").is(":checked")) {
+                    addChecklistItem("remove_aa_datastream");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                }
                 break;
             case 'want-keep-aa':
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
                 break;
             case 'want-cja-schema':
+                addChecklistItem("architect_schema");
+                addChecklistItem("create_custom_schema");
+                removeChecklistItem("create_aa_schema");
                 if ($("#want-historical-data").is(":checked")) {
+                    if ($("#already-have-adc").is(":checked")) {
+                        addChecklistItem("remove_old_adc");
+                    }
                     addChecklistItem("create_schema_for_adc");
                     addChecklistItem("create_adc_using_custom_schema");
                     addChecklistItem("add_adc_midvalues_dataset");
@@ -474,8 +552,13 @@ $(document).ready(function () {
                 }
                 break;
             case 'want-aa-schema':
+                addChecklistItem("create_aa_schema");
+                removeChecklistItem("architect_schema");
+                removeChecklistItem("create_custom_schema");
                 if ($("#want-historical-data").is(":checked")) {
-                    addChecklistItem("create_adc_using_aa_schema");
+                    if (!$("#already-have-adc").is(":checked")) {
+                        addChecklistItem("create_adc_using_aa_schema");
+                    }
                     addChecklistItem("add_adc_midvalues_dataset");
                     addChecklistItem("disable_adc");
                     removeChecklistItem("create_schema_for_adc");
@@ -484,23 +567,45 @@ $(document).ready(function () {
                 break;
             case 'imp-type-want-manual':
                 addChecklistItem("implement_alloy");
-                addChecklistItem("populate_xdm");
                 removeChecklistItem("create_tag");
                 removeChecklistItem("add_extension");
                 removeChecklistItem("implement_tag");
                 removeChecklistItem("add_tag_xdm_logic");
                 removeChecklistItem("implement_api");
                 removeChecklistItem("waiting_on_imp_select");
+                if ($("#shortcut-use-data-layer").is(":checked")) {
+                    addChecklistItem("populate_data_object");
+                    addChecklistItem("map_variables_to_xdm");
+                    removeChecklistItem("populate_xdm");
+                } else {
+                    addChecklistItem("populate_xdm");
+                    removeChecklistItem("populate_data_object");
+                    removeChecklistItem("map_variables_to_xdm");
+                }
                 break;
             case 'imp-type-want-tags':
                 addChecklistItem("create_tag");
                 addChecklistItem("add_extension");
                 addChecklistItem("implement_tag");
-                addChecklistItem("add_tag_xdm_logic");
                 removeChecklistItem("implement_alloy");
                 removeChecklistItem("populate_xdm");
                 removeChecklistItem("implement_api");
                 removeChecklistItem("waiting_on_imp_select");
+                if ($("#shortcut-use-data-layer").is(":checked")) {
+                    addChecklistItem("populate_data_object");
+                    addChecklistItem("map_variables_to_xdm");
+                    removeChecklistItem("add_tag_xdm_logic");
+                } else {
+                    addChecklistItem("add_tag_xdm_logic");
+                    removeChecklistItem("populate_data_object");
+                    removeChecklistItem("map_variables_to_xdm");
+                }
+                if ($("#imp-web-sdk-extension").is(":checked")) {
+                    // They are already on tags so they don't need to recreate the tag
+                    removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
+                    removeChecklistItem("add_extension");
+                }
                 break;
             case 'imp-type-want-api':
                 addChecklistItem("implement_api");
@@ -511,6 +616,15 @@ $(document).ready(function () {
                 removeChecklistItem("implement_tag");
                 removeChecklistItem("add_tag_xdm_logic");
                 removeChecklistItem("waiting_on_imp_select");
+                if ($("#shortcut-use-data-layer").is(":checked")) {
+                    addChecklistItem("populate_data_object");
+                    addChecklistItem("map_variables_to_xdm");
+                    removeChecklistItem("implement_api");
+                } else {
+                    addChecklistItem("implement_api");
+                    removeChecklistItem("populate_data_object");
+                    removeChecklistItem("map_variables_to_xdm");
+                }
                 break;
             case 'pressed-on-time':
                 const shortcutAccordionElement = document.getElementById('shortcut-accordion');
@@ -521,16 +635,93 @@ $(document).ready(function () {
                 }
                 break;
             case 'shortcut-keep-appmeasurement':
-                break;
+                (isChecked ? addChecklistItem : removeChecklistItem)("alter_appmeasurement_logic");
+                if (isChecked) {
+                    $("#shortcut-use-data-layer").prop("checked", false);
+                    removeChecklistItem("populate_data_object");
+                }
+            // Yes I am intentionally falling through here
             case 'shortcut-use-data-layer':
+                if ($("#shortcut-use-data-layer").is(":checked")) {
+                    addChecklistItem("populate_data_object");
+                    removeChecklistItem("alter_appmeasurement_logic");
+                    $("#shortcut-keep-appmeasurement").prop("checked", false);
+                } else {
+                    removeChecklistItem("populate_data_object");
+                }
+                (isChecked ? addChecklistItem : removeChecklistItem)("map_variables_to_xdm");
+                if ($("#imp-type-want-manual").is(":checked")) {
+                    (!isChecked ? addChecklistItem : removeChecklistItem)("populate_xdm");
+                }
+                if ($("#imp-type-want-tags").is(":checked")) {
+                    (!isChecked ? addChecklistItem : removeChecklistItem)("add_tag_xdm_logic");
+                }
+                if ($("#imp-type-want-api").is(":checked")) {
+                    (!isChecked ? addChecklistItem : removeChecklistItem)("implement_api");
+                }
                 break;
             case 'want-a4t':
                 break;
             case 'want-aam':
                 break;
+            case 'just-use-adc':
+                if (isChecked) {
+                    $("#want-rtcdp").prop("disabled", true);
+                    $("#want-ajo").prop("disabled", true);
+                    $("#want-turn-off-aa").prop("disabled", true);
+                    $("#want-keep-aa").prop("disabled", true);
+                    $("#want-aa-schema").prop("disabled", true);
+                    $("#want-cja-schema").prop("disabled", true);
+                    $("#want-a4t").prop("disabled", true);
+                    $("#want-aam").prop("disabled", true);
+                    $("#imp-type-want-manual").prop("disabled", true);
+                    $("#imp-type-want-tags").prop("disabled", true);
+                    $("#imp-type-want-api").prop("disabled", true);
+                    $("#shortcut-keep-appmeasurement").prop("disabled", true);
+                    $("#shortcut-use-data-layer").prop("disabled", true);
+                    checklistContainer.innerHTML = '';
+                    addChecklistItem("just_use_adc");
+                    addChecklistItem("just_use_adc_connection");
+                    addChecklistItem("just_use_adc_data_view");
+                    if ($("#want-component-migration").is(":checked")) {
+                        addChecklistItem("component_migration");
+                    }
+                    if ($("#want-data-warehouse").is(":checked")) {
+                        addChecklistItem("create_full_table_export");
+                    }
+                    if ($("#want-omnichannel").is(":checked")) {
+                        addChecklistItem("add_datasets_to_connection");
+                    }
+
+
+                } else {
+                    removeInputStateById(elementId);
+                    $("#want-rtcdp").prop("disabled", false);
+                    $("#want-ajo").prop("disabled", false);
+                    $("#want-turn-off-aa").prop("disabled", false);
+                    $("#want-keep-aa").prop("disabled", false);
+                    $("#want-aa-schema").prop("disabled", false);
+                    $("#want-cja-schema").prop("disabled", false);
+                    $("#want-a4t").prop("disabled", false);
+                    $("#want-aam").prop("disabled", false);
+                    $("#imp-type-want-manual").prop("disabled", false);
+                    $("#imp-type-want-tags").prop("disabled", false);
+                    $("#imp-type-want-api").prop("disabled", false);
+                    $("#shortcut-keep-appmeasurement").prop("disabled", false);
+                    $("#shortcut-use-data-layer").prop("disabled", false);
+                    restoreInputStates();
+                }
+                break;
             default:
                 console.warn("Form element ID does not have an action:", elementId);
                 break;
+        }
+        // Check if the source connector checkbox should be enabled or not
+        if (!$("#want-keep-aa").is(":checked") || $("#want-rtcdp").is(":checked") || $("#want-ajo").is(":checked")) {
+            $("#just-use-adc").prop("disabled", true);
+        } else {
+            $("#just-use-adc").prop("disabled", false);
+
         }
     }
 
