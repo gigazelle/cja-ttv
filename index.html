@@ -21,19 +21,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="scripts.js"></script>
-    <script src="https://cdn1.adoberesources.net/alloy/2.24.0/alloy.min.js"></script>
     <script>
-        !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
-        []).push(o),n[o]=function(){var u=arguments;return new Promise(
-        function(i,l){n.setTimeout(function(){n[o].q.push([i,l,u])})})},n[o].q=[])})}
-        (window,["alloy"]);
-      
+        !function (n, o) {
+            o.forEach(function (o) {
+                n[o] || ((n.__alloyNS = n.__alloyNS ||
+                    []).push(o), n[o] = function () {
+                        var u = arguments; return new Promise(
+                            function (i, l) { n.setTimeout(function () { n[o].q.push([i, l, u]) }) })
+                    }, n[o].q = [])
+            })
+        }
+            (window, ["alloy"]);
+
         alloy("configure", {
             datastreamId: "702a6cae-caa3-4fa2-8b87-1e3b7bce36bb",
             orgId: "53A16ACB5CC1D3760A495C99@AdobeOrg",
             context: ["web", "device", "environment", "placeContext", "highEntropyUserAgentHints"]
         });
     </script>
+    <script src="https://cdn1.adoberesources.net/alloy/2.24.0/alloy.min.js"></script>
 </head>
 
 <!-- Popover example format -->

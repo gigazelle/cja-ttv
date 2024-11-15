@@ -51,6 +51,14 @@ $(document).ready(function () {
         }
         if (event.target.closest('.popover-icon')) {
             currentPopover = event.target.closest('[id]').id;
+            // Send Analytics
+            alloy("sendEvent", {
+                xdm: {
+                    _atag: {
+                        interactionType: "Help button click"
+                    }
+                }
+            });
         } else if (!event.target.closest('.popover') && !event.target.closest('.popover-icon')) {
             hideAllPopovers();
             currentPopover = null;
@@ -809,16 +817,6 @@ $(document).ready(function () {
 
         // Add the popover to the body (after adjustments)
         document.body.appendChild(popover);
-
-        // Send Analytics
-        alloy("sendEvent", {
-            xdm: {
-                _atag: {
-                    interactionType: "Help button click"
-                }
-            }
-        });
-
     }
 
     // Function to hide the popover on mouseout or click away
