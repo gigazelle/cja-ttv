@@ -3,6 +3,9 @@ $(document).ready(function () {
     let currentPopover = '';
     const checklistContainer = document.getElementById('checklist-container');
 
+    // Analytics call for page load
+    alloy("sendEvent", {});
+
     // Auto-add CSS classes to elements
     $("button").addClass("spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM");
     $("button span").addClass("spectrum-Button-label");
@@ -133,6 +136,14 @@ $(document).ready(function () {
                 checklistItem.classList.remove('checklist-item-checked');
                 upperItems.classList.remove('checklist-item-checked');
             }
+            alloy("sendEvent", {
+                xdm: {
+                    _atag: {
+                        checklistInteraction: id,
+                        interactionType: checkbox.checked ? "Checklist check" : "Checklist uncheck"
+                    }
+                }
+            });
         };
 
         // Checklist label
@@ -264,6 +275,16 @@ $(document).ready(function () {
                     if (noteTextValue) {
                         checklistItem.appendChild(noteText);
                     }
+
+                    // Send Analytics event
+                    alloy("sendEvent", {
+                        xdm: {
+                            _atag: {
+                                checklistInteraction: id,
+                                interactionType: "Checklist save note"
+                            }
+                        }
+                    });
                 }
 
                 noteInput.addEventListener('keydown', (event) => {
@@ -335,6 +356,16 @@ $(document).ready(function () {
 
         // Handle the input change logic
         handleInputChange(elementId, isChecked);
+
+        // Send Analytics data
+        alloy("sendEvent", {
+            xdm: {
+                _atag: {
+                    questionnaireInteraction: elementId,
+                    interactionType: isChecked ? "Questionnaire check" : "Questionnaire uncheck"
+                }
+            }
+        });
     });
 
 
@@ -393,7 +424,7 @@ $(document).ready(function () {
         }
     }
 
-    // Function containing your switch statement logic
+    // Determines which checklist items to display depending on questionnaire input
     function handleInputChange(elementId, isChecked) {
         switch (elementId) {
             case 'imp-appmeasurement':
@@ -779,6 +810,14 @@ $(document).ready(function () {
         // Add the popover to the body (after adjustments)
         document.body.appendChild(popover);
 
+        // Send Analytics
+        alloy("sendEvent", {
+            xdm: {
+                _atag: {
+                    interactionType: "Help button click"
+                }
+            }
+        });
 
     }
 
