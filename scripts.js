@@ -4,7 +4,15 @@ $(document).ready(function () {
     const checklistContainer = document.getElementById('checklist-container');
 
     // Analytics call for page load
-    alloy("sendEvent", {});
+    alloy("sendEvent", {
+        xdm: {
+            web: {
+                webPageDetails: {
+                    name: document.title
+                }
+            }
+        }
+    });
 
     // Auto-add CSS classes to elements
     $("button").addClass("spectrum-Button spectrum-Button--fill spectrum-Button--accent spectrum-Button--sizeM");
