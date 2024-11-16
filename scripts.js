@@ -3,9 +3,23 @@ $(document).ready(function () {
     let currentPopover = '';
     const checklistContainer = document.getElementById('checklist-container');
 
+    // Sets and increments session number
+    const VISIT_COUNT_KEY = 'visitCount';
+    const SESSION_FLAG_KEY = 'sessionFlag';
+
+    if (!sessionStorage.getItem(SESSION_FLAG_KEY)) {
+        sessionStorage.setItem(SESSION_FLAG_KEY, 'true');
+        let visitCount = parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '0', 10);
+        visitCount++;
+        localStorage.setItem(VISIT_COUNT_KEY, visitCount.toString());
+    }
+
     // Analytics call for page load
     alloy("sendEvent", {
         xdm: {
+            _atag: {
+                sessionNumber: parseInt(localStorage.getItem(VISIT_COUNT_KEY), 10)
+            },
             web: {
                 webPageDetails: {
                     name: document.title
