@@ -150,6 +150,7 @@ checklistItems:
   add_adc_midvalues_dataset:
     text: "Add the Analytics source connector dataset to your connection in Customer Journey Analytics"
     description: "Now that historical data from your Analytics report suite is in Adobe Experience Platform, add that dataset to your existing connection that you created when initially configuring Customer Journey Analytics. Once this step is complete, historical data in Customer Journey Analytics is available."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-source-connector-dataset"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   component_migration:
     text: "Follow the component migration workflow"
