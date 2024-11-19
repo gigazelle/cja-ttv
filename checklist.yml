@@ -90,12 +90,13 @@ checklistItems:
   implement_personalization:
     text: "Use the personalization object in your implementation for use in Adobe Journey Optimizer"
   link_tracking:
-    text: "Adobe is currently working on Activity Map overlay support for CJA."
+    text: "Adobe is currently working on Activity Map overlay support for Customer Journey Analytics."
   data_feeds:
     text: "Adobe is currently working on a viable replacement to data feeds."
   validate_dataset_ingestion:
     text: "Validate that your Web SDK implementation is sending data to a dataset"
     description: "Now that you have configured your Web SDK implementation, you can use the Dataset activity manager to see ingested and failed batches. If you see primarily ingested batches, this step is complete. If you see primarily failed batches or no batches, check your Web SDK implementation to ensure that it is correctly sending data to Adobe."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataset-ingestion"
     ui_link: "https://experience.adobe.com/platform/dataset/browse"
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
