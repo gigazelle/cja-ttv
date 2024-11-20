@@ -1,29 +1,29 @@
 checklistItems:
   architect_schema:
     text: "Architect a schema"
-    description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform. This step appears because you want to use the recommended process of using a schema tailored to your organization."
+    description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform. This step appears because you want to use the recommended process of using a schema tailored to your organization. Performing this step correctly is pivotal, as a schema that all teams within your organization align on makes data ingestion significantly easier.<br><br>The estimated time to bring together all relevant parties in your organization to align upon a unified schema is 1-2 months. This time frame heavily depends on the number of teams required to coordinate, and the number of dimensions + metrics to align on."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-architect"
   create_custom_schema:
     text: "Create the desired custom schema in Adobe Experience Platform"
-    description: "Use the Adobe Experience Platform UI to create a schema so that Adobe knows the correct format to store your data."
+    description: "Use the Adobe Experience Platform UI to create a schema so that Adobe knows the correct format to store your data.<br><br>This step involves the actual creation of the schema agreed upon by your organization. The estimated time to create your schema in the Adobe Experience Platform interface is approximately one week, depending on the number of dimensions and metrics that need to be created."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-create"
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   enable_profile:
-    text: "Enable profile in your schema and create a profile dataset for use in RTCDP. This step appears because you selected the desire to integrate with RTCDP."
+    text: "Enable profile in your schema and create a profile dataset for use in RTCDP. This step appears because you selected the desire to integrate with RTCDP.<br><br>Since this step involve clicking a single box, this step only takes a few minutes."
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   create_aa_schema:
     text: "Create a schema using the Adobe Analytics field group"
-    description: "Use the 'Adobe Analytics ExperienceEvent' field group to create a schema in Adobe Experience Platform containing all fields used by Adobe Analytics."
+    description: "Use the 'Adobe Analytics ExperienceEvent' field group to create a schema in Adobe Experience Platform containing all fields used by Adobe Analytics.<br><br>Creating a schema based on the Adobe Analytics ExperienceEvent field group is simple, taking only a few minutes to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   create_dataset:
     text: "Create a dataset in Adobe Experience Platform"
-    description: "A dataset is a location where collected data resides. Create this location in Adobe Experience Platform."
+    description: "A dataset is a location where collected data resides. Create this location in Adobe Experience Platform.<br><br>Creating a dataset with a schema in mind takes only a few minutes."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataset"
     ui_link: "https://experience.adobe.com/platform/dataset/browse"
   create_datastream:
     text: "Create a datastream in Adobe Experience Platform"
-    description: "A datastream is an intermediary location that passes your data along to all configured services. Create this location in Adobe Experience Platform."
+    description: "A datastream is an intermediary location that passes your data along to all configured services. Create this location in Adobe Experience Platform.<br><br>The initial creation of a datastream in the Platform interface takes only a few minutes."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-datastream"
     ui_link: "https://experience.adobe.com/platform/data-collection/scramjet"
   create_lookup_dataset:
@@ -33,7 +33,7 @@ checklistItems:
     ui_link: "https://experience.adobe.com/platform/dataset/browse"
   add_aep_to_datastream:
     text: "Add Adobe Experience Platform as a service to the datastream"
-    description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream."
+    description: "A datastream needs one or more services to send data to. Set up Adobe Experience Platform as a service in your datastream.<br><br>Adding services to a datastream is a simple process, taking only a few minutes to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-datastream-addplatform"
     ui_link: "https://experience.adobe.com/platform/data-collection/scramjet"
   waiting_on_imp_select:
@@ -41,51 +41,51 @@ checklistItems:
     description: "Select the desired implementation type in the questionnaire for more detailed instructions."
   create_tag:
     text: "Create a tag property in Adobe Experience Platform Data Collection"
-    description: "Using Tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time."
+    description: "Using Tags is the typical standard for data collection. Create a tag in the Adobe Experience Platform interface so that you can update data collection variables at any time.<br><br>The creation of a tag property can be completed in several clicks, taking only a few minutes."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-property"
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
   add_extension:
     text: "Add the Adobe Experience Platform Web SDK extension to your tag property"
-    description: "Add the Adobe Experience Platform Web SDK extension to your tag property"
+    description: "Add the Adobe Experience Platform Web SDK extension to your tag property. Adding the Web SDK extension to your tag property is streamlined, taking only a few minutes to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-extension"
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
   implement_tag:
     text: "Implement the loader tag on your site"
-    description: "Work with your website development team to install the loader tag on every page of your site."
+    description: "Work with your website development team to install the loader tag on every page of your site.<br><br>Completion time for this task heavily depends on the response time of the engineering team that you work with to deploy the code. Some organizations who have highly adaptive engineering teams can complete this step in days, while engineering teams with an extensive backlog of tasks can potentially take a month or longer."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-loader"
   add_tag_xdm_logic:
     text: "Add XDM data collection logic to your tag"
-    description: "With the loader tag installed on your site, you can add rules and data elements to populate an XDM object to send to Adobe. This step is a lot of work, as it involves setting up all Analytics logic for your property. Adobe recommends maintaining a solution design document to track how your tags are configured."
+    description: "With the loader tag installed on your site, you can add rules and data elements to populate an XDM object to send to Adobe. Adobe recommends maintaining a solution design document to track how your tags are configured.<br><br>This step is a lot of work, as it involves setting up all Analytics logic for your property. Expect to dedicate a month or longer to establish the correct tag rules, test them, and deploy them on your site."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-xdm"
   add_tag_data_logic:
     text: "Add data object collection logic to your tag"
-    description: "With the loader tag installed on your site, you can add rules and data elements to populate a data object to send to Adobe. This step is a lot of work, as it involves setting up all Analytics logic for your property. Adobe recommends maintaining a solution design document to track how your tags are configured."
+    description: "With the loader tag installed on your site, you can add rules and data elements to populate a data object to send to Adobe. Adobe recommends maintaining a solution design document to track how your tags are configured.<br><br>This step is a lot of work, as it involves setting up all Analytics logic for your property. Expect to dedicate a month or longer to establish the correct tag rules, test them, and deploy them on your site."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/sendevent/data"
   alter_appmeasurement_logic:
     text: "Change your AppMeasurement logic to point to the Web SDK"
-    description: "This step appears because you elected to take an implementation shortcut. Copy or change your AppMeasurement logic to populate the data object instead of the s object. For example, change the assignment of s.eVar1 to data.__adobe.analytics.eVar1 and repeat for all Analytics variables."
+    description: "This step appears because you elected to take an implementation shortcut. Copy or change your AppMeasurement logic to populate the data object instead of the s object. For example, change the assignment of <code>s.eVar1</code> to <code>data.__adobe.analytics.eVar1</code> and repeat for all Analytics variables.<br><br>Adjusting every tag rule in your implementation can take some time; expect this step to take a week or longer to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/data-var-mapping"
   implement_alloy:
     text: "Add alloy.js to your site"
-    description: "Work with your website development team to install the alloy.js file on every page of your site."
+    description: "Work with your website development team to install the alloy.js file on every page of your site.<br><br>Completion time for this task heavily depends on the response time of the engineering team that you work with to deploy the code. Some organizations who have highly adaptive engineering teams can complete this step in days, while engineering teams with an extensive backlog of tasks can potentially take a month or longer."
     link: https://experienceleague.adobe.com/en/docs/experience-platform/edge/fundamentals/installing-the-sdk#option-2-installing-the-prebuilt-standalone-version"
   implement_api:
     text: "Use the Edge Network API to send data to the desired datastream"
-    description: "This step is a lot of work, as it involves the entirety of coding logic to formulate an xdm object and send data to a datastream. Adobe recommends maintaining a solution design document to track how the API formulates the payload."
+    description: "This step is a lot of work, as it involves the entirety of coding logic to formulate an xdm object and send data to a datastream. Adobe recommends maintaining a solution design document to track how the API formulates the payload.<br><br>Expect this step to take several weeks or longer to full test and deploy."
     link: "https://developer.adobe.com/data-collection-apis/docs/api/"
   populate_xdm:
     text: "Populate an XDM object and send it to the datastream"
-    description: "This step is a lot of work, as it involves the entirety of JavaScript logic to send data to a datastream. Adobe recommends maintaining a solution design document to track how the XDM object is populated."
+    description: "This step is a lot of work, as it involves the entirety of JavaScript logic to send data to a datastream. Adobe recommends maintaining a solution design document to track how the XDM object is populated.<br><br>Expect to dedicate a month or longer to establish the correct JSON payload values, test them, and deploy them on your site. Since this step requires constant contact with your engineering team to complete, it could potentially take longer depending on their responsiveness."
   populate_data_object:
     text: "Send your data layer as-is to the datastream"
-    description: "This step appears because you elected to take an implementation shortcut. Configure your implementation to send data to Adobe at the desired time, and configure the JSON payload to be your data layer in its entirety."
+    description: "This step appears because you elected to take an implementation shortcut. Configure your implementation to send data to Adobe at the desired time, and configure the JSON payload to be your data layer in its entirety.<br><br>This shortcut opts to make implementation easy at the cost of complex datastream mapping. Expect it to take several days to test and deploy."
   map_variables_to_xdm:
     text: "Use datastream mapping to assign each data layer element to an XDM field"
-    description: "This step appears because you elected to take an implementation shortcut. Map every data layer element to the desired XDM field. Any data layer elements that are not mapped to an XDM field are permanently dropped, since Adobe does not know where or how to store that data."
+    description: "This step appears because you elected to take an implementation shortcut. Map every data layer element to the desired XDM field. Any data layer elements that are not mapped to an XDM field are permanently dropped, since Adobe does not know where or how to store that data.<br><br>The time that this step takes heavily depends on the number of dimensions and metrics that you must map. This step isn't as hard as it is tedious and repetitive. Expect datastream mapping to take approximately a week of work to complete."
     ui_link: "https://experience.adobe.com/platform/data-collection/scramjet"
   implement_edge_streamingmedia:
     text: "Setup and implement Media Edge SDKs or APIs"
-    description: "Set up and implement the streaming media data collection using the Media Edge SDKs or the Media Edge APIs."
+    description: "Set up and implement the streaming media data collection using the Media Edge SDKs or the Media Edge APIs.<br><br>This step is a lot of work, as it involves setting up all media collection logic for your property. Expect to dedicate a month or longer to establish the correct implementation logic, test it, and deploy it on your site."
     link: "https://experienceleague.adobe.com/en/docs/media-analytics/using/implementation/edge-recommended/media-edge-sdk/implementation-edge"
   implement_personalization:
     text: "Use the personalization object in your implementation for use in Adobe Journey Optimizer"
@@ -95,61 +95,61 @@ checklistItems:
     text: "Adobe is currently working on a viable replacement to data feeds."
   validate_dataset_ingestion:
     text: "Validate that your Web SDK implementation is sending data to a dataset"
-    description: "Now that you have configured your Web SDK implementation, you can use the Dataset activity manager to see ingested and failed batches. If you see primarily ingested batches, this step is complete. If you see primarily failed batches or no batches, check your Web SDK implementation to ensure that it is correctly sending data to Adobe."
+    description: "Now that you have configured your Web SDK implementation, you can use the Dataset activity manager to see ingested and failed batches. If you see primarily ingested batches, this step is complete. If you see primarily failed batches or no batches, check your Web SDK implementation to ensure that it is correctly sending data to Adobe.<br><br>If everything was done correctly and flawlessly, this step can be done in less than a day. If there are multiple data collection issues, troubleshooting them can take notably longer."
     ui_link: "https://experience.adobe.com/platform/dataset/browse"
   create_connection:
     text: "Create a connection in Customer Journey Analytics"
-    description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting."
+    description: "A connection allows you to translate data from Adobe Experience Platform into a format optimized for Customer Journey Analytics reporting. Creating a connection in Customer Journey Analytics is straightforward, taking only a few minutes to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-connection"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   create_data_view:
     text: "Create a data view in Customer Journey Analytics"
-    description: "A data view is a container specific to Customer Journey Analytics that lets you determine how to interpret data from a connection."
+    description: "A data view is a container specific to Customer Journey Analytics that lets you determine how to interpret data from a connection.<br><br>While the initial creation of the data view takes a few minutes, configuring each dimension and metric with the desired component settings can take several days. Tweaking these settings apply retroactively, so your organization can refine them over time."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-dataview"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/data-views"
   just_use_adc:
     text: "Create the Analytics source connector"
-    description: "Use the Analytics source connector to ingest report suite data for use in Customer Journey Analytics."
+    description: "Use the Analytics source connector to ingest report suite data for use in Customer Journey Analytics.<br><br>Creating the Analytics source connector takes just a few minutes with default settings."
     ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
   just_use_adc_connection:
     text: "Create a connection in Customer Journey Analytics"
-    description: "With the source connector enabled, create a connection in Customer Journey Analytics and add the 'midvalues' dataset to the connection."
+    description: "With the source connector enabled, create a connection in Customer Journey Analytics and add the 'midvalues' dataset to the connection.<br><br>Creating a connection using the source connector dataset is simple, taking only a few minutes to complete."
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   just_use_adc_data_view:
     text: "Create a data view in Customer Journey Analytics"
-    description: "When setting up the data view, drag in the desired dimensions and metrics. Configure each component setting as desired."
+    description: "When setting up the data view, drag in the desired dimensions and metrics. Configure each component setting as desired.<br><br>While the initial creation of the data view takes a few minutes, configuring each dimension and metric with the desired component settings can take several days. Tweaking these settings apply retroactively, so your organization can refine them over time."
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/data-views"
   create_mc_derived_fields:
     text: "Create a marketing channel derived field"
-    description: "Derived fields are created within a data view."
+    description: "Derived fields are created within a data view.<br><br>Using a default marketing channel setup only takes a few minutes; creating a highly customized marketing channel setup might take several hours."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-marketing-channel"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/data-views"
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
-    description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics."
+    description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics.<br><br>If everything was done correctly and flawlessly, this step can be done in less than a day. If there are multiple data collection issues, troubleshooting them can take notably longer."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/manage-connections#connection-detail"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   remove_old_adc:
     text: "Delete the existing Analytics source connector"
-    description: "The Analytics source connector that you currently have is not compatible with your organization's custom schema. However, the data still exists in the Analytics report suite. This step removes the current Analytics source connector so you can recreate it using the correct schema in a subsequent step."
+    description: "The Analytics source connector that you currently have is not compatible with your organization's custom schema. However, the data still exists in the Analytics report suite. This step removes the current Analytics source connector so you can recreate it using the correct schema in a subsequent step.<br><br>Deleting the source connector only takes a few minutes; however you might want to coordinate with others in your organization to ensure that the removal of the source connector does not impact reporting within your organization. This coordination might take several weeks to complete."
     ui_link: "https://experience.adobe.com/platform/source/dataflows"
   create_schema_for_adc:
     text: "Create a schema for the Analytics source connector"
-    description: "This schema is a combination of the Adobe Analytics ExperienceEvent field group with all field groups that make up your organization's custom schema. It allows you to map the fields used by the Analytics source connector to your organization's schema, and is only used for historical data."
+    description: "This schema is a combination of the Adobe Analytics ExperienceEvent field group with all field groups that make up your organization's custom schema. It allows you to map the fields used by the Analytics source connector to your organization's schema, and is only used for historical data.<br><br>While technical in nature, creating this schema can be completed in hours, possibly faster if you know exactly which field groups make up your organization's custom schema."
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   create_adc_using_custom_schema:
     text: "Create the Analytics source connector and map fields to your organization's schema"
-    description: "The source connector needs to know how to map Adobe Analytics fields to your organization's schema. Use this interface to provide the source connector with that mapping. This step is part of adding historical data to Customer Journey Analytics."
+    description: "The source connector needs to know how to map Adobe Analytics fields to your organization's schema. Use this interface to provide the source connector with that mapping. This step is part of adding historical data to Customer Journey Analytics.<br><br>The time that this step takes heavily depends on the number of dimensions and metrics that you must map. This step isn't as hard as it is tedious and repetitive. Expect datastream mapping to take approximately a week of work to complete."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
     ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
   create_adc_using_aa_schema:
     text: "Create the Analytics source connector for historical data"
-    description: "Use the Analytics source connector to ingest historical data in Experience Platform for use in Customer Journey Analytics. Since your organization intends to use the Adobe Analytics schema, this source connector works without any additional mapping. This step is part of adding historical data to Customer Journey Analytics."
+    description: "Use the Analytics source connector to ingest historical data in Experience Platform for use in Customer Journey Analytics. Since your organization intends to use the Adobe Analytics schema, this source connector works without any additional mapping. This step is part of adding historical data to Customer Journey Analytics.<br><br>Completion time for this task is a few minutes, as no XDM mapping is required."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
     ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
   add_adc_midvalues_dataset:
     text: "Add the Analytics source connector dataset to your connection in Customer Journey Analytics"
-    description: "Now that historical data from your Analytics report suite is in Adobe Experience Platform, add that dataset to your existing connection that you created when initially configuring Customer Journey Analytics. Once this step is complete, historical data in Customer Journey Analytics is available."
+    description: "Now that historical data from your Analytics report suite is in Adobe Experience Platform, add that dataset to your existing connection that you created when initially configuring Customer Journey Analytics. Once this step is complete, historical data in Customer Journey Analytics is available.<br><br>Adding a dataset to a connection in Customer Journey Analytics is straightforward, taking only a few minutes to complete."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-source-connector-dataset"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   component_migration:
@@ -158,25 +158,28 @@ checklistItems:
     link: "https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration"
   create_full_table_export:
     text: "Create full table exports to achieve Data Warehouse equivalent functionality"
+    description: "Full table exports are available as soon as you seen data in Analysis Workspace. You can create or schedule full table exports as needs permit.<br><br>Creating full table exports takes only a few minutes to complete if you already know what data to include in the export."
   add_datasets_to_connection:
     text: "Add additional datasets to your connection in Customer Journey Analytics"
-    description: "Once you have added data to a dataset in Adobe Experience Platform, you can add that dataset to your connection in Customer Journey Analytics. Make sure that when adding data from other channels that they adhere to the schema that your organization uses."
+    description: "Once you have added data to a dataset in Adobe Experience Platform, you can add that dataset to your connection in Customer Journey Analytics. Make sure that when adding data from other channels that they adhere to the schema that your organization uses.<br><br>Each dataset that you add requires a tremendous amount of work, particularly around ensuring that the unique identifier exists for every event and ensuring that the overarching data structure conforms to your organization's custom schema. Establishing this workflow can take coordination across many teams within your organization spread across several months."
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   remove_appm:
     text: "Disable AppMeasurement data collection"
-    description: "With Web SDK data fully functional, work with your developer team to remove AppMeasurement.js from your website or property."
+    description: "With Web SDK data fully functional, work with your developer team to remove AppMeasurement.js from your website or property.<br><br>The act of removing AppMeasurement from a website takes only a few minutes, but requires time from your engineering team to complete. However, make sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
   remove_aa_datastream:
     text: "Remove Adobe Analytics as a service from the datastream"
-    description: "With Web SDK data fully functional, work with your Platform administrator to remove Adobe Analytics as a service from the datastream."
+    description: "With Web SDK data fully functional, work with your Platform administrator to remove Adobe Analytics as a service from the datastream.<br><br>Navigating to the datastream to disable Adobe Analytics takes only a few minutes. However, make sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
     ui_link: "https://experience.adobe.com/platform/data-collection/scramjet"
   remove_tags:
     text: "Disable the Analytics extension in Tags"
+    description: "With Web SDK data fully functional, work with your tags administrator to remove the Adobe Analytics extension from the tag property.<br><br>Navigating to the tag property to disable the Adobe Analytics extension takes less than an hour to build and deploy. However, make sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
   remove_api:
     text: "Disable API data collection for Adobe Analytics"
+    description: "With Web SDK data fully functional, work with the applicable engineering team to remove the Adobe Analytics code from the project.<br><br>Determining what to remove inside the API project might take several days for an engineer, especially if they were not the individual that implemented it. Also consider making sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
   disable_adc:
     text: "Disable the Analytics Source Connector, using exclusively data from the Web SDK"
-    description: "Once the Web SDK has collected enough data over time, you can disable the Analytics Source connector and rely on your current implementation moving forward."
+    description: "Once the Web SDK has collected enough data over time, you can disable the Analytics Source connector and rely on your current implementation moving forward.<br><br>Removing the Analytics source connector is straightforward and only takes a few minutes to complete."
     ui_link: "https://experience.adobe.com/platform/source/dataflows"
   create_mobile_tag:
     text: "Create a mobile tag property in Adobe Experience Platform Data Collection"
