@@ -484,6 +484,7 @@ $(document).ready(function () {
                 if ($("#imp-type-want-tags").is(":checked")) {
                     // They are on the Analytics extension so they don't need to recreate the tag
                     removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
                 }
                 thirdPartyImplementation(false);
                 break;
@@ -677,6 +678,11 @@ $(document).ready(function () {
                     removeChecklistItem("create_tag");
                     removeChecklistItem("implement_tag");
                     removeChecklistItem("add_extension");
+                }
+                if ($("#imp-analytics-extension").is(":checked")) {
+                    // They are already on tags so they don't need to recreate the tag
+                    removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
                 }
                 break;
             case 'imp-type-want-api':
