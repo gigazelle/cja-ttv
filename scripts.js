@@ -131,6 +131,11 @@ $(document).ready(function () {
         // Create a new div for the checklist item
         const checklistItem = document.createElement('div');
         checklistItem.setAttribute('data-id', id);  // Set the ID for sorting purposes
+        //checklistItem.style.backgroundColor = "lightblue";
+
+        //setTimeout(function () {
+        //    checklistItem.animate({ backgroundColor: "#ffffff" }, 1000);
+        //}, 2000);
 
         const upperItems = document.createElement('div');
         upperItems.classList.add('upper-items');
@@ -328,8 +333,6 @@ $(document).ready(function () {
             }
         });
 
-
-
         if (itemData.description) {
             const helpIconSpan = iconContainer.querySelector('.popover-icon');
             helpIconSpan.id = checklistItem.getAttribute("data-id") + "-popover";
@@ -468,6 +471,7 @@ $(document).ready(function () {
                 if ($("#imp-type-want-tags").is(":checked")) {
                     addChecklistItem("create_tag")
                 }
+                thirdPartyImplementation(false);
                 break;
             case 'imp-analytics-extension':
                 if ($("#want-turn-off-aa").is(":checked")) {
@@ -480,7 +484,9 @@ $(document).ready(function () {
                 if ($("#imp-type-want-tags").is(":checked")) {
                     // They are on the Analytics extension so they don't need to recreate the tag
                     removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
                 }
+                thirdPartyImplementation(false);
                 break;
             case 'imp-web-sdk-extension':
                 if ($("#imp-type-want-tags").is(":checked")) {
@@ -498,6 +504,7 @@ $(document).ready(function () {
                     removeChecklistItem("remove_api");
                 }
                 removeChecklistItem("create_datastream");
+                thirdPartyImplementation(false);
                 break;
             case 'imp-api':
                 if ($("#want-turn-off-aa").is(":checked")) {
@@ -506,6 +513,7 @@ $(document).ready(function () {
                     removeChecklistItem("remove_tags");
                     removeChecklistItem("remove_aa_datastream");
                 }
+                thirdPartyImplementation(false);
                 break;
             case 'imp-legacy-mobile':
                 if ($("#want-turn-off-aa").is(":checked")) {
@@ -514,6 +522,10 @@ $(document).ready(function () {
                     removeChecklistItem("remove_api");
                     removeChecklistItem("remove_aa_datastream");
                 }
+                thirdPartyImplementation(false);
+                break;
+            case 'imp-third-party':
+                thirdPartyImplementation(true);
                 break;
             case 'already-have-adc':
                 if ($("#want-cja-schema").is(":checked")) {
@@ -667,6 +679,11 @@ $(document).ready(function () {
                     removeChecklistItem("implement_tag");
                     removeChecklistItem("add_extension");
                 }
+                if ($("#imp-analytics-extension").is(":checked")) {
+                    // They are already on tags so they don't need to recreate the tag
+                    removeChecklistItem("create_tag");
+                    removeChecklistItem("implement_tag");
+                }
                 break;
             case 'imp-type-want-api':
                 addChecklistItem("implement_api");
@@ -786,6 +803,43 @@ $(document).ready(function () {
         }
     }
 
+    // Handles enabling or disabling fields when third-party implementation is selected
+    function thirdPartyImplementation(isChecked) {
+        if (isChecked) {
+            $("#aa-feature-accordion").find('input').each(function () {
+                uncheckAndDisable(this);
+            });
+            $("#shortcut-accordion").find('input').each(function () {
+                if (this.id != "just-use-adc") {
+                    uncheckAndDisable(this);
+                }
+            });
+            uncheckAndDisable(document.getElementById("already-have-adc"));
+            uncheckAndDisable(document.getElementById("want-keep-aa"));
+            uncheckAndDisable(document.getElementById("want-aa-schema"));
+            uncheckAndDisable(document.getElementById("pressed-on-time"));
+        } else {
+            $("#aa-feature-accordion").find('input').each(function () {
+                $(this).prop("disabled", false);
+            });
+            $("#shortcut-accordion").find('input').each(function () {
+                if (this.id != "just-use-adc") {
+                    $(this).prop("disabled", false);
+                }
+            });
+            $("#already-have-adc").prop("disabled", false);
+            $("#want-keep-aa").prop("disabled", false);
+            $("#want-aa-schema").prop("disabled", false);
+            $("#pressed-on-time").prop("disabled", false);
+        }
+    }
+
+    function uncheckAndDisable(input) {
+        $(input).prop("checked", false);
+        $(input).prop("disabled", true);
+        handleInputChange(input.id, false);
+    }
+
     // Function to show the popover on hover
     function showPopover(event, description, link) {
 
@@ -794,7 +848,7 @@ $(document).ready(function () {
         // Create a new popover element
         const popover = document.createElement('div');
         popover.classList.add('popover');
-        popover.textContent = description;
+        popover.innerHTML = description;
 
         if (link) {
             const br1 = document.createElement('br');
