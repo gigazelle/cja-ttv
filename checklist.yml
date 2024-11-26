@@ -128,7 +128,7 @@ checklistItems:
   validate_cja_data:
     text: "Validate that data is flowing in Customer Journey Analytics"
     description: "Use the connection details to validate whether data is flowing into Customer Journey Analytics.<br><br>If everything was done correctly and flawlessly, this step can be done in less than a day. If there are multiple data collection issues, troubleshooting them can take notably longer."
-    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/manage-connections#connection-detail"
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-validate"
     ui_link: "https://experience.adobe.com/platform/analytics/#/apps/data-management/connections/list"
   remove_old_adc:
     text: "Delete the existing Analytics source connector"
