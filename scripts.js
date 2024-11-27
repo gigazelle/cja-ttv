@@ -85,6 +85,7 @@ $(document).ready(function () {
             hideAllPopovers();
             currentPopover = null;
         }
+
     });
 
     // Fetch and parse YAML data
@@ -330,6 +331,20 @@ $(document).ready(function () {
                 });
 
                 saveButton.addEventListener('click', saveNote);
+            } else {
+                const noteInputContainer = checklistItem.querySelector('.note-input-container');
+                const textArea = checklistItem.querySelector('.spectrum-Textfield-input');
+                if (textArea.value) {
+                    const previousNoteText = document.createElement('div');
+                    previousNoteText.classList.add('note-text');
+                    previousNoteText.style.textDecoration = 'none';
+                    previousNoteText.innerHTML = localStorage.getItem(id + "-note").replace(/\n/g, '<br>');
+                    checklistItem.appendChild(previousNoteText);
+                    noteInputContainer.remove();
+                } else {
+                    noteInputContainer.remove();
+                }
+                noteOpen = false;
             }
         });
 
@@ -524,8 +539,18 @@ $(document).ready(function () {
                 }
                 thirdPartyImplementation(false);
                 break;
-            case 'imp-third-party':
+            case 'imp-third-party-product':
                 thirdPartyImplementation(true);
+                break;
+            case 'imp-third-party-tags':
+                if ($("#want-turn-off-aa").is(":checked")) {
+                    addChecklistItem("remove_third_party_tags");
+                    removeChecklistItem("remove_appm");
+                    removeChecklistItem("remove_tags");
+                    removeChecklistItem("remove_api");
+                    removeChecklistItem("remove_aa_datastream");
+                }
+                thirdPartyImplementation(false);
                 break;
             case 'already-have-adc':
                 if ($("#want-cja-schema").is(":checked")) {
@@ -582,6 +607,9 @@ $(document).ready(function () {
                 break;
             case 'want-ajo':
                 (isChecked ? addChecklistItem : removeChecklistItem)("implement_personalization");
+                break;
+            case 'want-stitching':
+                (isChecked ? addChecklistItem : removeChecklistItem)("use_stitching");
                 break;
             case 'want-turn-off-aa':
                 if ($("#imp-appmeasurement").is(":checked")) {
@@ -971,3 +999,10 @@ function goToNextAccordion(currentButton) {
         nextHeader.classList.add('active');
     }
 }
+
+/*
+reword stitching
+implementing CJA -> implementing web sdk
+tags -> launch
+
+*/

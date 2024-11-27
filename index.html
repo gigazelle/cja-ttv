@@ -68,7 +68,7 @@
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-appmeasurement">
                         <span></span>
-                        <label>AppMeasurement</label>
+                        <label>AppMeasurement (Manual JS file)</label>
                     </div>
                     <span class="popover-icon" data-description="A JavaScript implementation that loads AppMeasurement.js on a page, and sends data to Adobe using the s object (for example, s.eVar1)." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-analytics-implementation"></span><br>
                     <div class="spectrum-Radio">
@@ -80,7 +80,7 @@
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-type" id="imp-web-sdk-alloy">
                         <span></span>
-                        <label>Web SDK (alloy.js)</label>
+                        <label>Web SDK (<code>alloy.js</code>)</label>
                     </div>
                     <span class="popover-icon" data-description="A JavaScript implementation that loads the Web SDK library (alloy.js) on a page, and sends data to Adobe using a JSON payload." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-analytics-implementation"></span><br>
                     <div class="spectrum-Radio">
@@ -102,11 +102,24 @@
                     </div>
                     <span class="popover-icon" data-description="An implementation that uses the Adobe Experience Platform Mobile SDK." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-analytics-implementation"></span><br>
                     <div class="spectrum-Radio">
-                        <input type="radio" name="implementation-type" id="imp-third-party">
+                        <input type="radio" name="implementation-type" id="imp-third-party-product">
                         <span></span>
-                        <label>Third-party Analytics implementation</label>
+                        <label>A non-Adobe Analytics product</label>
                     </div>
-                    <span class="popover-icon" data-description="An implementation that collects data for a different Analytics product, such as Google Analytics. Selecting this option disables several options in the questionnaire that don't apply to this implementation type."></span><hr>
+                    <span class="popover-icon" data-description="An implementation that collects data for a different Analytics product, such as Google Analytics. Selecting this option disables several options in the questionnaire that don't apply to this implementation type."></span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" id="imp-third-party-tags">
+                        <span></span>
+                        <label>AppMeasurement using a third-party tag management tool</label>
+                    </div>
+                    <span class="popover-icon" data-description="An implementation that collects data for Adobe Analytics, but you use a third-party tag management system."></span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-type" id="imp-dunno">
+                        <span></span>
+                        <label>I don't know</label>
+                    </div>
+                    <span class="popover-icon" data-description="If you're not the person that manages your implementation, you can temporarily select this option for now."></span>
+                    <hr>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="already-have-adc">
                         <span></span>
@@ -233,7 +246,7 @@
                         <span></span>
                         <label>I want to use a schema tailored to my organization</label>
                     </div>
-                    <span class="popover-icon" data-description="(Recommended) Customizing your schema allows your organization to track only what you need and avoid the overhead tied to messy and unneeded fields." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span><br>
+                    <span class="popover-icon" data-description="(Recommended) Customizing your schema allows your organization to track only what you need and avoid the overhead tied to messy and unneeded fields. This option includes field groups added by the Web SDK and field groups custom to your organization." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="schema-want" id="want-aa-schema">
                         <span></span>
@@ -245,7 +258,7 @@
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-manual">
                         <span></span>
-                        <label>Manual implementation (JS file)</label>
+                        <label>Manual implementation (<code>alloy.js</code>)</label>
                     </div>
                     <span class="popover-icon" data-description="Include the Web SDK library (alloy.js) on each page your site." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/library"></span><br>
                     <div class="spectrum-Radio">
@@ -253,7 +266,7 @@
                         <span></span>
                         <label>Tags</label>
                     </div>
-                    <span class="popover-icon" data-description="If you are not yet using Tags, install the tag loader on your site. If you are already using Tags, you can add the Web SDK extension to your tag property." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/extension"></span><br>
+                    <span class="popover-icon" data-description="If you are not yet using Tags, install the tag loader on your site. If you are already using Tags, you can add the Web SDK extension to your tag property. This option includes implementations using tags within Adobe Experience Platform Data Collection and third-party tag management systems." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/extension"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-api">
                         <span></span>

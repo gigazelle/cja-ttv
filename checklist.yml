@@ -53,6 +53,9 @@ checklistItems:
     text: "Implement the loader tag on your site"
     description: "Work with your website development team to install the loader tag on every page of your site.<br><br>Completion time for this task heavily depends on the response time of the engineering team that you work with to deploy the code. Some organizations who have highly adaptive engineering teams can complete this step in days, while engineering teams with an extensive backlog of tasks can potentially take a month or longer."
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-tag-loader"
+  add_third_party_tag:
+    text: "Add the Web SDK library to your third-party tag management system"
+    description: "Work with the admin over your tag management system to add the Web SDK library to your site.<br><br>Completion time for this task heavily depends on the responsiveness of the individual responsible for your tag management system. Adding the Web SDK library might be bundled with associated implementation logic, and deployed during your organization's standard release cycles."
   add_tag_xdm_logic:
     text: "Add XDM data collection logic to your tag"
     description: "With the loader tag installed on your site, you can add rules and data elements to populate an XDM object to send to Adobe. Adobe recommends maintaining a solution design document to track how your tags are configured.<br><br>This step is a lot of work, as it involves setting up all Analytics logic for your property. Expect to dedicate a month or longer to establish the correct tag rules, test them, and deploy them on your site."
@@ -160,6 +163,10 @@ checklistItems:
   create_full_table_export:
     text: "Create full table exports to achieve Data Warehouse equivalent functionality"
     description: "Full table exports are available as soon as you seen data in Analysis Workspace. You can create or schedule full table exports as needs permit.<br><br>Creating full table exports takes only a few minutes to complete if you already know what data to include in the export."
+  use_stitching:
+    text: "Contact Adobe Customer Care to generate a stitched dataset based on identity requirements"
+    description: "If you have a field that contains an identifier that exists in multiple datasets but is not the primary identifier, you can use that to generate a new dataset with a consistent identifier.<br><br>Ensuring that you meet all requirements within a dataset and the total turnaround for generating a stitched dataset can take several weeks."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/stitching/overview"
   add_datasets_to_connection:
     text: "Add additional datasets to your connection in Customer Journey Analytics"
     description: "Once you have added data to a dataset in Adobe Experience Platform, you can add that dataset to your connection in Customer Journey Analytics. Make sure that when adding data from other channels that they adhere to the schema that your organization uses.<br><br>Each dataset that you add requires a tremendous amount of work, particularly around ensuring that the unique identifier exists for every event and ensuring that the overarching data structure conforms to your organization's custom schema. Establishing this workflow can take coordination across many teams within your organization spread across several months."
@@ -175,6 +182,9 @@ checklistItems:
     text: "Disable the Analytics extension in Tags"
     description: "With Web SDK data fully functional, work with your tags administrator to remove the Adobe Analytics extension from the tag property.<br><br>Navigating to the tag property to disable the Adobe Analytics extension takes less than an hour to build and deploy. However, make sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
     ui_link: "https://experience.adobe.com/platform/data-collection/tags"
+  remove_third_party_tags:
+    text: "Disable the AppMeasurement library from your third-party tag management system"
+    description: "With the Web SDK data fully functional, work with your tag admin to remove the AppMeasurement library from your third-party tag management system.<br><br>Estimated time to perform this step depends on the ease of disabling AppMeasurement from your tag management product, as well as the release cycle that your organization employs to deploy and manage tag code."
   remove_api:
     text: "Disable API data collection for Adobe Analytics"
     description: "With Web SDK data fully functional, work with the applicable engineering team to remove the Adobe Analytics code from the project.<br><br>Determining what to remove inside the API project might take several days for an engineer, especially if they were not the individual that implemented it. Also consider making sure that your Analytics users are using Customer Journey Analytics and not Adobe Analytics; this announcement process to move everyone over might take significantly longer if you haven't already done this."
