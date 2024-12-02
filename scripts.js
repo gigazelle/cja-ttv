@@ -486,6 +486,7 @@ $(document).ready(function () {
                 if ($("#imp-type-want-tags").is(":checked")) {
                     addChecklistItem("create_tag")
                 }
+                removeChecklistItem("figure_out_imp");
                 thirdPartyImplementation(false);
                 break;
             case 'imp-analytics-extension':
@@ -501,6 +502,7 @@ $(document).ready(function () {
                     removeChecklistItem("create_tag");
                     removeChecklistItem("implement_tag");
                 }
+                removeChecklistItem("figure_out_imp");
                 thirdPartyImplementation(false);
                 break;
             case 'imp-web-sdk-extension':
@@ -518,6 +520,7 @@ $(document).ready(function () {
                     removeChecklistItem("remove_tags");
                     removeChecklistItem("remove_api");
                 }
+                removeChecklistItem("figure_out_imp");
                 removeChecklistItem("create_datastream");
                 thirdPartyImplementation(false);
                 break;
@@ -528,6 +531,7 @@ $(document).ready(function () {
                     removeChecklistItem("remove_tags");
                     removeChecklistItem("remove_aa_datastream");
                 }
+                removeChecklistItem("figure_out_imp");
                 thirdPartyImplementation(false);
                 break;
             case 'imp-legacy-mobile':
@@ -537,9 +541,11 @@ $(document).ready(function () {
                     removeChecklistItem("remove_api");
                     removeChecklistItem("remove_aa_datastream");
                 }
+                removeChecklistItem("figure_out_imp");
                 thirdPartyImplementation(false);
                 break;
             case 'imp-third-party-product':
+                removeChecklistItem("figure_out_imp");
                 thirdPartyImplementation(true);
                 break;
             case 'imp-third-party-tags':
@@ -550,6 +556,17 @@ $(document).ready(function () {
                     removeChecklistItem("remove_api");
                     removeChecklistItem("remove_aa_datastream");
                 }
+                removeChecklistItem("figure_out_imp");
+                thirdPartyImplementation(false);
+                break;
+            case 'imp-dunno':
+                addChecklistItem("figure_out_imp");
+                removeChecklistItem("remove_appm");
+                removeChecklistItem("remove_tags");
+                removeChecklistItem("remove_api");
+                removeChecklistItem("remove_aa_datastream");
+                removeChecklistItem("remove_third_party_tags");
+                removeChecklistItem("create_datastream");
                 thirdPartyImplementation(false);
                 break;
             case 'already-have-adc':

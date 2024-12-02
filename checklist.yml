@@ -1,4 +1,7 @@
 checklistItems:
+  figure_out_imp:
+    text: "Determine your existing implementation type"
+    description: "Work internally within your organization to determine what type of implementation that you currently use to send data to Adobe Analytics. Partnering with the individual or team that knows this information is likely, when you're ready to migrate to Customer Journey Analytics.<br><br>Once you determine the type of implementation that your organization uses, modify your answer in the questionnaire."
   architect_schema:
     text: "Architect a schema"
     description: "Discuss within your organization the requirements of data collection, and determine how you want to build a schema for use in Adobe Experience Platform. This step appears because you want to use the recommended process of using a schema tailored to your organization. Performing this step correctly is pivotal, as a schema that all teams within your organization align on makes data ingestion significantly easier.<br><br>The estimated time to bring together all relevant parties in your organization to align upon a unified schema is 1-2 months. This time frame heavily depends on the number of teams required to coordinate, and the number of dimensions + metrics to align on."
@@ -9,7 +12,8 @@ checklistItems:
     link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-create"
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   enable_profile:
-    text: "Enable profile in your schema and create a profile dataset for use in RTCDP. This step appears because you selected the desire to integrate with RTCDP.<br><br>Since this step involve clicking a single box, this step only takes a few minutes."
+    text: "Create a profile dataset"
+    description: "Enable profile in your schema and create a profile dataset for use in Adobe Real-time CDP. This step appears because you selected the desire to integrate with Adobe Real-time CDP.<br><br>Since this step involve clicking a single box, this step only takes a few minutes."
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   create_aa_schema:
     text: "Create a schema using the Adobe Analytics field group"
