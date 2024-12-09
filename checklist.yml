@@ -142,11 +142,11 @@ checklistItems:
     description: "The Analytics source connector that you currently have is not compatible with your organization's custom schema. However, the data still exists in the Analytics report suite. This step removes the current Analytics source connector so you can recreate it using the correct schema in a subsequent step.<br><br>Deleting the source connector only takes a few minutes; however you might want to coordinate with others in your organization to ensure that the removal of the source connector does not impact reporting within your organization. This coordination might take several weeks to complete."
     ui_link: "https://experience.adobe.com/platform/source/dataflows"
   create_schema_for_adc:
-    text: "Create a schema for the Analytics source connector"
+    text: "Create a schema for a new Analytics source connector to use for historical data"
     description: "This schema is a combination of the Adobe Analytics ExperienceEvent field group with all field groups that make up your organization's custom schema. It allows you to map the fields used by the Analytics source connector to your organization's schema, and is only used for historical data.<br><br>While technical in nature, creating this schema can be completed in hours, possibly faster if you know exactly which field groups make up your organization's custom schema."
     ui_link: "https://experience.adobe.com/platform/schema/browse"
   create_adc_using_custom_schema:
-    text: "Create the Analytics source connector and map fields to your organization's schema"
+    text: "Create the new Analytics source connector and map fields to your organization's schema"
     description: "The source connector needs to know how to map Adobe Analytics fields to your organization's schema. Use this interface to provide the source connector with that mapping. This step is part of adding historical data to Customer Journey Analytics.<br><br>The time that this step takes heavily depends on the number of dimensions and metrics that you must map. This step isn't as hard as it is tedious and repetitive. Expect datastream mapping to take approximately a week of work to complete."
     link: "https://experienceleague.adobe.com/en/docs/experience-platform/sources/connectors/adobe-applications/analytics"
     ui_link: "https://experience.adobe.com/platform/workflow/analytics-source-add-data"
