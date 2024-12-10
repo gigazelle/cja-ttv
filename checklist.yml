@@ -165,8 +165,9 @@ checklistItems:
     description: "Bring components like dimensions, metrics, segments, calculated metrics, and Workspace projects over from Adobe Analytics to Customer Journey Analytics."
     link: "https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration"
   create_full_table_export:
-    text: "Create full table exports to achieve Data Warehouse equivalent functionality"
-    description: "Full table exports are available as soon as you seen data in Analysis Workspace. You can create or schedule full table exports as needs permit.<br><br>Creating full table exports takes only a few minutes to complete if you already know what data to include in the export."
+    text: "Create full table exports to achieve functionality similar to Data Warehouse"
+    description: "Full table exports are available as soon as you see data in Analysis Workspace. You can create or schedule full table exports as needs permit.<br><br>Creating full table exports takes only a few minutes to complete if you already know what data to include in the export."
+    link: "https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-workspace/export/export-cloud"
   use_stitching:
     text: "Contact Adobe Customer Care to generate a stitched dataset based on identity requirements"
     description: "If you have a field that contains an identifier that exists in multiple datasets but is not the primary identifier, you can use that to generate a new dataset with a consistent identifier.<br><br>Ensuring that you meet all requirements within a dataset and the total turnaround for generating a stitched dataset can take several weeks."
