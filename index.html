@@ -193,7 +193,7 @@
             <div class="q-accordion">
                 <h3 class=" q-accordion-header">Customer Journey Analytics features that you want</h3>
                 <div class=" q-accordion-content">
-                    <p>Customer Journey Analytics includes key functionality that isn't available in Adobe Analytics. Select the Customer Journey Analytics features you plan to use:</p>
+                    <p>Select the features you want:</p>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="want-omnichannel">
                         <span></span>
@@ -231,35 +231,41 @@
                     <div class="spectrum-Radio">
                         <input type="radio" name="keep-aa-or-not" id="want-turn-off-aa">
                         <span></span>
-                        <label>I intend to fully move to Customer Journey Analytics (Recommended)</label>
+                        <label>I intend to fully move to Customer Journey Analytics</label>
                     </div>
-                    <span class="popover-icon" data-description="Customer Journey Analytics aims to be the primary Analytics tool for your organization. However, your organization might still require Adobe Analytics if it heavily relies on features exclusive to the tool and those workflows cannot be altered."></span><br>
+                    <span class="popover-icon" data-description="(Recommended) Customer Journey Analytics aims to be the primary Analytics tool for your organization. However, your organization might still require Adobe Analytics if it heavily relies on features exclusive to the tool and those workflows cannot be altered."></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="keep-aa-or-not" id="want-keep-aa">
                         <span></span>
                         <label>I intend to keep both Analytics products</label>
                     </div>
-                    <span class="popover-icon" data-description="If you select this option, your contract with Adobe includes both Adobe Analytics and Customer Journey Analytics, which can be more expensive for your organization over time."></span><br>
+                    <span class="popover-icon" data-description="(Not recommended) If you select this option, your contract with Adobe includes both Adobe Analytics and Customer Journey Analytics, which can be more expensive for your organization over time."></span><br>
                     <hr>
                     <p>Select how you want to configure your Customer Journey Analytics schema:</p>
                     <div class="spectrum-Radio">
                         <input type="radio" name="schema-want" id="want-cja-schema">
                         <span></span>
-                        <label>I want to use a schema tailored to my organization (Recommended)</label>
+                        <label>I want to use a schema tailored to my organization</label>
                     </div>
-                    <span class="popover-icon" data-description="Customizing your schema allows your organization to track only what you need and avoid the overhead tied to messy and unneeded fields. This option includes field groups added by the Web SDK and field groups custom to your organization." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span><br>
+                    <span class="popover-icon" data-description="(Recommended) Customizing your schema allows your organization to track only what you need and avoid the overhead tied to messy and unneeded fields. This option includes field groups added by the Web SDK and field groups custom to your organization." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span><br>
                     <div class="spectrum-Radio">
                         <input type="radio" name="schema-want" id="want-aa-schema">
                         <span></span>
                         <label>I want to use the default Adobe Analytics schema</label>
                     </div>
-                    <span class="popover-icon" data-description="The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Your organization would be forced to continue adhering to the concept of props and eVars, which is a legacy concept not used in Customer Journey Analytics. Integrating with other Adobe Experience Platform services is more difficult." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span>
+                    <span class="popover-icon" data-description="(Not recommended) The Adobe Analytics schema contains more than a thousand fields, which can lead to cluttered and complex schema. Your organization would be forced to continue adhering to the concept of props and eVars, which is a legacy concept not used in Customer Journey Analytics. Integrating with other Adobe Experience Platform services is more difficult." data-link="https://experienceleague.adobe.com/en/docs/analytics-platform/using/compare-aa-cja/upgrade-to-cja/cja-upgrade-schema-existing"></span>
                     <hr>
-                    <p>Select how you prefer to implement data collection with the Experience Platform Web SDK, for use with Customer Journey Analytics:</p>
+                    <p>Select your preferred way of implementing Customer Journey Analytics:</p>
                     <div class="spectrum-Radio">
                         <input type="radio" name="implementation-want" id="imp-type-want-manual">
                         <span></span>
-                        <label>Tags (Recommended)</label>
+                        <label>Manual implementation (<code>alloy.js</code>)</label>
+                    </div>
+                    <span class="popover-icon" data-description="Include the Web SDK library (alloy.js) on each page your site." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/library"></span><br>
+                    <div class="spectrum-Radio">
+                        <input type="radio" name="implementation-want" id="imp-type-want-tags">
+                        <span></span>
+                        <label>Tags</label>
                     </div>
                     <span class="popover-icon" data-description="If you are not yet using Tags, install the tag loader on your site. If you are already using Tags, you can add the Web SDK extension to your tag property. This option includes implementations using tags within Adobe Experience Platform Data Collection and third-party tag management systems." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/extension"></span><br>
                     <div class="spectrum-Radio">
@@ -267,18 +273,12 @@
                         <span></span>
                         <label>API</label>
                     </div>
-                        <label>Manual implementation using the JavaScript library</label>
-                    </div>
-                    <span class="popover-icon" data-description="Include the Web SDK library (alloy.js) on each page your site." data-link="https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/install/library"></span><br>
-                    <div class="spectrum-Radio">
-                        <input type="radio" name="implementation-want" id="imp-type-want-tags">
-                        <span></span>
                     <span class="popover-icon" data-description="Use the data collection API to send data directly to a datastream. Both non-authenticated (client-to-server) and authenticated (server-to-server) types are supported." data-link="https://developer.adobe.com/data-collection-apis/docs/getting-started/"></span>
                     <hr>
                     <label class="spectrum-Checkbox">
                         <input type="checkbox" id="pressed-on-time">
                         <span></span>
-                        <span>I am willing to take shortcuts that reduce implementation time, but that make future changes and maintenance more difficult (Not recommended)</span>
+                        <span>Migration timing is important, and I am willing to incur tech debt to hasten the process</span>
                     </label>
                 </div>
             </div>
