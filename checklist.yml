@@ -143,7 +143,7 @@ checklistItems:
     appears: "When 'Integrate with AJO' is selected"
     effort: "More than a month"
   link_tracking:
-    text: "Adobe is currently working on Activity Map overlay support for Customer Journey Analytics."
+    text: "Activity Map overlay is not yet available in Customer Journey Analytics. It is planned to be available in the future."
     appears: "When 'Activity Map' is selected"
   data_feeds:
     text: "Adobe is currently working on a viable replacement to data feeds."
